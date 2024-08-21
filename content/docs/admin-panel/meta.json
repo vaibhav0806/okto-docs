@@ -1,0 +1,14 @@
+{
+    "title": "Admin Panel",
+    "pages": [
+        "overview",
+        "admin-dashboard-acc",
+        "environments",
+        "api-keys",
+        "ui-customisation",
+        "wallet-control",
+        "paymaster",
+        "user-logs",
+        "faq"
+    ]
+}
