@@ -1,4 +1,7 @@
 {
-    "title": "Name of Folder",
-    "pages": ["overview", "admin-panel", "react-sdk"]
+    "title": "Okto SDK",
+    "pages": [
+      "react-sdk",
+      "react-native-sdk"
+    ]
   }

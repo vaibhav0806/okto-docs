@@ -1,4 +1,14 @@
 {
-    "title": "React SDK",
-    "pages": ["getting-started", "concepts", "using-sdk", "example-apps", "migration", "troubleshooting"]
-  }
+  "title": "React SDK",
+  "pages": [
+    "overview",
+    "admin-panel",
+    "getting-started",
+    "concepts",
+    "using-sdk",
+    "example-apps",
+    "migration",
+    "troubleshooting"
+  ],
+  "root": true
+}
