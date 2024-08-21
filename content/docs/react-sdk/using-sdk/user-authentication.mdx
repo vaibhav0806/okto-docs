@@ -1,5 +1,169 @@
 ---
-title: User Authentication
-description: Coming soon
+title: "User Authentication"
+description: "Comprehensive guide on how to authenticate users using Okto SDK."
 full: false
 ---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+## Okto User Authentication
+
+The `Okto SDK` offers methods to authenticate users, check their login status, and log them out. Here's a breakdown of the available authentication methods:
+
+### Methods Overview
+
+- `isLoggedIn`: Check if the user is currently logged in.
+- `authenticate`: Authenticate a user using an ID token.
+- `authenticateWithUserId`: Authenticate a user using a user ID and JWT token.
+- `logOut`: Log out the current user.
+
+### Prerequisites
+
+- Ensure that you have an authentication token (ID token or JWT token) available.
+- The SDK must be initialized before calling any of the following methods.
+
+---
+
+## Check if the User is Logged In
+
+### Method: `isLoggedIn`
+
+#### Description
+This method checks if the user is currently logged in.
+
+#### Prerequisites
+- SDK must be initialized.
+
+#### Response
+- **Type**: `boolean`
+- **Description**: Returns `true` if the user is logged in, `false` otherwise.
+
+#### Example
+```typescript
+const loggedIn = sdk.isLoggedIn();
+console.log(loggedIn); // true or false
+```
+
+## Authenticate a User
+
+### Method: `authenticate`
+
+#### Description
+Authenticates a user using an ID token.
+
+#### Prerequisites
+- A valid `idToken` should be available for authentication.
+
+#### Parameters
+<TypeTable
+  type={{
+    idToken: {
+      description:
+        'The ID token for the user',
+      type: 'string',
+      default: null,
+    },
+   callback: {
+      description:
+        'Callback function for the result',
+      type: 'function',
+      default: null,
+    },
+  }}
+/>
+
+#### Success Response
+
+| Field Name | Data Type | Description                          | Optional? | Default Value | Possible Values |
+|------------|-----------|--------------------------------------|-----------|---------------|-----------------|
+| `result`   | `any`     | Result object upon successful auth.  | No        | N/A           | Auth details    |
+
+#### Error Response
+
+| Field Name | Data Type | Description                          | Optional? | Default Value | Possible Values |
+|------------|-----------|--------------------------------------|-----------|---------------|-----------------|
+| `error`    | `any`     | Error object on authentication fail. | No        | N/A           | Error details   |
+
+#### Example
+```typescript
+sdk.authenticate(idToken, (result, error) => {
+  if (error) {
+    console.error('Authentication failed', error);
+  } else {
+    console.log('Authenticated successfully', result);
+  }
+});
+```
+
+## Authenticate a User with User ID
+
+### Method: `authenticateWithUserId`
+
+#### Description
+Authenticates a user using a User ID and JWT token.
+
+#### Prerequisites
+- A valid `userId` and `jwtToken` should be available for authentication.
+
+#### Parameters
+<TypeTable
+  type={{
+    userId: {
+      description:
+        'The User ID for the user',
+      type: 'string',
+      default: null,
+    },
+   jwtToken: {
+      description:
+        'The JWT token for the user',
+      type: 'string',
+      default: null,
+    },
+    callback: {
+      description:
+        'Callback function for the result',
+      type: 'function',
+      default: null,
+    },
+  }}
+/>
+
+#### Success Response
+
+| Field Name | Data Type | Description                            | Optional? | Default Value | Possible Values |
+|------------|-----------|----------------------------------------|-----------|---------------|-----------------|
+| `result`   | `any`     | Result object upon successful auth.    | No        | N/A           | Auth details    |
+
+#### Error Response
+
+| Field Name | Data Type | Description                            | Optional? | Default Value | Possible Values |
+|------------|-----------|----------------------------------------|-----------|---------------|-----------------|
+| `error`    | `any`     | Error object on authentication fail.   | No        | N/A           | Error details   |
+
+#### Example
+```typescript
+sdk.authenticateWithUserId(userId, jwtToken, (result, error) => {
+  if (error) {
+    console.error('Authentication failed', error);
+  } else {
+    console.log('Authenticated successfully', result);
+  }
+});
+```
+
+## Log Out
+
+### Method: `logOut`
+
+#### Description
+Logs out the current user from the session.
+
+#### Prerequisites
+- User should be logged in to perform a logout action.
+
+#### Example
+```typescript
+sdk.logOut();
+console.log('User logged out');
+```

@@ -1,0 +1,5 @@
+{
+    "title": "React Native SDK",
+    "pages": ["overview", "admin-panel", "getting-started"],
+    "root": true
+  }
