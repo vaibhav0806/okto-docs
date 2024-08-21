@@ -1,0 +1,4 @@
+{
+    "title": "React SDK",
+    "pages": ["getting-started", "concepts", "using-sdk", "example-apps", "migration", "troubleshooting"]
+  }
