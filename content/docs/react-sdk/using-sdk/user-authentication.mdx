@@ -5,13 +5,18 @@ full: false
 ---
 
 import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+
 import './styles.css';
 
 ### Methods Overview
 
-- [`isLoggedIn`](#check-if-the-user-is-logged-in): Check if the user is currently logged in.
-- [`authenticate`](#authenticate-a-user): Authenticate a user using an ID token.
-- [`logOut`](#log-out): Log out the current user
+| Methods                                           | Description                     |                 
+|---------------------------------------------------|---------------------------------|
+| [`isLoggedIn`](#check-if-the-user-is-logged-in)   | Check if the User is Logged In  |
+| [`authenticate`](#authenticate-a-user)            | Authenticate a User             |
+| [`logOut`](#log-out)                              | Log Out                         |
 
 <div className="method-box">
 
@@ -23,25 +28,38 @@ import './styles.css';
 
 There are no parameters for this function.
 
-#### Success Response
+### Response
 
-| Field Name | Data Type     | Description                            | Possible Value |
-|------------|---------------|----------------------------------------|----------------|
-| `result`   | `boolean`     | Results true if the user is logged in  | `true`         |
+<Callout title="Success Response">
 
-#### Error Response
+| Field Name | Type     | Description                            | Possible Values |
+|------------|---------------|----------------------------------------|-----------------|
+| `result`   | `boolean`     | Results true if the user is logged in  | `true`, `false` |
 
-| Field Name | Data Type     | Description                                | Possible Value|
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
 |------------|---------------|--------------------------------------------|---------------|
-| `error`    | `boolean`     | Results false if the user is not logged in | `false`       |
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
 
-#### Example
-```typescript
-import { useOkto, type OktoContextType} from 'okto-sdk-react';
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+    import { useOkto, type OktoContextType} from 'okto-sdk-react';
  
-const { isLoggedIn } = useOkto() as OktoContextType;
-isLoggedIn().then(result => console.log(isLoggedIn ? "User is logged in" : "User is logged out"));
+    const { isLoggedIn } = useOkto() as OktoContextType;
+    isLoggedIn().then(result => console.log(isLoggedIn ? "User is logged in" : "User is logged out"));
 ```
+  </Tab>
+</Tabs>
 
 </div>
 
@@ -51,55 +69,53 @@ isLoggedIn().then(result => console.log(isLoggedIn ? "User is logged in" : "User
 
 `authenticate` authenticates a user using an ID token.
 
-#### Parameters
-<TypeTable
-  type={{
-    idToken: {
-      description:
-        'The ID token for the user',
-      type: 'string',
-      default: null,
-    },
-   callback: {
-      description:
-        'Callback function for the result',
-      type: 'function',
-      default: null,
-    },
-  }}
-/>
+### Parameters
+| Parameter   | Type | Description                                               | Possible Values |
+|-------------|-----------|------------------------------------------------------|-----------------|
+| `idToken`   | `string`  | Token received from Google OAuth2                    | Auth idToken    |
+| `callback`  | `function`| Callback function to be called after authentication. | -               |
 
+### Response
 
-#### Success Response
+<Callout title="Success Response">
 
-| Field Name | Data Type | Description                          | Optional? | Default Value | Possible Values |
-|------------|-----------|--------------------------------------|-----------|---------------|-----------------|
-| `result`   | `any`     | Result object upon successful auth.  | No        | N/A           | Auth details    |
+| Field Name | Type | Description                               | Possible Values |
+|------------|-----------|--------------------------------------|-----------------|
+| `result`   | `any`     | Result object upon successful auth.  | Auth details    |
 
-#### Error Response
+</Callout>
 
-| Field Name | Data Type | Description                          | Optional? | Default Value | Possible Values |
-|------------|-----------|--------------------------------------|-----------|---------------|-----------------|
-| `error`    | `any`     | Error object on authentication fail. | No        | N/A           | Error details   |
+<Callout type="error" title="Error Response">
 
-#### Example
-```typescript
-import {
-  useOkto,
-  type OktoContextType,
-} from 'okto-sdk-react';
+| Field Name | Type | Description                               | Possible Values |
+|------------|-----------|--------------------------------------|-----------------|
+| `error`    | `any`     | Error object on authentication fail. | Error details   |
+
+</Callout>
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+    import {
+      useOkto,
+      type OktoContextType,
+    } from 'okto-sdk-react';
  
-const { authenticate } = useOkto() as OktoContextType;
-const idToken = 'USER_ID_TOKEN';
-authenticate(idToken, (result, error) => {
-    if (result) {
-        console.log('authentication successful');
-    }
-    if (error) {
-        console.error('authentication error:', error);
-    }
-});
+    const { authenticate } = useOkto() as OktoContextType;
+    const idToken = 'USER_ID_TOKEN';
+    authenticate(idToken, (result, error) => {
+      if (result) {
+          console.log('authentication successful');
+      }
+      if (error) {
+          console.error('authentication error:', error);
+      }
+  });
 ```
+  </Tab>
+</Tabs>
+
 
 </div>
 
@@ -113,24 +129,35 @@ authenticate(idToken, (result, error) => {
 
 There are no parameters for this function.
 
-#### Success Response
+### Response 
 
-| Field Name | Data Type              | Description                          | Possible Values |
-|------------|------------------------|--------------------------------------|-----------------|
-| `result`   | `Promise<Boolean>`     | Returns `true` if user is logged out | `true`          |
-
-#### Error Response
-
-| Field Name | Data Type              | Description                               | Possible Values |
+<Callout title="Success Response">
+| Field Name | Type                   | Description                               | Possible Values |
 |------------|------------------------|-------------------------------------------|-----------------|
+| `result`   | `Promise<Boolean>`     | Returns `true` if user is logged out      | `true`          |
 | `error`    | `Promise<Boolean>`     | Returns `false` if user is not logged out | `false`         |
 
-#### Example
-```typescript
-import { useOkto, type OktoContextType} from 'okto-sdk-react';
+</Callout>
+
+
+<Callout title="Error Response" type="error">
+| Field Name | Type                   | Description                               | Possible Values |
+|------------|------------------------|-------------------------------------------|-----------------|
+| `error`    | `Promise<Error>`       | Returns 'error' on unsuccessful logout    | Error details   |
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+   ```typescript
+  import { useOkto, type OktoContextType} from 'okto-sdk-react';
  
-const { logout } = useOkto() as OktoContextType;
-logout().then(result => console.log("logged out"));
-```
+  const { logout } = useOkto() as OktoContextType;
+  logout().then(result => console.log("logged out"));
+  ```
+  </Tab>
+</Tabs>
+
 
 </div>
