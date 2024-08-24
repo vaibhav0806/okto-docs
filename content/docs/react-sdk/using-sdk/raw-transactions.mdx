@@ -1,5 +1,246 @@
 ---
-title: Raw Transactions
-description: Coming soon
+title: "Raw Transactions"
+description: "Learn how to fetch and execute raw transactions using the Okto SDK."
 full: false
 ---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+
+import './styles.css';  
+
+### Methods Overview
+
+| Methods                                                                                                        | Description                                                                 |                 
+|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| [`getRawTransactionStatus(query: RawTransactionStatusQuery)`](#get-raw-transactions)                           | Fetch raw transactions based on the provided data                           |
+| [`executeRawTransaction(data: ExecuteRawTransaction)`](#execute-raw-transaction)                              | Execute raw transactions based on the provided data                         |
+| [`executeRawTransactionWithJobStatus(data: ExecuteRawTransaction)`](#execute-raw-transaction-with-job-status) | Execute raw transactions with job status updates based on the provided data |
+
+<div className="method-box">
+
+## Get raw transactions
+
+`getRawTransactionStatus(query: RawTransactionStatusQuery)` fetches the status of a raw transaction based on the provided query.
+
+### Parameters
+
+| Parameter   | Type                        | Description                            | Possible Values |
+|-------------|-----------------------------|----------------------------------------|-----------------|
+| `query`     | `RawTransactionStatusQuery` | Query being provided fetching the data | -               |
+
+
+```typescript
+getRawTransactionStatus: ({order_id: string}) => Promise<RawTransactionStatusData>;
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                                | Description                                             | Possible Values |
+|------------|-------------------------------------|---------------------------------------------------------|-----------------|
+| `result`   | `Promise<RawTransactionStatusData>` | Returns information about the status of raw transaction | -               |
+
+</Callout>
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        const { getRawTransactionStatus } = useOkto() as OktoContextType;
+ 
+        const networkName = "POLYGON_TESTNET"
+        const from = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
+        const to = "0x0FC04889A533C68c1086e626661A4bb31486A9e2"
+        const data = "transaction";
+        const value = "1";
+ 
+        getRawTransactionStatus({
+            network_name: networkName,
+            transaction: {
+                from,
+                to,
+                data,
+                value,
+            }
+        }).then((result) => {
+                console.log('Transfer success', result);
+        })
+        .catch((error) => {
+            console.log('Transfer error', error);
+        });
+    ```
+  </Tab>
+</Tabs>
+
+</div>
+
+<div className="method-box">
+
+## Execute raw transaction
+
+`executeRawTransaction(data: ExecuteRawTransaction)` executes a raw transaction based on the provided data.
+
+### Parameters
+
+| Parameter   | Type                    | Description                                        | Possible Values |
+|-------------|-------------------------|----------------------------------------------------|-----------------|
+| `data`     | `ExecuteRawTransactions` | Data being provided for executing raw transactions | -               |
+
+
+```typescript
+executeRawTransaction: (data: {  
+    network_name: string,
+            transaction: {
+                from,
+                to,
+                data,
+                value,
+            }: TransactionData,
+}) => Promise<ExecuteRawTransactionData>;
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                                 | Description                               | Possible Values |
+|------------|--------------------------------------|-------------------------------------------|-----------------|
+| `result`   | `Promise<ExecuteRawTransactionData>` | Returns information about the transaction | -               |
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type          | Description                                | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        const { executeRawTransaction } = useOkto() as OktoContextType;
+ 
+        const networkName = "POLYGON_TESTNET"
+        const tokenAddress = "x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
+        const quantity = "1"
+        const recipientAddress = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
+ 
+        transferNftWithJobStatus({
+            network_name: networkName,
+            token_address: tokenAddress,
+            recipient_address: recipientAddress,
+            quantity: quantity
+        }).then((result) => {
+                console.log('Transfer success', result);
+        })
+        .catch((error) => {
+            console.log('Transfer error', error);
+        });
+    ```
+  </Tab>
+</Tabs>
+
+</div>
+
+<div className="method-box">
+
+## Execute raw transaction with job status
+
+`executeRawTransactionWithJobStatus(data: ExecuteRawTransaction)` executes a raw transaction and provides job status updates based on the provided data.
+
+### Parameters
+
+| Parameter   | Type                             | Description                                        | Possible Values |
+|-------------|----------------------------------|----------------------------------------------------|-----------------|
+| `data`      | `Promise<ExecuteRawTransaction>` | Data being provided for executing raw transactions | -               |
+
+
+```typescript
+executeRawTransactionWithJobStatus: (data: {  
+    network_name: string,
+            transaction: {
+                from,
+                to,
+                data,
+                value,
+            }: TransactionData,
+}) => Promise<RawTransactionStatus>;
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                            | Description                               | Possible Values |
+|------------|---------------------------------|-------------------------------------------|-----------------|
+| `result`   | `Promise<RawTransactionStatus>` | Returns information about the transaction | -               |
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        const { executeRawTransactionWithJobStatus } = useOkto() as OktoContextType;
+ 
+        const networkName = "POLYGON_TESTNET"
+        const from = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
+        const to = "0x0FC04889A533C68c1086e626661A4bb31486A9e2"
+        const data = "transaction";
+        const value = "1";
+ 
+        executeRawTransactionWithJobStatus({
+            network_name: networkName,
+            transaction: {
+                from,
+                to,
+                data,
+                value,
+            }
+        }).then((result) => {
+                console.log('Transfer success', result);
+        })
+        .catch((error) => {
+            console.log('Transfer error', error);
+        });
+    ```
+  </Tab>
+</Tabs>
+
+</div>
+

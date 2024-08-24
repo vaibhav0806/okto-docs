@@ -12,17 +12,17 @@ import './styles.css';
 
 ### Methods Overview
 
-| Methods                                           | Description                     |                 
-|---------------------------------------------------|---------------------------------|
-| [`isLoggedIn`](#check-if-the-user-is-logged-in)   | Check if the User is Logged In  |
-| [`authenticate`](#authenticate-a-user)            | Authenticate a User             |
-| [`logOut`](#log-out)                              | Log Out                         |
+| Methods                                                                | Description                     |                 
+|------------------------------------------------------------------------|---------------------------------|
+| [`isLoggedIn()`](#check-if-the-user-is-logged-in)                      | Check if the User is Logged In  |
+| [`authenticate(idToken, callback)`](#authenticate-a-user)              | Authenticate a User             |
+| [`logOut()`](#log-out)                                                 | Log Out                         |
 
 <div className="method-box">
 
 ## Check if the User is Logged In
 
-`isLoggedIn` checks if the user is currently logged in.
+`isLoggedIn()` checks if the user is currently logged in.
 
 ### Parameters
 
@@ -67,7 +67,7 @@ There are no parameters for this function.
 
 ## Authenticate a User
 
-`authenticate` authenticates a user using an ID token.
+`authenticate(idToken, callback)` authenticates a user using an ID token.
 
 ### Parameters
 | Parameter   | Type | Description                                               | Possible Values |
@@ -123,7 +123,7 @@ There are no parameters for this function.
 
 ## Log Out
 
-`logOut` logs out the current user from the session.
+`logOut()` logs out the current user from the session.
 
 ### Parameters
 

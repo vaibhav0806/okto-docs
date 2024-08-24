@@ -1,5 +1,162 @@
 ---
-title: Tokens
-description: Coming soon
+title: "Tokens"
+description: "Learn how to transfer tokens using the Okto SDK."
 full: false
 ---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+
+import './styles.css';
+
+### Methods Overview
+
+| Methods                                                                                 | Description                                                                |                 
+|-----------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| [`transferTokens(data: TransferTokens)`](#transfer-tokens)                              | Transfer tokens based on the provided data                                 |
+| [`transferTokensWithJobStatus(data: TransferTokens)`](#transfer-tokens-with-job-status) | Transfer tokens and provides job status updates based on the provided data |
+
+<div className="method-box">
+
+## Transfer tokens
+
+`transferTokens(data: TransferTokens)` transfers tokens based on the provided data.
+
+### Parameters
+
+| Parameter   | Type            | Description                                     | Possible Values |
+|-------------|-----------------|-------------------------------------------------|-----------------|
+| `data`     | `TransferTokens` | Data being provided for transferring the tokens | -               |
+
+```typescript
+transfertokens: (data: {
+  network_name: string;  
+  token_address: string;  
+  quantity: string;  
+  recipient_address: string;
+}) => Promise<TransferTokensData>
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                          | Description                                      | Possible Values |
+|------------|-------------------------------|--------------------------------------------------|-----------------|
+| `result`   | `Promise<TransferTokensData>` | Returns information about the tokens transferred | -               |
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        const { transferTokens } = useOkto() as OktoContextType;
+ 
+        const networkName = "POLYGON_TESTNET"
+        const tokenAddress = "x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
+        const quantity = "1"
+        const recipientAddress = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
+ 
+        transferTokens({
+            network_name: networkName,
+            token_address: tokenAddress,
+            recipient_address: recipientAddress,
+            quantity: quantity
+        }).then((result) => {
+                console.log('Transfer success', result);
+        })
+        .catch((error) => {
+            console.log('Transfer error', error);
+        });
+    ```
+  </Tab>
+</Tabs>
+
+</div>
+
+<div className="method-box">
+
+## Transfer tokens with job status 
+
+`transferTokens(data: TransferTokens)` transfers tokens with job status updates based on the provided data.
+
+### Parameters
+
+| Parameter   | Type            | Description                                     | Possible Values |
+|-------------|-----------------|-------------------------------------------------|-----------------|
+| `data`     | `TransferTokens` | Data being provided for transferring the tokens | -               |
+
+```typescript
+transfertokens: (data: {
+  network_name: string;  
+  token_address: string;  
+  quantity: string;  
+  recipient_address: string;
+}) => Promise<TransferTokensData>
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type              | Description                         | Possible Values |
+|------------|-------------------|-------------------------------------|-----------------|
+| `result`   | `Promise<Order>` | Returns information about the order | -               |
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        const { transferTokensWithJobStatus } = useOkto() as OktoContextType;
+ 
+        const networkName = "POLYGON_TESTNET"
+        const tokenAddress = "x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
+        const quantity = "1"
+        const recipientAddress = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
+ 
+        transferTokensWithJobStatus({
+            network_name: networkName,
+            token_address: tokenAddress,
+            recipient_address: recipientAddress,
+            quantity: quantity
+        }).then((result) => {
+                console.log('Transfer success', result);
+        })
+        .catch((error) => {
+            console.log('Transfer error', error);
+        });
+    ```
+  </Tab>
+</Tabs>
+
+</div>
