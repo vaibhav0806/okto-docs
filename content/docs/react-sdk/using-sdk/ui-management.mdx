@@ -1,5 +1,112 @@
 ---
-title: UI Management
-description: Coming soon
+title: "UI Management"
+description: "Learn how to manage theme and UI using the Okto SDK."
 full: false
 ---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+
+import './styles.css';
+
+### Methods Overview
+
+| Methods                            | Description                      |                 
+|------------------------------------|----------------------------------|
+| [`showWidgetModal()`](#show-modal) | Displays the widget modal        |
+| [`closeModal()`](#close-modal)     | Closes the currently open modal  |
+
+<div className="method-box">
+
+## Show modal
+
+`showWidgetModal()` displays the widget modal.
+
+### Parameters
+
+There are no parameters for this function.
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                | Description                                 | Possible Values |
+|------------|---------------------|---------------------------------------------|-----------------|
+| `result`   | `void`              | No successful response returned             | -               |
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        { showWidgetModal, closeModal } = useOkto() as OktoContextType;
+ 
+        showWidgetModal();
+    ```
+  </Tab>
+</Tabs>
+
+</div>
+
+<div className="method-box">
+
+## Close modal
+
+`closeModal()` closes the currently open modal.
+
+### Parameters
+
+There are no parameters for this function.
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                | Description                                 | Possible Values |
+|------------|---------------------|---------------------------------------------|-----------------|
+| `result`   | `void`              | No successful response returned             | -               |
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        { showWidgetModal, closeModal } = useOkto() as OktoContextType;
+ 
+        showWidgetModal();
+
+        closeModal();
+    ```
+  </Tab>
+</Tabs>
+
+</div>

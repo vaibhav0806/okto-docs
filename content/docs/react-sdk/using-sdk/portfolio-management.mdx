@@ -1,5 +1,69 @@
 ---
-title: Portfolio Management
-description: Coming soon
+title: "Portfolio Management"
+description: "Fetch details of the portfolio for the current user using the Okto SDK."
 full: false
 ---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+
+import './styles.css';
+
+### Methods Overview
+
+| Methods                                                          | Description                               |                 
+|------------------------------------------------------------------|-------------------------------------------|
+| [`getPortfolio()`](#get-portfolio-details-of-the-current-user)   | Get portfolio details of the current user |
+
+<div className="method-box">
+
+## Get portfolio details of the current user
+
+`getPortfolio()` retrieves the portfolio details of the currently authenticated user.
+
+### Parameters
+
+There are no parameters for this function.
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                     | Description                                         | Possible Values |
+|------------|--------------------------|-----------------------------------------------------|-----------------|
+| `result`   | `Promise<PortfolioData>` | Returns information about current user's portfolio  | -               |
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+### Example
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType, type Portfolio} from 'okto-sdk-react';
+ 
+        const { getPortfolio } = useOkto() as OktoContextType;
+ 
+        getPortfolio()
+        .then((result) => {
+          console.log(portfolio)
+        })
+        .catch((error) => {
+          console.error(`error:`, error);
+        });
+    ```
+  </Tab>
+</Tabs>
+
+</div>
