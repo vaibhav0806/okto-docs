@@ -1,5 +1,141 @@
 ---
 title: Quickstart
-description: Coming soon
+description: The Okto React SDK is the easiest way to onboard your users to web3 in your React App.
 full: false
 ---
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+
+With just nine minutes of setup, you get out-of-the-box support for:
+
+<span style={{ display: 'inline-flex', alignItems: 'center' }}>
+  <IIcon icon="noto-v1:right-arrow" height="48" />
+  &nbsp; All chains; EVM, Non-EVM, Solana, Aptos and support for Cosmos is coming soon
+</span>
+
+<br />
+
+<span style={{ display: 'inline-flex', alignItems: 'center' }}>
+  <IIcon icon="noto-v1:right-arrow" height="48" />
+  &nbsp; Customizable UIs to progressively onboard your users
+</span>
+
+<br />
+
+<span style={{ display: 'inline-flex', alignItems: 'center' }}>
+  <IIcon icon="noto-v1:right-arrow" height="48" />
+  &nbsp; Comprehensive toolkit for tokens, NFTs, and advanced contract interactions
+</span>
+
+<br />
+
+<Callout title="Building a new app?">
+Check out our [starter repos](link) page for templates for integrating Okto with various stacks, libraries, and use cases!
+</Callout>
+
+### Prerequisites
+
+1. Get the API Key using the Admin Dashboard [here](link).
+
+2. Flow for new users
+<Steps>
+<Step>
+Go to Admin Dashboard
+</Step>
+<Step>
+Create an account
+</Step>
+<Step>
+Create a new project
+</Step>
+<Step>
+Copy your API Key
+</Step>
+<Step>
+Paste it in your project
+</Step>
+</Steps>
+
+3. Flow for existing users
+<Steps>
+<Step>
+Go to Admin Dashboard
+</Step>
+<Step>
+Log-in
+</Step>
+<Step>
+Copy your API Key
+</Step>
+<Step>
+Paste it in your project
+</Step>
+</Steps>
+
+### Project setup
+
+Default login mode in Admin Dashboard, without any set-up [TODO]
+
+Setting up a new react project
+
+### Installation
+
+Install the latest version of the Okto React SDK using your package manager of choice:
+
+<Tabs items={['npm', 'pnpm', 'yarn']}>
+  <Tab value="npm">
+  ```bash
+    npm i okto-sdk-react
+  ```
+  </Tab>
+  <Tab value="pnpm">
+  ```bash
+  pnpm add okto-sdk-react
+  ```
+  </Tab>
+  <Tab value="yarn">
+   ```bash
+  yarn add okto-sdk-react
+  ```
+  </Tab>    
+</Tabs>
+
+### Initializing the SDK
+
+You need to first intialize the SDK with the API key to get started. You can do this in the root file of your app, for example `App.tsx` or `index.tsx`.
+
+```typescript title="App.tsx"
+import { OktoProvider, BuildType } from 'okto-sdk-react-native';
+ 
+<OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}>
+    <App />
+</OktoProvider>
+```
+
+### Resources
+- Find [template repos](link) to get started here
+- Use the [cheatsheet](link) to get a headstart 
+
+### Existing Project setup
+
+1. Ensure your React version is compatible. (Refer [here](link-to-package-json) for list of all dependencies).
+
+2. **Web3 Projects** (Migration coming soon). Visit the [Migration Section](link) here.
+
+3. **Web2 projects**
+    - Wrap your project in the `Okto Provider` along with your API key.
+    ```typescript title="App.tsx"
+        import { OktoProvider, BuildType } from 'okto-sdk-react-native';
+ 
+        <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}>
+            <App />
+        </OktoProvider>
+    ```
+
+### Default environment
+
+By default, all projects are set up in the sandbox environment. For more details, visit the [Admin Panel](link) documentation.
+
+Congratulations, you have a dApp powered by Okto!🚀 Just focus on your business logic and UI/UX.
+
