@@ -48,6 +48,18 @@
   dependencies:
     tslib "^2.4.0"
 
+"@iconify/react@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@iconify/react/-/react-5.0.2.tgz#03d6aa43ed22737451a5d087b00b26b3e6e6895a"
+  integrity sha512-wtmstbYlEbo4NDxFxBJkhkf9gJBDqMGr7FaqLrAUMneRV3Z+fVHLJjOhWbkAF8xDQNFC/wcTYdrWo1lnRhmagQ==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"
@@ -383,6 +395,11 @@
     "@radix-ui/react-compose-refs" "1.1.0"
     "@radix-ui/react-primitive" "2.0.0"
     "@radix-ui/react-use-callback-ref" "1.1.0"
+
+"@radix-ui/react-icons@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-icons/-/react-icons-1.3.0.tgz#c61af8f323d87682c5ca76b856d60c2312dbcb69"
+  integrity sha512-jQxj/0LKgp+j9BiTXz3O3sgs26RNet2iLWmsPyRz2SIcR4q/4SbazXfnYwbAr+vLYKSfc7qxzyGQA1HLlYiuNw==
 
 "@radix-ui/react-id@1.0.1":
   version "1.0.1"
@@ -1221,6 +1238,17 @@ fumadocs-core@13.3.2:
     swr "^2.2.5"
     unist-util-visit "^5.0.0"
 
+fumadocs-docgen@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fumadocs-docgen/-/fumadocs-docgen-1.1.0.tgz#761345222139259b79be9de0d517694c1f44f042"
+  integrity sha512-476elxwVBUnZV9LeTomGS0Tt37gNI7IRfLHl0V8sWBzEowgQ63f9sVFWFwQljoVKYTCIPP5ic5k/XVW0LkGMhw==
+  dependencies:
+    estree-util-value-to-estree "^3.1.2"
+    fumadocs-typescript "^2.0.1"
+    hast-util-to-estree "^3.1.0"
+    npm-to-yarn "^2.2.1"
+    unist-util-visit "^5.0.0"
+
 fumadocs-mdx@9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/fumadocs-mdx/-/fumadocs-mdx-9.0.2.tgz#2c307f0fb0313d1e3430cfbdb32421f8e25ee228"
@@ -1232,6 +1260,17 @@ fumadocs-mdx@9.0.2:
     fast-glob "^3.3.1"
     gray-matter "^4.0.3"
     zod "^3.23.8"
+
+fumadocs-typescript@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/fumadocs-typescript/-/fumadocs-typescript-2.0.1.tgz#5924fafe7b07720a728485f2e013b5b964efda3b"
+  integrity sha512-FKgO/g23tcRbXnv47blZ+KLs6HacKB5eO13d+LmQyBZxa3J5L+Ewi3vjjQmkf33Gva1WMojhYELe4m6YXZLErA==
+  dependencies:
+    fast-glob "^3.3.1"
+    hast-util-to-jsx-runtime "^2.3.0"
+    mdast-util-from-markdown "^2.0.0"
+    mdast-util-gfm "^3.0.0"
+    mdast-util-to-hast "^13.1.0"
 
 fumadocs-ui@13.3.2:
   version "13.3.2"
@@ -1318,7 +1357,7 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hast-util-to-estree@^3.0.0:
+hast-util-to-estree@^3.0.0, hast-util-to-estree@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/hast-util-to-estree/-/hast-util-to-estree-3.1.0.tgz#f2afe5e869ddf0cf690c75f9fc699f3180b51b19"
   integrity sha512-lfX5g6hqVh9kjS/B9E2gSkvHH4SZNiQFiqWS0x9fENzEl+8W12RqdRxX6d/Cwxi30tPQs3bIO+aolQJNp1bIyw==
@@ -1340,7 +1379,7 @@ hast-util-to-estree@^3.0.0:
     unist-util-position "^5.0.0"
     zwitch "^2.0.0"
 
-hast-util-to-jsx-runtime@^2.0.0:
+hast-util-to-jsx-runtime@^2.0.0, hast-util-to-jsx-runtime@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/hast-util-to-jsx-runtime/-/hast-util-to-jsx-runtime-2.3.0.tgz#3ed27caf8dc175080117706bf7269404a0aa4f7c"
   integrity sha512-H/y0+IWPdsLLS738P8tDnrQ8Z+dj12zQQ6WC11TIM21C8WFVoIxcqWXf2H3hiTVZjF1AWqoimGwrTWecWrnmRQ==
@@ -1734,7 +1773,7 @@ mdast-util-phrasing@^4.0.0:
     "@types/mdast" "^4.0.0"
     unist-util-is "^6.0.0"
 
-mdast-util-to-hast@^13.0.0:
+mdast-util-to-hast@^13.0.0, mdast-util-to-hast@^13.1.0:
   version "13.2.0"
   resolved "https://registry.yarnpkg.com/mdast-util-to-hast/-/mdast-util-to-hast-13.2.0.tgz#5ca58e5b921cc0a3ded1bc02eed79a4fe4fe41f4"
   integrity sha512-QGYKEuUsYT9ykKBCMOEDLsU5JRObWQusAolFMeko/tYPufNkRffBAQjIE+99jbA87xv6FgmjLtwjh9wBWajwAA==
