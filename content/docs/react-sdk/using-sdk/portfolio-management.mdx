@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';
 
@@ -14,13 +15,13 @@ import './styles.css';
 
 | Methods                                                          | Description                               |                 
 |------------------------------------------------------------------|-------------------------------------------|
-| [`getPortfolio()`](#get-portfolio-details-of-the-current-user)   | Get portfolio details of the current user |
+| <sub><i>async</i></sub> [`getPortfolio`](#get-portfolio-details-of-the-current-user)   | Get portfolio details of the current user |
 
 <div className="method-box">
 
 ## Get portfolio details of the current user
 
-`getPortfolio()` retrieves the portfolio details of the currently authenticated user.
+<sub><i>async</i></sub> `getPortfolio()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L295" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> retrieves the portfolio details of the currently authenticated user.
 
 ### Parameters
 
@@ -34,9 +35,18 @@ There are no parameters for this function.
 |------------|--------------------------|-----------------------------------------------------|-----------------|
 | `result`   | `Promise<PortfolioData>` | Returns information about current user's portfolio  | -               |
 
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface PortfolioData {
+  tokens: Portfolio[];
+  total: number;
+}
+```
+</Accordion>
+</Accordions>
+
 </Callout>
-
-
 
 <Callout type="error" title="Error Response">
 
@@ -47,7 +57,8 @@ There are no parameters for this function.
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -65,5 +76,7 @@ There are no parameters for this function.
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>

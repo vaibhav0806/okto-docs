@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';
 
@@ -14,14 +15,14 @@ import './styles.css';
 
 | Methods                                                                                 | Description                                                                |                 
 |-----------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| [`transferTokens(data: TransferTokens)`](#transfer-tokens)                              | Transfer tokens based on the provided data                                 |
-| [`transferTokensWithJobStatus(data: TransferTokens)`](#transfer-tokens-with-job-status) | Transfer tokens and provides job status updates based on the provided data |
+| <sub><i>async</i></sub> [`transferTokens`](#transfer-tokens)                              | Transfer tokens based on the provided data                                 |
+| <sub><i>async</i></sub> [`transferTokensWithJobStatus`](#transfer-tokens-with-job-status) | Transfer tokens and provides job status updates based on the provided data |
 
 <div className="method-box">
 
 ## Transfer tokens
 
-`transferTokens(data: TransferTokens)` transfers tokens based on the provided data.
+<sub><i>async</i></sub> `transferTokens(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L344" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> transfers tokens based on the provided data.
 
 ### Parameters
 
@@ -30,12 +31,12 @@ import './styles.css';
 | `data`     | `TransferTokens` | Data being provided for transferring the tokens | -               |
 
 ```typescript
-transfertokens: (data: {
-  network_name: string;  
-  token_address: string;  
-  quantity: string;  
+interface TransferTokens {
+  network_name: string;
+  token_address: string;
+  quantity: string;
   recipient_address: string;
-}) => Promise<TransferTokensData>
+}
 ```
 
 ### Response
@@ -45,6 +46,16 @@ transfertokens: (data: {
 | Field Name | Type                          | Description                                      | Possible Values |
 |------------|-------------------------------|--------------------------------------------------|-----------------|
 | `result`   | `Promise<TransferTokensData>` | Returns information about the tokens transferred | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface TransferTokensData {
+  orderId: string;
+}
+```
+</Accordion>
+</Accordions>
 
 </Callout>
 
@@ -59,7 +70,8 @@ transfertokens: (data: {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -86,6 +98,8 @@ transfertokens: (data: {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -93,7 +107,7 @@ transfertokens: (data: {
 
 ## Transfer tokens with job status 
 
-`transferTokens(data: TransferTokens)` transfers tokens with job status updates based on the provided data.
+<sub><i>async</i></sub> `transferTokens(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L353" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> transfers tokens with job status updates based on the provided data.
 
 ### Parameters
 
@@ -102,12 +116,12 @@ transfertokens: (data: {
 | `data`     | `TransferTokens` | Data being provided for transferring the tokens | -               |
 
 ```typescript
-transfertokens: (data: {
-  network_name: string;  
-  token_address: string;  
-  quantity: string;  
+interface TransferTokens {
+  network_name: string;
+  token_address: string;
+  quantity: string;
   recipient_address: string;
-}) => Promise<TransferTokensData>
+}
 ```
 
 ### Response
@@ -116,7 +130,21 @@ transfertokens: (data: {
 
 | Field Name | Type              | Description                         | Possible Values |
 |------------|-------------------|-------------------------------------|-----------------|
-| `result`   | `Promise<Order>` | Returns information about the order | -               |
+| `result`   | `Promise<Order>`  | Returns information about the order | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface Order {
+  order_id: string;
+  network_name: string;
+  order_type: string;
+  status: string;
+  transaction_hash: string;
+}
+```
+</Accordion>
+</Accordions>
 
 </Callout>
 
@@ -131,7 +159,8 @@ transfertokens: (data: {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -158,5 +187,7 @@ transfertokens: (data: {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>

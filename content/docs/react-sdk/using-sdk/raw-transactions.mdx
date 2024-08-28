@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';  
 
@@ -14,15 +15,15 @@ import './styles.css';
 
 | Methods                                                                                                        | Description                                                                 |                 
 |----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| [`getRawTransactionStatus(query: RawTransactionStatusQuery)`](#get-raw-transactions)                           | Fetch raw transactions based on the provided data                           |
-| [`executeRawTransaction(data: ExecuteRawTransaction)`](#execute-raw-transaction)                              | Execute raw transactions based on the provided data                         |
-| [`executeRawTransactionWithJobStatus(data: ExecuteRawTransaction)`](#execute-raw-transaction-with-job-status) | Execute raw transactions with job status updates based on the provided data |
+| <sub><i>async</i></sub> [`getRawTransactionStatus`](#get-raw-transactions)                           | Fetch raw transactions based on the provided data                           |
+| <sub><i>async</i></sub> [`executeRawTransaction`](#execute-raw-transaction)                              | Execute raw transactions based on the provided data                         |
+| <sub><i>async</i></sub> [`executeRawTransactionWithJobStatus`](#execute-raw-transaction-with-job-status) | Execute raw transactions with job status updates based on the provided data |
 
 <div className="method-box">
 
 ## Get raw transactions
 
-`getRawTransactionStatus(query: RawTransactionStatusQuery)` fetches the status of a raw transaction based on the provided query.
+<sub><i>async</i></sub> `getRawTransactionStatus(query)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L330" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> fetches the status of a raw transaction based on the provided query.
 
 ### Parameters
 
@@ -32,7 +33,9 @@ import './styles.css';
 
 
 ```typescript
-getRawTransactionStatus: ({order_id: string}) => Promise<RawTransactionStatusData>;
+interface RawTransactionStatusQuery {
+  order_id: string;
+}
 ```
 
 ### Response
@@ -42,6 +45,17 @@ getRawTransactionStatus: ({order_id: string}) => Promise<RawTransactionStatusDat
 | Field Name | Type                                | Description                                             | Possible Values |
 |------------|-------------------------------------|---------------------------------------------------------|-----------------|
 | `result`   | `Promise<RawTransactionStatusData>` | Returns information about the status of raw transaction | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface RawTransactionStatusData {
+  total: number;
+  jobs: RawTransactionStatus[];
+}
+```
+</Accordion>
+</Accordions>
 
 </Callout>
 
@@ -54,7 +68,8 @@ getRawTransactionStatus: ({order_id: string}) => Promise<RawTransactionStatusDat
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -85,6 +100,8 @@ getRawTransactionStatus: ({order_id: string}) => Promise<RawTransactionStatusDat
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -92,25 +109,20 @@ getRawTransactionStatus: ({order_id: string}) => Promise<RawTransactionStatusDat
 
 ## Execute raw transaction
 
-`executeRawTransaction(data: ExecuteRawTransaction)` executes a raw transaction based on the provided data.
+<sub><i>async</i></sub> `executeRawTransaction(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L415" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> executes a raw transaction based on the provided data.
 
 ### Parameters
 
 | Parameter   | Type                    | Description                                        | Possible Values |
 |-------------|-------------------------|----------------------------------------------------|-----------------|
-| `data`     | `ExecuteRawTransactions` | Data being provided for executing raw transactions | -               |
+| `data`      | `ExecuteRawTransaction` | Data being provided for executing raw transactions | -               |
 
 
 ```typescript
-executeRawTransaction: (data: {  
-    network_name: string,
-            transaction: {
-                from,
-                to,
-                data,
-                value,
-            }: TransactionData,
-}) => Promise<ExecuteRawTransactionData>;
+interface ExecuteRawTransaction {
+  network_name: string;
+  transaction: object;
+}
 ```
 
 ### Response
@@ -121,9 +133,17 @@ executeRawTransaction: (data: {
 |------------|--------------------------------------|-------------------------------------------|-----------------|
 | `result`   | `Promise<ExecuteRawTransactionData>` | Returns information about the transaction | -               |
 
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface ExecuteRawTransactionData {
+  jobId: string;
+}
+```
+</Accordion>
+</Accordions>
+
 </Callout>
-
-
 
 <Callout type="error" title="Error Response">
 
@@ -134,7 +154,8 @@ executeRawTransaction: (data: {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -161,6 +182,8 @@ executeRawTransaction: (data: {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -168,7 +191,7 @@ executeRawTransaction: (data: {
 
 ## Execute raw transaction with job status
 
-`executeRawTransactionWithJobStatus(data: ExecuteRawTransaction)` executes a raw transaction and provides job status updates based on the provided data.
+<sub><i>async</i></sub> `executeRawTransactionWithJobStatus(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L424" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> executes a raw transaction and provides job status updates based on the provided data.
 
 ### Parameters
 
@@ -178,15 +201,10 @@ executeRawTransaction: (data: {
 
 
 ```typescript
-executeRawTransactionWithJobStatus: (data: {  
-    network_name: string,
-            transaction: {
-                from,
-                to,
-                data,
-                value,
-            }: TransactionData,
-}) => Promise<RawTransactionStatus>;
+interface ExecuteRawTransaction {
+  network_name: string;
+  transaction: object;
+}
 ```
 
 ### Response
@@ -196,6 +214,17 @@ executeRawTransactionWithJobStatus: (data: {
 | Field Name | Type                            | Description                               | Possible Values |
 |------------|---------------------------------|-------------------------------------------|-----------------|
 | `result`   | `Promise<RawTransactionStatus>` | Returns information about the transaction | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface RawTransactionStatusData {
+  total: number;
+  jobs: RawTransactionStatus[];
+}
+```
+</Accordion>
+</Accordions>
 
 </Callout>
 
@@ -210,7 +239,8 @@ executeRawTransactionWithJobStatus: (data: {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -241,6 +271,8 @@ executeRawTransactionWithJobStatus: (data: {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 

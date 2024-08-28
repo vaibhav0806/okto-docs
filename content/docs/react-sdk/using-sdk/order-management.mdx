@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';
 
@@ -14,19 +15,19 @@ import './styles.css';
 
 | Methods                                                             | Description         |                 
 |---------------------------------------------------------------------|---------------------|
-| [`orderHistory(query: Partial<OrderQuery>)`](#fetch-order-history)  | Fetch order history |
+| <sub><i>async</i></sub> [`orderHistory`](#fetch-order-history)  | Fetch order history |
 
 <div className="method-box">
 
 ## Fetch order history
 
-`orderHistory(query: Partial<OrderQuery>)` fetches the order history based on the provided query.
+<sub><i>async</i></sub> `orderHistory(query)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L315" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> fetches the order history based on the provided query.
 
 ### Parameters
 
-| Parameter   | Type         | Description                      | Possible Values |
-|-------------|--------------|----------------------------------|-----------------|
-| `query`     | `OrderQuery` | Query for fetching order history | Auth idToken    |
+| Parameter   | Type                  | Description                      | Possible Values |
+|-------------|-----------------------|----------------------------------|-----------------|
+| `query`     | `Partial<OrderQuery>` | Query for fetching order history | Auth idToken    |
 
 ```typescript
 interface OrderQuery {
@@ -45,9 +46,18 @@ interface OrderQuery {
 |------------|----------------------|---------------------------------------------|-----------------|
 | `result`   | `Promise<OrderData>` | Returns information about the order history | -               |
 
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface OrderData {
+  total: number;
+  jobs: Order[];
+}
+```
+</Accordion>
+</Accordions>
+
 </Callout>
-
-
 
 <Callout type="error" title="Error Response">
 
@@ -58,7 +68,8 @@ interface OrderQuery {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -77,5 +88,7 @@ interface OrderQuery {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>

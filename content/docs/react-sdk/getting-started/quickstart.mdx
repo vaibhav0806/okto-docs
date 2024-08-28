@@ -7,7 +7,7 @@ full: false
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 
-With just nine minutes of setup, you get out-of-the-box support for:
+With just ten minutes of setup, you get out-of-the-box support for:
 
 <span style={{ display: 'inline-flex', alignItems: 'center' }}>
   <IIcon icon="noto-v1:right-arrow" height="48" />
@@ -36,49 +36,17 @@ Check out our [starter repos](link) page for templates for integrating Okto with
 
 ### Prerequisites
 
-1. Get the API Key using the Admin Dashboard [here](link).
+Create an account on the [Okto Admin Panel](link) and get your API Key.
 
-2. Flow for new users
-<Steps>
-<Step>
-Go to Admin Dashboard
-</Step>
-<Step>
-Create an account
-</Step>
-<Step>
-Create a new project
-</Step>
-<Step>
-Copy your API Key
-</Step>
-<Step>
-Paste it in your project
-</Step>
-</Steps>
-
-3. Flow for existing users
-<Steps>
-<Step>
-Go to Admin Dashboard
-</Step>
-<Step>
-Log-in
-</Step>
-<Step>
-Copy your API Key
-</Step>
-<Step>
-Paste it in your project
-</Step>
-</Steps>
-
-### Project setup
+### Setup a new React Project
 
 Default login mode in Admin Dashboard, without any set-up [TODO]
 
 Setting up a new react project
 
+<Steps>
+
+<Step>
 ### Installation
 
 Install the latest version of the Okto React SDK using your package manager of choice:
@@ -86,26 +54,28 @@ Install the latest version of the Okto React SDK using your package manager of c
 <Tabs items={['npm', 'pnpm', 'yarn']}>
   <Tab value="npm">
   ```bash
-    npm i okto-sdk-react
+    npm i okto-sdk-react @react-oauth/google axios
   ```
   </Tab>
   <Tab value="pnpm">
   ```bash
-  pnpm add okto-sdk-react
+  pnpm add okto-sdk-react @react-oauth/google axios
   ```
   </Tab>
   <Tab value="yarn">
    ```bash
-  yarn add okto-sdk-react
+  yarn add okto-sdk-react @react-oauth/google axios
   ```
   </Tab>    
 </Tabs>
+</Step>
 
+<Step>
 ### Initializing the SDK
 
 You need to first intialize the SDK with the API key to get started. You can do this in the root file of your app, for example `App.tsx` or `index.tsx`.
 
-```typescript title="App.tsx"
+```typescript title="index.tsx"
 import { OktoProvider, BuildType } from 'okto-sdk-react-native';
  
 <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}>
@@ -113,29 +83,145 @@ import { OktoProvider, BuildType } from 'okto-sdk-react-native';
 </OktoProvider>
 ```
 
-### Resources
-- Find [template repos](link) to get started here
-- Use the [cheatsheet](link) to get a headstart 
-
-### Existing Project setup
-
-1. Ensure your React version is compatible. (Refer [here](link-to-package-json) for list of all dependencies).
-
-2. **Web3 Projects** (Migration coming soon). Visit the [Migration Section](link) here.
-
-3. **Web2 projects**
-    - Wrap your project in the `Okto Provider` along with your API key.
-    ```typescript title="App.tsx"
-        import { OktoProvider, BuildType } from 'okto-sdk-react-native';
- 
-        <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}>
-            <App />
-        </OktoProvider>
-    ```
-
-### Default environment
-
+<Callout title="Default Environment">
 By default, all projects are set up in the sandbox environment. For more details, visit the [Admin Panel](link) documentation.
+</Callout>
+
+
+</Step>
+
+<Step>
+### Google Authentication Setup
+You will need to set up a project in **Google Console**. This [guide](link) will walk you through that.
+</Step>
+
+<Step>
+### Sample Files
+
+```typescript title="index.js"
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+const GOOGLE_CLIENT_ID = ""
+
+root.render(
+<React.StrictMode>
+  <GoogleOAuthProvider clientId = {GOOGLE_CLIENT_ID}>
+    <App />
+  </GoogleOAuthProvider>
+</React.StrictMode>
+);
+```
+
+```typescript title="App.js"
+import React from 'react';
+import { OktoProvider, BuildType } from 'okto-sdk-react';
+import LoginPage from './LoginPage';
+
+const OKTO_CLIENT_API_KEY = "";
+
+
+function App() {
+return (
+    <OktoProvider apiKey={OKTO_CLIENT_API_KEY} buildType={BuildType.SANDBOX}>
+      <LoginPage/>
+    </OktoProvider>
+  </Router>
+);
+}
+```
+
+```typescript title="Login.js"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useOkto } from "okto-sdk-react";
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+
+function LoginPage() {
+
+  const navigate = useNavigate();
+  const { authenticate } = useOkto();
+  const [authToken, setAuthToken] = useState();
+  const BASE_URL = "https://sandbox-api.okto.tech";
+  const OKTO_CLIENT_API = "";
+
+  const apiService = axios.create({
+    baseURL: BASE_URL,
+    headers: {
+      "x-api-key": OKTO_CLIENT_API,
+      "Content-Type": "application/json",
+    },
+  });
+
+  const setPin = (idToken, token, reloginPin) => {
+    return apiService.post("/api/v1/set_pin", {
+      id_token: idToken,
+      token: token,
+      relogin_pin: reloginPin,
+      purpose: "set_pin",
+    });
+  };
+
+  const handleGoogleLogin = async (credentialResponse) => {
+    console.log("Google login response:", credentialResponse);
+    const idToken = credentialResponse.credential;
+    console.log("google idtoken: ", idToken);
+    authenticate(idToken, async (authResponse, error) => {
+      if (authResponse) {
+        console.log("Authentication check: ", authResponse);
+        setAuthToken(authResponse.auth_token);
+        if (!authToken && authResponse.action === "signup") {
+          console.log("User Signup");
+          const pinToken = authResponse.token;
+          await setPin(idToken, pinToken, "0000");
+          await authenticate(idToken, async (res, err) => {
+            if (res) {
+              setAuthToken(res.auth_token);
+            }
+          });
+        }
+        console.log("auth token received", authToken);
+        navigate("/home");
+      }
+      if (error) {
+        console.error("Authentication error:", error);
+      }
+    });
+  };
+
+  return (
+    <div>
+      <h1>Login</h1>
+      {!authToken ? (
+        <GoogleLogin
+          onSuccess={handleGoogleLogin}
+          onError={(error) => {
+            console.log("Login Failed", error);
+          }}
+          useOneTap
+          promptMomentNotification={(notification) =>
+            console.log("Prompt moment notification:", notification)
+          }
+        />
+      ) : (
+        <> Authenticated </>
+      )}
+    </div>
+  );
+}
+export default LoginPage;
+```
+</Step>
+
+</Steps>
+
+<Callout title="Resources">
+Use the [template repos](link) and [cheatsheet](link) to get started quickly!
+</Callout>
 
 Congratulations, you have a dApp powered by Okto!🚀 Just focus on your business logic and UI/UX.
 

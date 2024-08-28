@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';
 
@@ -14,13 +15,13 @@ import './styles.css';
 
 | Methods                                                                  | Description                                     |                 
 |--------------------------------------------------------------------------|-------------------------------------------------|
-| [`getUserDetails()`](#get-details-of-the-currently-authenticated-user)   | Get details of the currently authenticated user |
+| <sub><i>async</i></sub> [`getUserDetails`](#get-details-of-the-currently-authenticated-user)   | Get details of the currently authenticated user |
 
 <div className="method-box">
 
 ## Get details of the currently authenticated user
 
-`getUserDetails()` retrieves the details of the currently authenticated user.
+<sub><i>async</i></sub> `getUserDetails()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L307" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> retrieves the details of the currently authenticated user.
 
 ### Parameters
 
@@ -33,6 +34,20 @@ There are no parameters for this function.
 | Field Name | Type                | Description                                 | Possible Values |
 |------------|---------------------|---------------------------------------------|-----------------|
 | `result`   | `Promise<User>`     | Returns information about the current user  | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface User {
+  email: string;
+  user_id: string;
+  created_at: string;
+  freezed: string;
+  freeze_reason: string;
+}
+```
+</Accordion>
+</Accordions>
 
 </Callout>
 
@@ -47,7 +62,8 @@ There are no parameters for this function.
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -65,5 +81,7 @@ There are no parameters for this function.
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
