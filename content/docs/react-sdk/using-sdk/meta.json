@@ -2,7 +2,6 @@
     "title": "Using the SDK",
     "pages": [
         "user-authentication",
-        "read-from-chain",
         "user-management",
         "portfolio-management",
         "wallet-management",

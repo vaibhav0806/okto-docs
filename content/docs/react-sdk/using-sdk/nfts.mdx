@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';  
 
@@ -14,32 +15,32 @@ import './styles.css';
 
 | Methods                                                                               | Description                                                               |                 
 |---------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| [`transferNft(data: TransferNFT)`](#transfer-nfts)                                    | Transfer NFTs based on the provided data                                  |
-| [`transferNftWithJobStatus(data: TransferTokens)`](#transfer-nfts-with-job-status)    | Transfer NFTs and provides job status updates based on the provided data  |
-| [`getNftOrderDetails(query: Partial<NftOrderDetailsQuery>)`](#get-nft-order-details)  | Fetches details of a specific NFT order based on the provided query       |
+| <sub><i>async</i></sub> [`transferNft`](#transfer-nfts)                                    | Transfer NFTs based on the provided data                                  |
+| <sub><i>async</i></sub> [`transferNftWithJobStatus`](#transfer-nfts-with-job-status)    | Transfer NFTs and provides job status updates based on the provided data  |
+| <sub><i>async</i></sub> [`getNftOrderDetails`](#get-nft-order-details)  | Fetches details of a specific NFT order based on the provided query       |
 
 <div className="method-box">
 
 ## Transfer NFTs
 
-`transferNft(data: TransferNFT)` transfers a NFT based on the provided data.
+<sub><i>async</i></sub> `transferNft(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L384" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> transfers a NFT based on the provided data.
 
 ### Parameters
 
-| Parameter   | Type         | Description                                  | Possible Values |
-|-------------|--------------|----------------------------------------------|-----------------|
-| `data`     | `TransferNFT` | Data being provided for transferring the NFT | -               |
+| Parameter   | Type          | Description                                  | Possible Values |
+|-------------|---------------|----------------------------------------------|-----------------|
+| `data`      | `TransferNft` | Data being provided for transferring the NFT | -               |
 
 ```typescript
-transfernft: (data: {  
-    operation_type: string;  
-    network_name: string;  
-    collection_address: string;  
-    collection_name: string;  
-    quantity: string;  
-    recipient_address: string;  
-    nft_address: string;
-}) => Promise<TransferNftData>;
+interface TransferNft {
+  operation_type: string;
+  network_name: string;
+  collection_address: string;
+  collection_name: string;
+  quantity: string;
+  recipient_address: string;
+  nft_address: string;
+}
 ```
 
 ### Response
@@ -50,6 +51,15 @@ transfernft: (data: {
 |------------|----------------------------|-----------------------------------------------|-----------------|
 | `result`   | `Promise<TransferNftData>` | Returns information about the NFT transferred | -               |
 
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface TransferNftData {
+  order_id: string;
+}
+```
+</Accordion>
+</Accordions>
 </Callout>
 
 <Callout type="error" title="Error Response">
@@ -61,7 +71,8 @@ transfernft: (data: {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -88,6 +99,8 @@ transfernft: (data: {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -95,25 +108,25 @@ transfernft: (data: {
 
 ## Transfer NFTs with job status 
 
-`transferNftWithJobStatus(data: TransferTokens)` transfers NFTs with job status updates based on the provided data.
+<sub><i>async</i></sub> `transferNftWithJobStatus(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L388" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> transfers NFTs with job status updates based on the provided data.
 
 ### Parameters
 
 | Parameter   | Type            | Description                                     | Possible Values |
 |-------------|-----------------|-------------------------------------------------|-----------------|
-| `data`     | `TransferTokens` | Data being provided for transferring the tokens | -               |
+| `data`      | `TransferNft`   | Data being provided for transferring the tokens | -               |
 
 
 ```typescript
-transfernft: (data: {  
-    operation_type: string;  
-    network_name: string;  
-    collection_address: string;  
-    collection_name: string;  
-    quantity: string;  
-    recipient_address: string;  
-    nft_address: string;
-}) => Promise<TransferNftData>;
+interface TransferNft {
+  operation_type: string;
+  network_name: string;
+  collection_address: string;
+  collection_name: string;
+  quantity: string;
+  recipient_address: string;
+  nft_address: string;
+}
 ```
 
 ### Response
@@ -123,6 +136,29 @@ transfernft: (data: {
 | Field Name | Type                       | Description                         | Possible Values |
 |------------|----------------------------|-------------------------------------|-----------------|
 | `result`   | `Promise<NftOrderDetails>` | Returns information about the order | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface NftOrderDetails {
+  explorer_smart_contract_url: string;
+  description: string;
+  type: string;
+  collection_id: string;
+  collection_name: string;
+  nft_token_id: string;
+  token_uri: string;
+  id: string;
+  image: string;
+  collection_address: string;
+  collection_image: string;
+  network_name: string;
+  network_id: string;
+  nft_name: string;
+}
+```
+</Accordion>
+</Accordions>
 
 </Callout>
 
@@ -137,7 +173,8 @@ transfernft: (data: {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -164,6 +201,8 @@ transfernft: (data: {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -171,14 +210,13 @@ transfernft: (data: {
 
 ## Get NFT order details
 
-`getNftOrderDetails(query: Partial<NftOrderDetailsQuery>)` fetches details of a specific NFT order based on the provided query.
+<sub><i>async</i></sub> `getNftOrderDetails(query)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L320" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> fetches details of a specific NFT order based on the provided query.
 
 ### Parameters
 
 | Parameter   | Type                            | Description                                       | Possible Values |
 |-------------|---------------------------------|---------------------------------------------------|-----------------|
-| `query`     | `Promise<NftOrderDetailsQuery>` | Query provided for fetching the NFT order details | -               |
-
+| `query`     | `Partial<NftOrderDetailsQuery>` | Query provided for fetching the NFT order details | -               |
 
 ```typescript
 interface NftOrderDetailsQuery {
@@ -196,6 +234,29 @@ interface NftOrderDetailsQuery {
 |------------|----------------------------|-------------------------------------|-----------------|
 | `result`   | `Promise<NftOrderDetails>` | Returns information about the order | -               |
 
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface NftOrderDetails {
+  explorer_smart_contract_url: string;
+  description: string;
+  type: string;
+  collection_id: string;
+  collection_name: string;
+  nft_token_id: string;
+  token_uri: string;
+  id: string;
+  image: string;
+  collection_address: string;
+  collection_image: string;
+  network_name: string;
+  network_id: string;
+  nft_name: string;
+}
+```
+</Accordion>
+</Accordions>
+
 </Callout>
 
 
@@ -209,7 +270,8 @@ interface NftOrderDetailsQuery {
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -227,5 +289,7 @@ interface NftOrderDetailsQuery {
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>

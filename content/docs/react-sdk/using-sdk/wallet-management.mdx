@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';
 
@@ -14,14 +15,14 @@ import './styles.css';
 
 | Methods                                                   | Description                          |                 
 |-----------------------------------------------------------|--------------------------------------|
-| [`getWallets()`](#get-all-wallets-of-current-user)        | Get all wallets of current user      |
-| [`createWallet()`](#create-a-new-wallet-for-current-user) | Create a new wallet for current user |
+| <sub><i>async</i></sub> [`getWallets`](#get-all-wallets-of-current-user)        | Get all wallets of current user      |
+| <sub><i>async</i></sub> [`createWallet`](#create-a-new-wallet-for-current-user) | Create a new wallet for current user |
 
 <div className="method-box">
 
 ## Get all wallets of current user
 
-`getWallets()` retrieves all the wallets of the currently authenticated user.
+<sub><i>async</i></sub> `getWallets()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L311" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> retrieves all the wallets of the currently authenticated user.
 
 ### Parameters
 
@@ -35,9 +36,16 @@ There are no parameters for this function.
 |------------|-----------------------|---------------------------------------------|-----------------|
 | `result`   | `Promise<WalletData>` | Returns all the wallets of the current user | -               |
 
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface WalletData {
+  wallets: Wallet[];
+}
+```
+</Accordion>
+</Accordions>
 </Callout>
-
-
 
 <Callout type="error" title="Error Response">
 
@@ -48,7 +56,8 @@ There are no parameters for this function.
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -66,6 +75,8 @@ There are no parameters for this function.
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -73,7 +84,7 @@ There are no parameters for this function.
 
 ## Create a new wallet for current user
 
-`createWallet()` retrieves all the wallets of the currently authenticated user.
+<sub><i>async</i></sub> `createWallet()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L340" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> retrieves all the wallets of the currently authenticated user.
 
 ### Parameters
 
@@ -86,6 +97,16 @@ There are no parameters for this function.
 | Field Name | Type                  | Description                                   | Possible Values |
 |------------|-----------------------|-----------------------------------------------|-----------------|
 | `result`   | `Promise<WalletData>` | Returns the newly created wallet for the user | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface WalletData {
+  wallets: Wallet[];
+}
+```
+</Accordion>
+</Accordions>
 
 </Callout>
 
@@ -100,7 +121,8 @@ There are no parameters for this function.
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -118,5 +140,7 @@ There are no parameters for this function.
     ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>

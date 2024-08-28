@@ -7,6 +7,7 @@ full: false
 import { TypeTable } from 'fumadocs-ui/components/type-table';
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 
 import './styles.css';
 
@@ -14,15 +15,15 @@ import './styles.css';
 
 | Methods                                                                | Description                     |                 
 |------------------------------------------------------------------------|---------------------------------|
-| [`isLoggedIn()`](#check-if-the-user-is-logged-in)                      | Check if the User is Logged In  |
-| [`authenticate(idToken, callback)`](#authenticate-a-user)              | Authenticate a User             |
-| [`logOut()`](#log-out)                                                 | Log Out                         |
+| [`isLoggedIn`](#check-if-the-user-is-logged-in)                      | Check if the User is Logged In  |
+| <sub><i>async</i></sub> [`authenticate`](#authenticate-a-user)              | Authenticate a User             |
+| <sub><i>async</i></sub> [`logOut`](#log-out)                                                 | Log Out                         |
 
 <div className="method-box">
 
 ## Check if the User is Logged In
 
-`isLoggedIn()` checks if the user is currently logged in.
+`isLoggedIn`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L66" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> checks if the user is currently logged in.
 
 ### Parameters
 
@@ -32,13 +33,11 @@ There are no parameters for this function.
 
 <Callout title="Success Response">
 
-| Field Name | Type     | Description                            | Possible Values |
+| Field Name | Type          | Description                            | Possible Values |
 |------------|---------------|----------------------------------------|-----------------|
 | `result`   | `boolean`     | Results true if the user is logged in  | `true`, `false` |
 
 </Callout>
-
-
 
 <Callout type="error" title="Error Response">
 
@@ -49,7 +48,8 @@ There are no parameters for this function.
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -60,6 +60,8 @@ There are no parameters for this function.
 ```
   </Tab>
 </Tabs>
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -67,21 +69,21 @@ There are no parameters for this function.
 
 ## Authenticate a User
 
-`authenticate(idToken, callback)` authenticates a user using an ID token.
+<sub><i>async</i></sub> `authenticate(idToken, callback)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L163" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> authenticates a user using an ID token.
 
 ### Parameters
-| Parameter   | Type | Description                                               | Possible Values |
-|-------------|-----------|------------------------------------------------------|-----------------|
-| `idToken`   | `string`  | Token received from Google OAuth2                    | Auth idToken    |
-| `callback`  | `function`| Callback function to be called after authentication. | -               |
+| Parameter   | Type                     | Description                                               | Possible Values |
+|-------------|--------------------------|------------------------------------------------------|-----------------|
+| `idToken`   | `string`                 | Token received from Google OAuth2                    | Auth idToken    |
+| `callback`  | `function(result, error)`| Callback function to be called after authentication. | -               |
 
 ### Response
 
 <Callout title="Success Response">
 
-| Field Name | Type | Description                               | Possible Values |
-|------------|-----------|--------------------------------------|-----------------|
-| `result`   | `any`     | Result object upon successful auth.  | Auth details    |
+| Field Name | Type       | Description          | Possible Values |
+|------------|------------|----------------------|-----------------|
+| `result`   | `void`     | No response returned | -               |
 
 </Callout>
 
@@ -93,7 +95,8 @@ There are no parameters for this function.
 
 </Callout>
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
     ```typescript
@@ -115,7 +118,8 @@ There are no parameters for this function.
 ```
   </Tab>
 </Tabs>
-
+</Accordion>
+</Accordions>
 
 </div>
 
@@ -123,7 +127,7 @@ There are no parameters for this function.
 
 ## Log Out
 
-`logOut()` logs out the current user from the session.
+<sub><i>async</i></sub> `logOut()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L476" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> logs out the current user from the session.
 
 ### Parameters
 
@@ -132,10 +136,9 @@ There are no parameters for this function.
 ### Response 
 
 <Callout title="Success Response">
-| Field Name | Type                   | Description                               | Possible Values |
-|------------|------------------------|-------------------------------------------|-----------------|
-| `result`   | `Promise<Boolean>`     | Returns `true` if user is logged out      | `true`          |
-| `error`    | `Promise<Boolean>`     | Returns `false` if user is not logged out | `false`         |
+| Field Name | Type                   | Description             | Possible Values |
+|------------|------------------------|-------------------------|-----------------|
+| `result`   | `void`                 | No response returned    | -               |
 
 </Callout>
 
@@ -147,7 +150,8 @@ There are no parameters for this function.
 </Callout>
 
 
-### Example
+<Accordions>
+<Accordion title="Example">
 <Tabs items={['Typescript']}>
   <Tab value="Typescript">
    ```typescript
@@ -158,6 +162,7 @@ There are no parameters for this function.
   ```
   </Tab>
 </Tabs>
-
+</Accordion>
+</Accordions>
 
 </div>
