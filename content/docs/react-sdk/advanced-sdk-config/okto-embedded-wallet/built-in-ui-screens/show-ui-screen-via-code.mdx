@@ -1,5 +1,241 @@
 ---
 title: Show UI Screen via Code
-description: Coming soon
+description: Learn how to manage theme and UI using the Okto SDK.
 full: false
 ---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+import '../../../styles.css';
+
+### Methods Overview
+
+| Methods                            | Description                                          |                 
+|------------------------------------|------------------------------------------------------|
+| [`showWidgetModal`](#show-modal)   | Displays the widget modal                            |
+| [`closeModal`](#close-modal)       | Closes the currently open modal                      |
+| [`getTheme`](#get-theme)           | Retrieves the current UI theme                       |
+| [`setTheme`](#set-theme)           | Sets the UI theme based on the provided theme object |
+
+<div className="method-box">
+
+## Show modal
+
+`showWidgetModal()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L480" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> displays the widget modal.
+
+### Parameters
+
+There are no parameters for this function.
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                | Description                                 | Possible Values |
+|------------|---------------------|---------------------------------------------|-----------------|
+| `result`   | `void`              | No successful response returned             | -               |
+
+</Callout>
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        { showWidgetModal, closeModal } = useOkto() as OktoContextType;
+ 
+        showWidgetModal();
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+
+</div>
+
+<div className="method-box">
+
+## Close modal
+
+`closeModal()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L488" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> closes the currently open modal.
+
+### Parameters
+
+There are no parameters for this function.
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                | Description                                 | Possible Values |
+|------------|---------------------|---------------------------------------------|-----------------|
+| `result`   | `void`              | No successful response returned             | -               |
+
+</Callout>
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        { showWidgetModal, closeModal } = useOkto() as OktoContextType;
+ 
+        showWidgetModal();
+
+        closeModal();
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+
+</div>
+
+<div className="method-box">
+
+## Get theme
+
+`getTheme()`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L488" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> retrieves the current UI theme.
+
+### Parameters
+
+There are no parameters for this function.
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                | Description                                 | Possible Values |
+|------------|---------------------|---------------------------------------------|-----------------|
+| `result`   | `Theme`             | No successful response returned             | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface Theme {
+  textPrimaryColor: string;
+  textSecondaryColor: string;
+  textTertiaryColor: string;
+  accentColor: string;
+  accent2Color: string;
+  strokBorderColor: string;
+  strokDividerColor: string;
+  surfaceColor: string;
+  backgroundColor: string;
+}
+```
+</Accordion>
+</Accordions>
+
+</Callout>
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        { getTheme } = useOkto() as OktoContextType;
+ 
+        console.log(getTheme());
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+
+</div>
+
+<div className="method-box">
+
+## Set theme
+
+`setTheme(theme)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L488" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> sets the UI theme based on the provided theme object.
+
+### Parameters
+
+| Parameter   | Type                 | Description                                               | Possible Values |
+|-------------|----------------------|-----------------------------------------------------------|-----------------|
+| `theme  `   | `Partial<Theme>`     | Theme provided to set                                     | `Theme`         |
+
+```typescript 
+interface Theme {
+  textPrimaryColor: string;
+  textSecondaryColor: string;
+  textTertiaryColor: string;
+  accentColor: string;
+  accent2Color: string;
+  strokBorderColor: string;
+  strokDividerColor: string;
+  surfaceColor: string;
+  backgroundColor: string;
+}
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                | Description                                 | Possible Values |
+|------------|---------------------|---------------------------------------------|-----------------|
+| `result`   | `void`             | No successful response returned              | -               |
+
+</Callout>
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        { getTheme } = useOkto() as OktoContextType;
+ 
+        console.log(getTheme());
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+</div>

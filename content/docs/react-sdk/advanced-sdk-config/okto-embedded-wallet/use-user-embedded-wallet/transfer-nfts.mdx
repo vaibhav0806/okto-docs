@@ -1,5 +1,295 @@
 ---
 title: Transferring Non-Fungible Tokens
-description: Coming soon
+description: Learn how to transfer NFTs using the Okto SDK.
 full: false
 ---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+import '../../../styles.css';  
+
+### Methods Overview
+
+| Methods                                                                               | Description                                                               |                 
+|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| <sub><i>async</i></sub> [`transferNft`](#transfer-nfts)                                    | Transfer NFTs based on the provided data                                  |
+| <sub><i>async</i></sub> [`transferNftWithJobStatus`](#transfer-nfts-with-job-status)    | Transfer NFTs and provides job status updates based on the provided data  |
+| <sub><i>async</i></sub> [`getNftOrderDetails`](#get-nft-order-details)  | Fetches details of a specific NFT order based on the provided query       |
+
+<div className="method-box">
+
+## Transfer NFTs
+
+<sub><i>async</i></sub> `transferNft(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L384" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> transfers a NFT based on the provided data.
+
+### Parameters
+
+| Parameter   | Type          | Description                                  | Possible Values |
+|-------------|---------------|----------------------------------------------|-----------------|
+| `data`      | `TransferNft` | Data being provided for transferring the NFT | -               |
+
+```typescript
+interface TransferNft {
+  operation_type: string;
+  network_name: string;
+  collection_address: string;
+  collection_name: string;
+  quantity: string;
+  recipient_address: string;
+  nft_address: string;
+}
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                       | Description                                   | Possible Values |
+|------------|----------------------------|-----------------------------------------------|-----------------|
+| `result`   | `Promise<TransferNftData>` | Returns information about the NFT transferred | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface TransferNftData {
+  order_id: string;
+}
+```
+</Accordion>
+</Accordions>
+</Callout>
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        const { transferNfts } = useOkto() as OktoContextType;
+ 
+        const networkName = "POLYGON_TESTNET"
+        const tokenAddress = "x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
+        const quantity = "1"
+        const recipientAddress = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
+ 
+        transferNft({
+            network_name: networkName,
+            token_address: tokenAddress,
+            recipient_address: recipientAddress,
+            quantity: quantity
+        }).then((result) => {
+                console.log('Transfer success', result);
+        })
+        .catch((error) => {
+            console.log('Transfer error', error);
+        });
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+
+</div>
+
+<div className="method-box">
+
+## Transfer NFTs with job status 
+
+<sub><i>async</i></sub> `transferNftWithJobStatus(data)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L388" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> transfers NFTs with job status updates based on the provided data.
+
+### Parameters
+
+| Parameter   | Type            | Description                                     | Possible Values |
+|-------------|-----------------|-------------------------------------------------|-----------------|
+| `data`      | `TransferNft`   | Data being provided for transferring the tokens | -               |
+
+
+```typescript
+interface TransferNft {
+  operation_type: string;
+  network_name: string;
+  collection_address: string;
+  collection_name: string;
+  quantity: string;
+  recipient_address: string;
+  nft_address: string;
+}
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                       | Description                         | Possible Values |
+|------------|----------------------------|-------------------------------------|-----------------|
+| `result`   | `Promise<NftOrderDetails>` | Returns information about the order | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface NftOrderDetails {
+  explorer_smart_contract_url: string;
+  description: string;
+  type: string;
+  collection_id: string;
+  collection_name: string;
+  nft_token_id: string;
+  token_uri: string;
+  id: string;
+  image: string;
+  collection_address: string;
+  collection_image: string;
+  network_name: string;
+  network_id: string;
+  nft_name: string;
+}
+```
+</Accordion>
+</Accordions>
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType} from 'okto-sdk-react';
+ 
+        const { transferNftWithJobStatus } = useOkto() as OktoContextType;
+ 
+        const networkName = "POLYGON_TESTNET"
+        const tokenAddress = "x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
+        const quantity = "1"
+        const recipientAddress = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
+ 
+        transferNftWithJobStatus({
+            network_name: networkName,
+            token_address: tokenAddress,
+            recipient_address: recipientAddress,
+            quantity: quantity
+        }).then((result) => {
+                console.log('Transfer success', result);
+        })
+        .catch((error) => {
+            console.log('Transfer error', error);
+        });
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+
+</div>
+
+<div className="method-box">
+
+## Get NFT order details
+
+<sub><i>async</i></sub> `getNftOrderDetails(query)`<a href="https://github.com/okto-hq/okto-sdk-react/blob/main/src/OktoProvider.tsx#L320" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> fetches details of a specific NFT order based on the provided query.
+
+### Parameters
+
+| Parameter   | Type                            | Description                                       | Possible Values |
+|-------------|---------------------------------|---------------------------------------------------|-----------------|
+| `query`     | `Partial<NftOrderDetailsQuery>` | Query provided for fetching the NFT order details | -               |
+
+```typescript
+interface NftOrderDetailsQuery {
+  page: number;
+  size: number;
+  order_id: string;
+}
+```
+
+### Response
+
+<Callout title="Success Response">
+
+| Field Name | Type                       | Description                         | Possible Values |
+|------------|----------------------------|-------------------------------------|-----------------|
+| `result`   | `Promise<NftOrderDetails>` | Returns information about the order | -               |
+
+<Accordions>
+<Accordion title="Response Type">
+```typescript
+interface NftOrderDetails {
+  explorer_smart_contract_url: string;
+  description: string;
+  type: string;
+  collection_id: string;
+  collection_name: string;
+  nft_token_id: string;
+  token_uri: string;
+  id: string;
+  image: string;
+  collection_address: string;
+  collection_image: string;
+  network_name: string;
+  network_id: string;
+  nft_name: string;
+}
+```
+</Accordion>
+</Accordions>
+
+</Callout>
+
+
+
+<Callout type="error" title="Error Response">
+
+| Field Name | Type     | Description                                     | Possible Value|
+|------------|---------------|--------------------------------------------|---------------|
+| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
+
+</Callout>
+
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Typescript']}>
+  <Tab value="Typescript">
+    ```typescript
+        import { useOkto, type OktoContextType, type NftOrderDetails} from 'okto-sdk-react';
+        const { getNftOrderDetails } = useOkto() as OktoContextType;
+ 
+        getNftOrderDetails({order_id: orderId})
+        .then((orders) => {
+          const order = orders.find((order: any) => order.order_id === orderId);
+          if(order) console.log(order)
+        })
+        .catch((error) => {
+          console.error(`error:`, error);
+        });
+    ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+
+</div>
