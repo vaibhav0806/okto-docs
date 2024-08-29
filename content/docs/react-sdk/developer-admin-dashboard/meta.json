@@ -1,0 +1,13 @@
+{
+    "title": "Developer Admin Dashboard",
+    "pages": [
+      "learn",
+      "dashboard-acc",
+      "okto-environments",
+      "api-key",
+      "ui-customizations",
+      "wallet-control",
+      "paymaster",
+      "user-order-logs"
+    ]
+  }

@@ -1,4 +1,7 @@
 {
-    "title": "Getting Started",
-    "pages": ["overview", "quickstart", "next-steps"]
-  }
+  "title": "Getting Started",
+  "pages": [
+    "overview-okto-react",
+    "quickstart-okto-react"
+  ]
+}
