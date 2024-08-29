@@ -230,9 +230,20 @@ interface Theme {
     ```typescript
         import { useOkto, type OktoContextType} from 'okto-sdk-react';
  
-        { getTheme } = useOkto() as OktoContextType;
  
-        console.log(getTheme());
+        const { setTheme, getTheme } = useOkto() as OktoContextType;
+ 
+        setTheme({
+          textPrimaryColor: '0xFFFFFFFF',
+          textSecondaryColor: '0xFFFFFFFF',
+          textTertiaryColor: '0xFFFFFFFF',
+          accentColor: '0x80433454',
+          accent2Color: '0x80905BF5',
+          strokBorderColor: '0xFFACACAB',
+          strokDividerColor: '0x4DA8A8A8',
+          surfaceColor: '0xFF1F0A2F',
+          backgroundColor: '0xFF000000',
+        });
     ```
   </Tab>
 </Tabs>
