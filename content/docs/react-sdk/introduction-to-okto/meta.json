@@ -1,0 +1,13 @@
+{
+    "title": "Introduction to Okto",
+    "pages": [
+        "okto-universe",
+        "overview-embedded-wallets",
+        "okto-sdk-architecture",
+        "chains-supported-tokens",
+        "okto-vendor-user",
+        "how-okto-manages-user-keys",
+        "onchain-execution",
+        "future-sdk-scope"
+    ]
+}

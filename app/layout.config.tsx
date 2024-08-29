@@ -54,7 +54,7 @@ export const docsOptions: DocsLayoutProps = {
           {
             title: 'React',
             description: 'Okto React SDK',
-            url: '/docs/react-sdk/overview',
+            url: '/docs/react-sdk/introduction-to-okto/okto-universe',
             icon: ''
           },
           {
