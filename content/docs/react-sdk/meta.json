@@ -8,12 +8,7 @@
     "developer-admin-dashboard",
     "example-apps",
     "migration-to-okto",
-    "troubleshooting-faq",
-    "---Obsolete (To be Removed)---",
-    "overview",
-    "admin-panel",
-    "concepts",
-    "using-sdk"
+    "troubleshooting-faq"
   ],
   "root": true
 }

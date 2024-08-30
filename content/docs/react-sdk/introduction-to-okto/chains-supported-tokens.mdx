@@ -1,5 +1,61 @@
 ---
 title: Chains and Supported Tokens
-description: Coming soon
+description: Overview of supported chains, wallet structure, testnet availability, and token whitelisting in Okto’s ecosystem.
 full: false
 ---
+
+## Supported Chains and Functionality
+
+The Okto React SDK supports multiple blockchain networks, providing automatic updates on chain functionality by fetching this information from the same source as the admin panel. This ensures that developers always have access to the latest chain capabilities without requiring manual updates.
+
+### Example: Polygon
+
+- **Chain Name**: Polygon (Matic)
+- **Chain Functionality**: Supports token transfers, smart contract interactions, and staking mechanisms.
+- **User Wallet Example**: A user wallet on Polygon will be generated as part of Okto's embedded wallet system. Example address: `0xabc123...789xyz`. This address is stored securely and mapped to a unique user ID, such as `user_12345`.
+- **Testnet Support**: Yes, Polygon Mumbai testnet is supported.
+- **Whitelisted Tokens**: Includes MATIC, USDC, DAI, etc.
+- **Token Whitelisting Process**: Currently, the whitelisting of new tokens is not available directly via the SDK. Contact support for token listing inquiries.
+- **Explorer Links**:
+- [Polygon Mainnet Explorer](https://polygonscan.com)
+- [Polygon Testnet Explorer](https://mumbai.polygonscan.com)
+- **Sandbox and Production Availability**: Supported in both Sandbox and Production environments. For more details, refer to the [Admin Panel Documentation](#).
+
+### Example: Ethereum
+
+- **Chain Name**: Ethereum
+- **Chain Functionality**: Supports ERC-20 token transfers, smart contract interactions, and DeFi integrations.
+- **User Wallet Example**: Example address: `0xdef456...012ghi`. Mapped to user ID `user_67890`.
+- **Testnet Support**: Yes, Goerli testnet is supported.
+- **Whitelisted Tokens**: Includes ETH, USDT, USDC, etc.
+- **Token Whitelisting Process**: Not available directly. Reach out for adding new tokens.
+- **Explorer Links**:
+- [Ethereum Mainnet Explorer](https://etherscan.io)
+- [Goerli Testnet Explorer](https://goerli.etherscan.io)
+- **Sandbox and Production Availability**: Supported in both Sandbox and Production environments. For more details, refer to the [Admin Panel Documentation](#).
+
+### Additional Chains
+
+For each chain, similar details are available regarding:
+
+- **Functionality**: Details on token support, smart contracts, and other specific features.
+- **User Wallet**: Example wallet addresses, and user ID mappings are provided to illustrate how wallets are managed.
+- **Testnet Support**: Available testnets and relevant explorer links.
+- **Whitelisted Tokens**: Listing of supported tokens, along with the process to whitelist new tokens (if applicable).
+- **Explorer Links**: Direct links to the respective blockchain explorers for both mainnets and testnets.
+- **Sandbox and Production Availability**: Each chain will indicate if it's available in Sandbox or Production environments. For more details, refer to the [Admin Panel Documentation](#).
+
+## Solidity Development Resources
+
+For developers building on the supported chains, we provide links to relevant Solidity development resources:
+
+- [Solidity Documentation](https://soliditylang.org/docs/)
+- [Remix IDE](https://remix.ethereum.org/)
+- [Hardhat Development Environment](https://hardhat.org/)
+- [OpenZeppelin Contracts](https://openzeppelin.com/contracts/)
+
+These resources will help you develop and test smart contracts across the various chains supported by the Okto SDK.
+
+## Conclusion
+
+The Okto React SDK offers seamless support for multiple chains, with automatic updates on functionality and token whitelisting. By following the provided guidelines for each chain, developers can easily integrate blockchain interactions into their dApps. For further information on managing chain environments, please refer to the [Admin Panel Documentation](#).
