@@ -63,30 +63,35 @@ Follow the steps below to get started quickly with building an Okto-powered Reac
             </React.StrictMode>
         );
     ```
+    <div style={{ textAlign: "right", fontSize: "14px", margin: "0", padding: "0", marginTop: "-1rem"}}>
+        View [here](https://github.com/okto-hq/okto-sdk-react-template-app/blob/main/src/index.js)
+    </div>
 
    Now, let's set up the Okto provider in your `App.js`:
    ```javascript title="App.js"
     import React from 'react';
     import { OktoProvider, BuildType } from 'okto-sdk-react';
     import LoginPage from './LoginPage';
-    import HomePage from './HomePage';
 
     const OKTO_CLIENT_API_KEY = "OKTO_CLIENT_API_KEY";
 
     function App() {
         return (
             <OktoProvider apiKey={OKTO_CLIENT_API_KEY} buildType={BuildType.SANDBOX}>
-                <HomePage/>
+                <LoginPage/>
             </OktoProvider>
         );
     }
     export default App;
    ```
+   <div style={{ textAlign: "right", fontSize: "14px", margin: "0", padding: "0", marginTop: "-1rem"}}>
+        View [here](https://github.com/okto-hq/okto-sdk-react-template-app/blob/main/src/App.js)
+    </div>
 </Step>
 
 <Step>
     ## Sample Login Page
-    You can link to a sample login page template from the Okto template repo:
+    Now, we will create a sample `LoginPage.js` file to test out our functionalities:
     ```javascript title="LoginPage.js"
         import React, { useState } from "react";
         import { useOkto } from "okto-sdk-react";
@@ -125,16 +130,19 @@ Follow the steps below to get started quickly with building an Okto-powered Reac
 
         export default LoginPage;
     ```
+    <div style={{ textAlign: "right", fontSize: "14px", margin: "0", padding: "0", marginTop: "-1rem" }}>
+        View [here](https://github.com/okto-hq/okto-sdk-react-template-app/blob/main/src/LoginPage.jss)
+    </div>
 </Step>
 
 <Step>
     ## Congratulations!
 
-    🎉 Congratulations! You now have a dApp powered by Okto. You can focus on your business logic and UI/UX now.
+    🎉 Congratulations! You now have a basic dApp powered by Okto. You can focus on your business logic and UI/UX now. You can checkout how to use other features in the [Template Repo](https://github.com/okto-hq/okto-sdk-react-template-app/).
 </Step>
 
 </Steps>
 
 <Callout>
-For more details, refer to the [Template Repo](https://github.com/okto-hq/okto-sdk-react-template-app/) and the [Okto SDK Cheatsheet](https://docs.google.com/document/d/1ePHrAjiTvLOkBwOaaDvTQlv8qeRu7ATwh7dicnzfK2E/edit) for commonly used methods and configurations.
+For more details, refer to the [Template Repo](https://github.com/okto-hq/okto-sdk-react-template-app/) and the [Okto SDK Cheatsheet](https://docs.google.com/document/d/1ePHrAjiTvLOkBwOaaDvTQlv8qeRu7ATwh7dicnzfK2E/edit) for commonly used methods and configurations. 
 </Callout>
