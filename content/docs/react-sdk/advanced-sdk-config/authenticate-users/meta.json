@@ -6,7 +6,6 @@
       "phone-otp",
       "email-otp",
       "other-social-auth",
-      "onboarding-screen",
       "auth-user-via-code"
     ]
   }
