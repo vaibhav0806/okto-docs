@@ -1,5 +1,71 @@
 ---
 title: How Okto Manages User Keys
-description: Coming soon
+description: Overview of Account Abstraction (AA) wallet creation, primary and secondary signers, policy engine, and security mechanisms like MPC and 2FA in Okto’s ecosystem.
 full: false
 ---
+
+## Supported Chains and AA Wallet Creation
+
+### EVM Chains, Solana, and Aptos
+
+Okto supports multiple chains including EVM-based chains (Ethereum, Polygon, BNB Chain, etc.), Solana, and Aptos. Here's how the **Account Abstraction (AA) wallet** is created across these chains:
+
+1. **EVM Chains**: For Ethereum-based chains, AA wallets are created by deploying smart contracts that manage the user’s assets. This smart contract-based wallet can handle gas fees, token transfers, and interactions with dApps in a secure and efficient manner.
+2. **Solana and Aptos**: In Solana and Aptos, wallets are created using the respective native key pair generation methods, integrated with Okto’s system for seamless interaction across chains.
+
+### Primary and Secondary Signers
+
+When an AA wallet is created, the system defines the **primary signer** and **secondary signer** to ensure the security and control of user assets:
+
+- **Primary Signer**: The primary signer is typically the most trusted party (e.g., the user) and is decided based on the user's key that controls most interactions with the wallet. This signer has the highest level of control.
+- **Secondary Signer**: The secondary signer is created as a fallback and can be a separate key or device that provides an additional layer of security. It can act as a recovery option or for multi-signature transactions.
+
+Reference: [Signer Assignment Spreadsheet](https://docs.google.com/spreadsheets/d/18RMLphO3ykFKnaPq9a4YqWG4GDugPO3CX5fBluGohR0/edit?usp=sharing)
+
+### Future Scope
+
+Future iterations of Okto will further optimize multi-signature setups, including adding new recovery methods, advanced cryptographic techniques for enhanced security, and introducing decentralized governance mechanisms for AA wallets.
+
+### Revoking Primary Access
+
+Users can revoke primary signer access through Okto’s wallet management interface. By initiating a request from their device, the user can remove the primary signer's permissions and promote another key to primary status.
+
+## Multi-Party Computation (MPC) and Signing
+
+### MPC and 3+0 Signing
+
+Okto uses **Multi-Party Computation (MPC)** for distributed key management:
+
+- **3+0 Signing**: In Okto’s system, MPC distributes the signing authority across 3 parties (e.g., Okto, the Vendor, and the User) without any single party having full control over the private key. This ensures that even if one party is compromised, the user’s assets remain secure.
+
+### Power Distribution in Okto
+
+1. **Okto**: Provides the infrastructure, wallet creation, and management services. It does not have direct control over the user's assets but ensures security and policy enforcement.
+2. **Vendor**: The Vendor integrates Okto’s wallet services within their application. Vendors can initiate actions on behalf of the user but do not control the user's assets directly.
+3. **User**: Retains control over their assets, with the ability to sign transactions and manage their wallets through Okto’s app.
+
+### Self-Custody and Privacy
+
+- **Vendor**: Vendors cannot directly access or control a user’s private keys or funds. They act as intermediaries between the user and the Okto platform.
+- **User**: The user maintains self-custody of their assets through MPC, ensuring that neither Okto nor the Vendor can control their funds. Privacy is guaranteed through cryptographic protections.
+
+## Policy Engine
+
+### Policy Enforcement in Okto
+
+Okto's **Policy Engine** defines rules and permissions for different actions across the platform. It manages how and when transactions can be executed based on predefined policies set by both Okto and the Vendor.
+
+### 1FA and 2FA Authentication
+
+- **1FA (One-Factor Authentication)**: By default, Okto uses one-factor authentication for secure access to wallets and transactions.
+- **2FA (Two-Factor Authentication)**: Users and Vendors can enable 2FA to add an additional layer of security. Vendors can prompt users to enable 2FA through their app, while users can activate it directly within the Okto app settings.
+
+## App Intent and Policy Breaking
+
+Vendors can trigger app intents to break or bypass certain policy restrictions defined by the Policy Engine. For example, to break a policy restricting transactions without 2FA, the Vendor can redirect the user to the Okto app to complete the required action.
+
+By enabling communication between the Vendor’s app and Okto, Vendors can ensure compliance with policy rules while offering seamless user experiences.
+
+## Conclusion
+
+This documentation covers the architecture of AA wallet creation, signer assignments, MPC security, and how Okto enforces policies for secure transactions. Okto’s infrastructure empowers users with self-custody, privacy guarantees, and the flexibility to engage with decentralized services across multiple chains.

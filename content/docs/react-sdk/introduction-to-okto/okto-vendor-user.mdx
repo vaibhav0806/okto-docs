@@ -1,5 +1,44 @@
 ---
 title: Okto vs Vendor vs User
-description: Coming soon
+description: Introduction and differentiation of the key personas - Okto, Vendor, and User - along with unique identification methods in Okto’s platform.
 full: false
 ---
+
+## Introduction to Personas in Okto Documentation
+
+In the Okto documentation, it's essential to understand the terminology and personas frequently referenced throughout. These personas are key to navigating how Okto interacts with developers and users across its platform. We introduce and differentiate three personas here: **Okto**, **Vendor**, and **User**.
+
+### 1. Okto
+
+**Okto** refers to Okto’s app, services, and platform. This is the underlying infrastructure that provides the necessary tools, APIs, and wallet functionalities for both Vendors (developers) and Users (end-users). Okto acts as the bridge connecting Vendors and Users by offering a seamless platform for embedding wallets, managing transactions, and interacting with decentralized services.
+
+### 2. Vendor
+
+**Vendor** is the app or service that the developer is building using Okto's API. A Vendor integrates Okto’s wallet and services into their application by using a unique **vendor ID**, API secret, and other platform tools. The Vendor essentially serves as the intermediary that brings Okto’s functionalities to the end-users by embedding them within their own applications. 
+
+- Each Vendor is uniquely identified via a **vendor ID**.
+- The Vendor receives their unique **API ID** and **secret** when they onboard to the Okto platform.
+- Vendors manage the onboarding and interactions of Users within their app, but once a User is onboarded to Okto through any Vendor’s app, they remain part of the Okto ecosystem.
+
+### 3. User
+
+**User** is the end-user who interacts with the Vendor’s app and, through this, is onboarded to Okto. Users typically interact with the Vendor’s application to perform actions such as managing wallets, sending tokens, and interacting with decentralized applications. 
+
+It’s important to note that, because Okto is interoperable, once a User is onboarded into Okto via a Vendor’s app, that same User may become part of multiple Vendor ecosystems. For example, if a User onboarded through Vendor A later uses Vendor B’s app, they will still utilize their existing Okto account. 
+
+- Each User is uniquely identified via a **user ID**.
+- Users are stored securely in Okto's ecosystem, and their wallet interactions can span across multiple Vendor applications.
+
+## Unique Identification System
+
+### Vendor Identification
+
+Each Vendor integrating with Okto receives a unique **vendor ID** along with their **API ID** and **secret**. This identification system ensures that every Vendor’s app is securely and distinctly recognized on the platform, enabling seamless management of Users and interactions with Okto’s services.
+
+### User Identification
+
+Similarly, every User interacting with any Vendor app is assigned a unique **user ID**. This ID is used to manage their interactions, wallets, and transactions across the Okto ecosystem. Since Okto is interoperable, the same user ID can be associated with multiple Vendor apps, allowing Users to have a unified experience across different applications while leveraging the same Okto infrastructure.
+
+## Conclusion
+
+Understanding these three personas—**Okto**, **Vendor**, and **User**—is critical when working with the Okto platform. These terms help frame the relationships and interactions within the ecosystem, ensuring that developers and users can effectively use Okto’s interoperable and powerful tools. The unique identification system via **vendor ID** and **user ID** ensures secure and seamless operations for Vendors and Users alike.

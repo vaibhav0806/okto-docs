@@ -3,6 +3,7 @@
     "pages": [
         "common-issues",
         "dependencies",
+        "sdk-error-warnings",
         "debugging-tips",
         "faqs",
         "contact-us"
