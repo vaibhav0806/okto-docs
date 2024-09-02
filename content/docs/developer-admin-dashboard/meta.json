@@ -9,5 +9,6 @@
       "wallet-control",
       "paymaster",
       "user-order-logs"
-    ]
+    ],
+    "root": true
   }

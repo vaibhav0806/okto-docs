@@ -1,7 +1,10 @@
 {
     "title": "Okto SDK",
     "pages": [
+      "introduction-to-okto",
+      "developer-admin-dashboard",
       "react-sdk",
       "react-native-sdk"
-    ]
+    ],
+    "root": true
   }

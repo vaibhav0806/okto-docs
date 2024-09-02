@@ -1,73 +1,64 @@
 import { type DocsLayoutProps } from 'fumadocs-ui/layout';
 import { type HomeLayoutProps } from 'fumadocs-ui/home-layout';
-import Image from 'next/image';
-import Logo from '@/public/logo/okto-icon.png';
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
 import { pageTree } from '@/app/source';
+import { FaReact, FaShield } from "react-icons/fa6";
+import { TbBrandReactNative } from "react-icons/tb";
+import { SiFlutter } from "react-icons/si";
+import { IoMdDocument } from "react-icons/io";
 
-// shared configuration
-export const baseOptions: HomeLayoutProps = {
-  nav: {
-    title: (
-      <>
-        <Image
-          alt="Okto"
-          src={Logo}
-          sizes="100px"
-          className="h-7 w-7"
-          aria-label="Okto"
-        />
-
-        {/* <FumadocsIcon
-          className="size-4 [.uwu_&]:hidden [header_&]:size-5"
-          fill="currentColor"
-        /> */}
-        <span className="font-medium text-lg">
-          Okto SDK
-        </span>
-      </>
-    ),
-    transparentMode: 'top',
-  },
-  links: [
-    {
-      text: 'Documentation',
-      url: '/docs',
-      active: 'nested-url',
-    },
-  ],
-};
-
-// docs layout configuration
 export const docsOptions: DocsLayoutProps = {
-  ...baseOptions,
   tree: pageTree,
   nav: {
-    ...baseOptions.nav,
-    transparentMode: 'none',
-    children: undefined,
+    transparentMode: 'top',
   },
   sidebar: {
     banner: (
       <RootToggle
+        // options={modes.map((mode) => ({
+        //   url: `/docs/${mode.param}`,
+        //   icon: (
+        //     <mode.icon
+        //       className="size-9 shrink-0 rounded-md bg-gradient-to-t from-fd-background/80 p-1.5"
+        //       style={{
+        //         backgroundColor: `hsl(var(--${mode.param}-color)/.3)`,
+        //         color: `hsl(var(--${mode.param}-color))`,
+        //       }}
+        //     />
+        //   ),
+        //   title: mode.name,
+        //   description: mode.description,
+        // }))},
         options={[
           {
+            url: '/docs/introduction-to-okto/okto-universe',
+            title: 'Introduction',
+            icon: <IoMdDocument/>,
+            description: '',
+          },
+          {
+            url: '/docs/developer-admin-dashboard/learn',
+            title: 'Dashboard',
+            icon: <FaShield/>,
+            description: '',
+          },
+          {
+            url: '/docs/react-sdk/getting-started/overview-okto-react',
             title: 'React',
-            description: 'Okto React SDK',
-            url: '/docs/react-sdk/introduction-to-okto/okto-universe',
-            icon: ''
+            icon: <FaReact/>,
+            description: '',
           },
           {
+            url: '/docs/react-native-sdk/getting-started/overview-okto-react-native',
             title: 'React Native',
-            description: 'Okto React Native SDK',
-            url: '/docs/react-native-sdk/overview',
-            icon: ''
+            icon: <TbBrandReactNative/>,
+            description: '',
           },
           {
+            url: '/docs/flutter-sdk/getting-started/overview-okto-flutter',
             title: 'Flutter',
-            description: 'Okto Flutter SDK',
-            url: '/docs/flutter-sdk/getting-started/overview',
-            icon: ''
+            icon: <SiFlutter/>,
+            description: '',
           },
         ]}
       />
