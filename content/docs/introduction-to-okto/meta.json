@@ -9,5 +9,6 @@
         "how-okto-manages-keys",
         "onchain-execution",
         "future-sdk-scope"
-    ]
+    ],
+    "root": true
 }

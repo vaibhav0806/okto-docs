@@ -1,4 +1,5 @@
 import { createPreset, presets } from 'fumadocs-ui/tailwind-plugin';
+import {nextui} from "@nextui-org/react";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -8,6 +9,7 @@ export default {
     './content/**/*.{md,mdx}',
     './mdx-components.{ts,tsx}',
     './node_modules/fumadocs-ui/dist/**/*.js',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   presets: [
     createPreset({
@@ -16,6 +18,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        royalBlue: "#5166EE",
+      },
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
@@ -43,4 +48,6 @@ export default {
       },
     },
   },
+  darkMode: "class",
+  plugins: [nextui()]
 };

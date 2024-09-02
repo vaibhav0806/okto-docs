@@ -1,11 +1,9 @@
 {
   "title": "React SDK",
   "pages": [
-    "introduction-to-okto",
     "getting-started",
     "using-react-features",
     "advanced-sdk-config",
-    "developer-admin-dashboard",
     "example-apps",
     "migration-to-okto",
     "troubleshooting-faq"
