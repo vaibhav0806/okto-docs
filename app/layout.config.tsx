@@ -71,19 +71,19 @@ export const docsOptions: DocsLayoutProps = {
             description: '',
           },
           {
-            url: '/docs/react-native-sdk/getting-started/overview-okto-react-native',
+            url: 'https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme',
             title: 'React Native',
             icon: <TbBrandReactNative/>,
             description: '',
           },
           {
-            url: '/docs/flutter-sdk/getting-started/overview-okto-flutter',
+            url: 'https://sdk-docs.okto.tech/sdk-reference/flutter/setup',
             title: 'Flutter',
             icon: <SiFlutter/>,
             description: '',
           },
           {
-            url: '/docs/api-reference/getting-started/overview-okto-api',
+            url: 'https://sdk-docs.okto.tech/api-reference/client/authenticate',
             title: 'API Reference',
             icon: <TbApi/>,
             description: '',
