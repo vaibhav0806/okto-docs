@@ -1,12 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { Button, Card, CardHeader, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { Play, ChevronRight, StickyNote, Shield } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { FaReact } from "react-icons/fa6";
 import { TbBrandReactNative, TbApi } from "react-icons/tb";
 import { SiFlutter } from "react-icons/si";
+import Link from "next/link";
 
 export default function HomePage() {
   const router = useRouter();
@@ -40,7 +40,7 @@ export default function HomePage() {
                 Get started with our end to end tutorials and quickstart guides across all Okto functionalities.
               </CardBody>
             </Card>
-            <Card className="p-3 w-1/2" isPressable disableRipple onPress={() => { router.push("/docs/developer-admin-dashboard/learn") }}>
+            <Card className="p-3 w-1/2" isPressable disableRipple onPress={() => { router.push("https://forms.gle/Q2oAWZ979cgxwjzZ6") }}>
               <CardHeader className="flex-col items-start gap-2">
                 <Button isIconOnly variant="ghost" disabled>
                   <Shield />
