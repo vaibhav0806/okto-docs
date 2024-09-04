@@ -5,7 +5,7 @@ import { Button, Card, CardHeader, CardBody, CardFooter, Image } from "@nextui-o
 import { Play, ChevronRight, StickyNote, Shield } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { FaReact } from "react-icons/fa6";
-import { TbBrandReactNative } from "react-icons/tb";
+import { TbBrandReactNative, TbApi } from "react-icons/tb";
 import { SiFlutter } from "react-icons/si";
 
 export default function HomePage() {
@@ -28,7 +28,7 @@ export default function HomePage() {
           />
           <div className="flex justify-center gap-10">
             <Card className="p-3 w-1/2" isPressable disableRipple onPress={() => { router.push("/docs/introduction-to-okto/okto-universe") }}>
-              <CardHeader className="flex-col items-start gap-2"> 
+              <CardHeader className="flex-col items-start gap-2">
                 <Button isIconOnly variant="ghost" disabled>
                   <StickyNote />
                 </Button>
@@ -57,21 +57,19 @@ export default function HomePage() {
 
           <div className="mt-20">
             <p className="text-4xl flex items-center font-bold text-[#5166EE]">
-              Get Started <ChevronRight size={"2.5rem"}/>
+              Get Started <ChevronRight size={"2.5rem"} />
             </p>
-            <div className="flex gap-6 justify-start mt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
               <Card
                 radius="lg"
                 className="border-none"
                 isPressable
                 disableRipple
-                onPress={() => { router.push("/docs/react-sdk")}}
+                onPress={() => { router.push("/docs/react-sdk/getting-started/overview-okto-react") }}
               >
                 <CardBody className="flex-row items-center gap-4">
                   <FaReact size={"5em"} />
-                  <div>
-                    Get started with the Okto SDK in React
-                  </div>
+                  <div>Get started with the Okto SDK in React</div>
                 </CardBody>
               </Card>
               <Card
@@ -79,13 +77,11 @@ export default function HomePage() {
                 className="border-none"
                 isPressable
                 disableRipple
-                onPress={() => { router.push("/docs/react-native-sdk")}}
+                onPress={() => { router.push("https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme") }}
               >
                 <CardBody className="flex-row items-center gap-4">
                   <TbBrandReactNative size={"5em"} />
-                  <div>
-                    Get started with the Okto SDK in React Native
-                  </div>
+                  <div>Get started with the Okto SDK in React Native</div>
                 </CardBody>
               </Card>
               <Card
@@ -93,16 +89,27 @@ export default function HomePage() {
                 className="border-none"
                 isPressable
                 disableRipple
-                onPress={() => { router.push("/docs/flutter-sdk")}}
+                onPress={() => { router.push("https://sdk-docs.okto.tech/sdk-reference/flutter/setup") }}
               >
                 <CardBody className="flex-row items-center gap-4">
                   <SiFlutter size={"5em"} />
-                  <div>
-                    Get started with the Okto SDK in Flutter
-                  </div>
+                  <div>Get started with the Okto SDK in Flutter</div>
+                </CardBody>
+              </Card>
+              <Card
+                radius="lg"
+                className="border-none"
+                isPressable
+                disableRipple
+                onPress={() => { router.push("https://sdk-docs.okto.tech/api-reference/client/authenticate") }}
+              >
+                <CardBody className="flex-row items-center gap-4">
+                  <TbApi size={"5em"} />
+                  <div>Get started with the Okto SDK API Reference</div>
                 </CardBody>
               </Card>
             </div>
+
           </div>
           <div className="font-semibold items-center flex justify-center mt-20">
             <div className="text-6xl">
@@ -116,22 +123,22 @@ export default function HomePage() {
             <div className="w-full text-5xl flex justify-center">
               Join Our Growing Community
             </div>
-            <div  className="w-full flex gap-8 justify-center mt-8">
+            <div className="w-full flex gap-8 justify-center mt-8">
               <Image
                 src="/images/telegram.webp"
-                onClick={() => { router.push("https://t.me/okto_web3")}}
+                onClick={() => { router.push("https://t.me/okto_web3") }}
               />
               <Image
                 src="/images/youtube.webp"
-                onClick={() => { router.push("https://www.youtube.com/@Okto_Web3")}}
+                onClick={() => { router.push("https://www.youtube.com/@Okto_Web3") }}
               />
               <Image
                 src="/images/discord.webp"
-                onClick={() => { router.push("https://discord.com/invite/okto-916349620383252511")}}
+                onClick={() => { router.push("https://discord.com/invite/okto-916349620383252511") }}
               />
               <Image
                 src="/images/x.webp"
-                onClick={() => { router.push("https://x.com/Okto_web3")}}
+                onClick={() => { router.push("https://x.com/Okto_web3") }}
               />
             </div>
           </div>
