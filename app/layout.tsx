@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <RootProvider theme={{
           enabled: true,
         }}>
-          <NavbarComponent />
+          <NavbarComponent/>
           <Providers>
             <main className="flex-grow overflow-hidden">
 

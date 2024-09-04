@@ -75,3 +75,7 @@
       transform: translateX(212px);
     }
   }
+
+  .test header{
+    max-width: 100vw !important;
+  }
