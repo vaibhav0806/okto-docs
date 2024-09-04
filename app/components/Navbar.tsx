@@ -64,7 +64,7 @@ export default function NavbarComponent() {
       onMenuOpenChange={setIsMenuOpen}
     >
       {/* Left-aligned brand */}
-      <NavbarContent style={{ marginLeft: "-8rem" }}>
+      <NavbarContent style={{ marginLeft: "-10rem" }}>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
@@ -73,10 +73,10 @@ export default function NavbarComponent() {
           <Image
             src="/logo/okto-icon.png" // Path to the image
             alt="Okto Logo"
-            width={40} // Image width
-            height={40} // Image height
+            width={35} // Image width
+            height={35} // Image height
           />
-          <p className="hidden sm:block font-bold text-inherit text-2xl">Okto</p>
+          <p className="hidden sm:block font-bold text-inherit text-2xl">Okto Docs</p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -116,21 +116,21 @@ export default function NavbarComponent() {
             </DropdownItem>
             <DropdownItem
               key="react-native"
-              onPress={() => router.push("/docs/react-native-sdk/getting-started/overview-okto-react-native")}
+              onPress={() => router.push("https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme")}
               startContent={<TbBrandReactNative />}
             >
               React Native
             </DropdownItem>
             <DropdownItem
               key="flutter"
-              onPress={() => router.push("/docs/flutter-sdk/getting-started/overview-okto-flutter")}
+              onPress={() => router.push("https://sdk-docs.okto.tech/sdk-reference/flutter/setup")}
               startContent={<SiFlutter />}
             >
               Flutter
             </DropdownItem>
             <DropdownItem
               key="api"
-              onPress={() => router.push("/docs/api-reference/getting-started/overview-okto-api")}
+              onPress={() => router.push("https://sdk-docs.okto.tech/api-reference/client/authenticate")}
               startContent={<TbApi />}
             >
               API Reference
