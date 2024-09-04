@@ -3,9 +3,31 @@ import { type HomeLayoutProps } from 'fumadocs-ui/home-layout';
 import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
 import { pageTree } from '@/app/source';
 import { FaReact, FaShield } from "react-icons/fa6";
-import { TbBrandReactNative } from "react-icons/tb";
+import { TbApi, TbBrandReactNative } from "react-icons/tb";
 import { SiFlutter } from "react-icons/si";
 import { IoMdDocument } from "react-icons/io";
+
+export const baseOptions: HomeLayoutProps = {
+  githubUrl: 'https://github.com/fuma-nama/fumadocs',
+  nav: {
+    transparentMode: 'top',
+  },
+  links: [
+    {
+      text: 'Blog',
+      url: '/blog',
+      active: 'nested-url',
+    },
+    {
+      text: 'Showcase',
+      url: '/showcase',
+    },
+    {
+      text: 'Sponsors',
+      url: '/sponsors',
+    },
+  ],
+};
 
 export const docsOptions: DocsLayoutProps = {
   tree: pageTree,
@@ -58,6 +80,12 @@ export const docsOptions: DocsLayoutProps = {
             url: '/docs/flutter-sdk/getting-started/overview-okto-flutter',
             title: 'Flutter',
             icon: <SiFlutter/>,
+            description: '',
+          },
+          {
+            url: '/docs/api-reference/getting-started/overview-okto-api',
+            title: 'API Reference',
+            icon: <TbApi/>,
             description: '',
           },
         ]}

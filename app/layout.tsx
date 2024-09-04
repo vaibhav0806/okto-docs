@@ -20,16 +20,19 @@ export const metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="">
-        <NavbarComponent />
-        <Providers>
-          <main className="flex-grow overflow-hidden">
-            <RootProvider>
+      <body>
+        <RootProvider theme={{
+          enabled: true,
+        }}>
+          <NavbarComponent />
+          <Providers>
+            <main className="flex-grow overflow-hidden">
+
               {children}
-            </RootProvider>
-          </main>
-        </Providers>
-        <Footer />
+            </main>
+          </Providers>
+          <Footer />
+        </RootProvider>
       </body>
     </html>
   );

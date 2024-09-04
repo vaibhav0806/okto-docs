@@ -5,7 +5,7 @@
     "using-react-features",
     "advanced-sdk-config",
     "example-apps",
-    "migration-to-okto",
+    "!migration-to-okto",
     "troubleshooting-faq"
   ],
   "root": true

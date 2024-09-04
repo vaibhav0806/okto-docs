@@ -3,7 +3,7 @@
     "pages": [
       "setup-embedded-wallets",
       "use-user-embedded-wallet",
-      "plugins",
+      "!plugins",
       "built-in-ui-screens"
     ]
   }

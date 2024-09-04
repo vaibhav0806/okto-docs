@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { FaReact } from "react-icons/fa6";
 import { TbBrandReactNative } from "react-icons/tb";
 import { SiFlutter } from "react-icons/si";
-import Footer from "./components/Footer";
 
 export default function HomePage() {
   const router = useRouter();
@@ -28,8 +27,8 @@ export default function HomePage() {
             src="/images/okto-key-visual.webp"
           />
           <div className="flex justify-center gap-10">
-            <Card className="p-3 w-1/2" isPressable disableRipple onPress={() => { router.push("/docs/introduction-to-okto") }}>
-              <CardHeader className="flex-col items-start gap-2">
+            <Card className="p-3 w-1/2" isPressable disableRipple onPress={() => { router.push("/docs/introduction-to-okto/okto-universe") }}>
+              <CardHeader className="flex-col items-start gap-2"> 
                 <Button isIconOnly variant="ghost" disabled>
                   <StickyNote />
                 </Button>
@@ -41,7 +40,7 @@ export default function HomePage() {
                 Get started with our end to end tutorials and quickstart guides across all Okto functionalities.
               </CardBody>
             </Card>
-            <Card className="p-3 w-1/2" isPressable disableRipple onPress={() => { router.push("/docs/developer-admin-dashboard") }}>
+            <Card className="p-3 w-1/2" isPressable disableRipple onPress={() => { router.push("/docs/developer-admin-dashboard/learn") }}>
               <CardHeader className="flex-col items-start gap-2">
                 <Button isIconOnly variant="ghost" disabled>
                   <Shield />

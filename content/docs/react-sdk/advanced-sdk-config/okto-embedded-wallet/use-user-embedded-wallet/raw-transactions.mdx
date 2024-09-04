@@ -59,14 +59,6 @@ interface RawTransactionStatusData {
 
 </Callout>
 
-<Callout type="error" title="Error Response">
-
-| Field Name | Type     | Description                                     | Possible Value|
-|------------|---------------|--------------------------------------------|---------------|
-| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
-
-</Callout>
-
 
 <Accordions>
 <Accordion title="Example">
@@ -117,13 +109,48 @@ interface RawTransactionStatusData {
 |-------------|-------------------------|----------------------------------------------------|-----------------|
 | `data`      | `ExecuteRawTransaction` | Data being provided for executing raw transactions | -               |
 
-
-```typescript
-interface ExecuteRawTransaction {
-  network_name: string;
-  transaction: object;
-}
-```
+<Tabs items={['EVM', 'Solana', 'Aptos']}>
+  <Tab value="EVM">
+    ```typescript
+      interface ExecuteRawTransaction {
+      network_name: string;
+      transaction: {
+        from: string;
+        to: string;
+        data: string
+        value: string;
+      }
+    }
+    ```
+  </Tab>
+  <Tab value="Solana">
+    ```typescript
+      interface ExecuteRawTransaction {
+      network_name: string;
+      transaction: {
+        instructions: {
+          keys: key[];
+          programId: string;
+          data: number[];
+        };
+        signer: string;
+      }
+    }
+    ```
+  </Tab>
+  <Tab value="Aptos">
+     ```typescript 
+      interface ExecuteRawTransaction {
+      network_name: string;
+      transaction: {
+        function: fn;
+        typeArguements: Array[];
+        functionArguements: Array[]
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
 
 ### Response
 
@@ -142,14 +169,6 @@ interface ExecuteRawTransactionData {
 ```
 </Accordion>
 </Accordions>
-
-</Callout>
-
-<Callout type="error" title="Error Response">
-
-| Field Name | Type          | Description                                | Possible Value|
-|------------|---------------|--------------------------------------------|---------------|
-| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
 
 </Callout>
 
@@ -225,16 +244,6 @@ interface RawTransactionStatusData {
 ```
 </Accordion>
 </Accordions>
-
-</Callout>
-
-
-
-<Callout type="error" title="Error Response">
-
-| Field Name | Type     | Description                                     | Possible Value|
-|------------|---------------|--------------------------------------------|---------------|
-| `error`    | `error`       |  Error on unsuccessful execution           | Error details |
 
 </Callout>
 

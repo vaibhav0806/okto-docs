@@ -5,10 +5,10 @@
         "get-user-details",
         "get-user-balance-portfolio",
         "transfer-tokens",
-        "using-nfts-okto-lite",
+        "!using-nfts-okto-lite",
         "transfer-nfts",
         "raw-transactions",
-        "read-any-chain-data",
-        "read-from-any-contract"
+        "!read-any-chain-data",
+        "!read-from-any-contract"
     ]
   }

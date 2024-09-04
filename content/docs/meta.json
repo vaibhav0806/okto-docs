@@ -4,7 +4,9 @@
       "introduction-to-okto",
       "developer-admin-dashboard",
       "react-sdk",
-      "react-native-sdk"
+      "react-native-sdk",
+      "flutter-sdk",
+      "api-reference"
     ],
     "root": true
   }
