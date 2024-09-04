@@ -59,7 +59,7 @@ export const docsOptions: DocsLayoutProps = {
             description: '',
           },
           {
-            url: '/docs/developer-admin-dashboard/learn',
+            url: 'https://docs.google.com/forms/d/e/1FAIpQLSerKX9kZty74OKOUeF1Zpq1NdegY0Bxm8uRq-3VjwgsBPuPrQ/alreadyresponded',
             title: 'Dashboard',
             icon: <FaShield/>,
             description: '',
