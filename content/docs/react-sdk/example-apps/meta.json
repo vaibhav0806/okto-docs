@@ -3,8 +3,8 @@
     "pages": [
         "template-app",
         "example-repos",
-        "showcase",
-        "tutorials",
-        "building-on-other-frameworks"
+        "!showcase",
+        "!tutorials",
+        "!building-on-other-frameworks"
     ]
 }
