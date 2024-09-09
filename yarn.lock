@@ -3052,6 +3052,32 @@
     "@react-types/overlays" "^3.8.9"
     "@react-types/shared" "^3.24.1"
 
+"@scalar/nextjs-api-reference@^0.4.85":
+  version "0.4.85"
+  resolved "https://registry.yarnpkg.com/@scalar/nextjs-api-reference/-/nextjs-api-reference-0.4.85.tgz#feb1dac313c7dd8db9439b29d04aeb1bb48345b3"
+  integrity sha512-f+ibRfTCceSlZLPnGj+vsG2qOzG/xuoD6zSoZMyxYo0BcmERbTYM/QTTSqjzu6naZi5VNa7HxJ66jcN5gFixBw==
+  dependencies:
+    "@scalar/types" "0.0.7"
+
+"@scalar/openapi-types@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@scalar/openapi-types/-/openapi-types-0.1.0.tgz#d331ead80793587a753cc8754616b4c235eea3d7"
+  integrity sha512-UxyIkRqC2rbvQJhenA+KdgAbLNUPjqI5CHhZmTuxiv7De9ZJLRVTQCa0JxNqSJ/b51VKpqZ/pDLvjbQpxGFWcA==
+
+"@scalar/themes@0.9.28":
+  version "0.9.28"
+  resolved "https://registry.yarnpkg.com/@scalar/themes/-/themes-0.9.28.tgz#a63de14eb9b3d463fbcd6783fe51367172ca7ae3"
+  integrity sha512-2pFGnjSBL2daPA5roRNRDy8xAHpeTI5QYpfyTj88iIaYT68EVnDUheUA2i3vRB705FCGEbDR0xKD7poTSfAYng==
+
+"@scalar/types@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@scalar/types/-/types-0.0.7.tgz#838879400085f963576de7bf45d9ec5dbde71825"
+  integrity sha512-ylMAM8Kx+mSVu1yBipz7h2pQrEXyMTHkYWc/UigGdn3dpuBArTnkBdJte85yH/7+R630HGm3FSbAHSioOCT+vA==
+  dependencies:
+    "@scalar/openapi-types" "0.1.0"
+    "@scalar/themes" "0.9.28"
+    "@unhead/schema" "^1.9.5"
+
 "@shikijs/core@1.16.2":
   version "1.16.2"
   resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-1.16.2.tgz#67182b0eb7e2c3aedcf47e24acb893bca352c869"
@@ -3217,6 +3243,14 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
+
+"@unhead/schema@^1.9.5":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@unhead/schema/-/schema-1.11.1.tgz#c0e68cc85b48327c8fa10c14a6073117c4992f9c"
+  integrity sha512-oEl5vV3+zZyY1Y3PVE1+gWNMj2wJczP6w0gscp8RnFRSik9p94XqYzBnzeb0tezIyVJWKWycGne9ocV0uGHbzw==
+  dependencies:
+    hookable "^5.5.3"
+    zhead "^2.2.4"
 
 acorn-jsx@^5.0.0:
   version "5.3.2"
@@ -3916,6 +3950,11 @@ hast-util-whitespace@^3.0.0:
   integrity sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==
   dependencies:
     "@types/hast" "^3.0.0"
+
+hookable@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/hookable/-/hookable-5.5.3.tgz#6cfc358984a1ef991e2518cb9ed4a778bbd3215d"
+  integrity sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==
 
 image-size@^1.1.1:
   version "1.1.1"
@@ -5618,6 +5657,11 @@ yaml@^2.3.4:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.5.1.tgz#c9772aacf62cb7494a95b0c4f1fb065b563db130"
   integrity sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==
+
+zhead@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/zhead/-/zhead-2.2.4.tgz#87cd1e2c3d2f465fa9f43b8db23f9716dfe6bed7"
+  integrity sha512-8F0OI5dpWIA5IGG5NHUg9staDwz/ZPxZtvGVf01j7vHqSyZ0raHY+78atOVxRqb73AotX22uV1pXt3gYSstGag==
 
 zod@^3.23.8:
   version "3.23.8"

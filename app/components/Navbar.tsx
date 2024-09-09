@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Image, Chip, Switch } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Image, Chip, Switch, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { MdOutlineArrowOutward } from "react-icons/md";
+import { ChevronDown } from 'lucide-react';
 import { VscGithub } from "react-icons/vsc";
 import { useTheme } from "next-themes";
 
@@ -21,22 +22,34 @@ export default function NavbarComponent() {
 
   const navItems = [
     { href: "/docs/introduction-to-okto", label: "Intro", subpath: '/okto-universe' },
-    { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
-    { href: "/docs/react-native-sdk", label: "React Native", subpath: '/getting-started/overview-okto-react-native' },
-    { href: "/docs/flutter-sdk", label: "Flutter", subpath: '/getting-started/overview-okto-flutter' },
-    { href: "/docs/api-reference", label: "API", subpath: '/getting-started/overview-okto-api' },
     { href: "/showcase", label: "Showcase", subpath: '' },
   ];
 
+  const sdkOptions = [
+    { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
+    { href: "/docs/react-native-sdk", label: "React Native", subpath: '/getting-started/overview-okto-react-native' },
+    { href: "/docs/flutter-sdk", label: "Flutter", subpath: '/getting-started/overview-okto-flutter' },
+    { href: "/api-docs", label: "API", subpath: '' },
+  ];
+
+  const getFrameworkLabel = () => {
+    if (pathname.startsWith('/docs/react-sdk')) return 'React';
+    if (pathname.startsWith('/docs/react-native-sdk')) return 'React Native';
+    if (pathname.startsWith('/docs/flutter-sdk')) return 'Flutter';
+    if (pathname.startsWith('/docs/api-reference')) return 'API';
+    return 'Frameworks';
+  };
+
   useEffect(() => {
     const updateActiveItem = () => {
-      // Match any path starting with the base path
-      const activeNavItem = navItems.find(item => pathname.startsWith(item.href));
+      const activeNavItem = [...navItems, ...sdkOptions].find(item => pathname.startsWith(item.href));
       setActiveItem(activeNavItem ? activeNavItem.href : "");
     };
 
     updateActiveItem();
-  }, [pathname]); // Listen for changes in pathname
+  }, [pathname]);
+
+  const isFrameworkSelected = sdkOptions.some(option => pathname.startsWith(option.href));
 
   return (
     <Navbar isBordered className="nav-spacing">
@@ -56,7 +69,7 @@ export default function NavbarComponent() {
               <Link
                 href={`${item.href}${item.subpath}`}
                 color="foreground"
-                className={`${pathname.startsWith(item.href)
+                className={`text-md ${pathname.startsWith(item.href)
                   ? "text-blue-600 border-b-2 border-blue-600"
                   : ""
                   } pb-1`}
@@ -65,6 +78,33 @@ export default function NavbarComponent() {
               </Link>
             </NavbarItem>
           ))}
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className={`p-0 bg-transparent data-[hover=true]:bg-transparent text-md ${
+                  isFrameworkSelected
+                    ? "text-blue-600"
+                    : ""
+                } pb-1`} // Apply styles when a framework is selected
+                variant="light"
+                radius="sm"
+                endContent={<ChevronDown />}
+              >
+                {getFrameworkLabel()}
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Framework options" items={sdkOptions}>
+              {(item) => (
+                <DropdownItem
+                  key={item.label}
+                  href={`${item.href}${item.subpath}`}
+                >
+                  {item.label}
+                </DropdownItem>
+              )}
+            </DropdownMenu>
+          </Dropdown>
         </NavbarContent>
       </NavbarBrand>
       <NavbarContent justify="end">
