@@ -1,0 +1,1096 @@
+openapi: 3.1.0
+info:
+  title: Okto
+  description: |
+    Okto SDK is the fastest and easiest way a developer can build on Web3. Okto SDK offers interoperable embedded wallets for developers to onboard users on Web3 in a web2 like experience.
+
+    ## Resources
+
+    * https://github.com/okto-hq/
+
+    ## Markdown Support
+
+    All descriptions *can* contain ~~tons of text~~ **Markdown**. [If GitHub supports the syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax), chances are we’re supporting it, too. You can even create [internal links to reference endpoints](#tag/authentication/POST/user/signup).
+
+    <details>
+      <summary>Examples</summary>
+
+      **Blockquotes**
+
+      > I love OpenAPI. <3
+
+      **Tables**
+
+      | Feature          | Availability |
+      | ---------------- | ------------ |
+      | Markdown Support | ✓            |
+
+      **Accordion**
+
+      ```html
+      <details>
+        <summary>Using Details Tags</summary>
+        <p>HTML Example</p>
+      </details>
+      ```
+
+      **Images**
+
+      Yes, there’s support for images, too!
+
+      ![Empty placeholder image showing the width/height](https://images.placeholders.dev/?width=1280&height=720)
+
+    </details>
+  version: 1.0.0
+  contact:
+    name: Ovia Seshadri
+    url: https://okto.tech
+    email: devrel@coindcx.com
+servers:
+  - url: https://sandbox-api.okto.tech
+  - url: https://3p-bff.oktostage.com
+  - url: https://apigw.okto.tech
+    description: Responds with your request data
+security:
+  - bearerAuth: []
+  - basicAuth: []
+  - apiKeyQuery: []
+  - apiKeyHeader: []
+  - apiKeyCookie: []
+  - oauth2: []
+tags:
+  - name: Client
+    description: Everything related to client side
+  - name: Server
+    description: Everything related to the server side
+paths:
+  "/api/v1/authenticate":
+    post:
+      tags:
+        - Client
+      summary: Authenticates a user
+      description: Authenticates the user and on successfull authentication, it will return the token of the user
+      operationId: authenticateUser
+      parameters:
+        - "$ref": "#/components/parameters/id_token"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/wallet":
+    get:
+      tags:
+        - Client
+      summary: Get wallet
+      description: Fetch all the wallets created by the user.
+      operationId: createWallet
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+    post:
+      tags:
+        - Client
+      summary: Create a wallet
+      description: Creates a new wallet for the user. The wallet is created for all the whitelisted networks for your API key.
+      operationId: createWallet
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/refresh_token":
+    post:
+      tags:
+        - Client
+      summary: Refresh token
+      description: Get fresh pair of access and refresh tokens for the user using the previous obtained refresh_token, auth_token and device_token.
+      operationId: refreshToken
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/logout":
+    post:
+      tags:
+        - Client
+      summary: Logout
+      description: Logout the user from the current Okto session. This will remove the user's session from the Okto server and the user will have to login again to access the resources.
+      operationId: logout
+      responses:
+        "201":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/user_from_token":
+    get:
+      tags:
+        - Client
+      summary: Get user details
+      description: Get user details using token received from Okto.
+      operationId: getUserDetails
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/supported/networks":
+    get:
+      tags:
+        - Client
+      summary: Get supported networks
+      description: Get an array of all the whitelisted networks on your API key.
+      operationId: getSupportedNetworks
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/supported/tokens":
+    get:
+      tags:
+        - Client
+      summary: Get supported tokens
+      description: Get an array of all the whitelisted tokens on your API key.
+      operationId: getSupportedTokens
+      parameters:
+        - "$ref": "#/components/parameters/page"
+        - "$ref": "#/components/parameters/size"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/portfolio":
+    get:
+      tags:
+        - Client
+      summary: Get portfolio
+      description: Get the portfolio data of the user, which includes all the tokens owned by the user across all the networks.
+      operationId: getPortfolio
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/portfolio/activity":
+    get:
+      tags:
+        - Client
+      summary: Get portfolio activity
+      description: Get user's portfolio activity
+      operationId: getPortfolioActivity
+      parameters:
+        - "$ref": "#/components/parameters/limit"
+        - "$ref": "#/components/parameters/offset"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/transfer/tokens/execute":
+    post:
+      tags:
+        - Client
+      summary: Transfer tokens
+      description: Place an order by executing a token transfer. This will transfer the specified quantity of tokens to the recipient address. The order ID will be returned in the response. The order ID can be used to track the status of the order.
+      operationId: transferTokens
+      parameters:
+        - "$ref": "#/components/parameters/network_name"
+        - "$ref": "#/components/parameters/token_address"
+        - "$ref": "#/components/parameters/quantity"
+        - "$ref": "#/components/parameters/recipient_address"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/orders":
+    get:
+      tags:
+        - Client
+      summary: Get order history
+      description: Fetch all the orders of the user, which includes the history of tokens sent and received.
+      operationId: getOrderHistory
+      parameters:
+        - "$ref": "#/components/parameters/offset"
+        - "$ref": "#/components/parameters/limit"
+        - "$ref": "#/components/parameters/order_id"
+        - "$ref": "#/components/parameters/order_state"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/nft/transfer":
+    get:
+      tags:
+        - Client
+      summary: Transfer NFT
+      description: Used to transfer nft from user wallet address to recipient address. The order ID will be returned in the response. The order ID can be used to track the status of the order.
+      operationId: transferNft
+      parameters:
+        - "$ref": "#/components/parameters/operation_type"
+        - "$ref": "#/components/parameters/network_name"
+        - "$ref": "#/components/parameters/collection_address"
+        - "$ref": "#/components/parameters/collection_name"
+        - "$ref": "#/components/parameters/quantity"
+        - "$ref": "#/components/parameters/recipient_address"
+        - "$ref": "#/components/parameters/nft_address"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/nft/order_details":
+    get:
+      tags:
+        - Client
+      summary: Get NFT order details
+      description: Get order details of all the NFTs transferred and received by the user.
+      operationId: getNftOrderDetails
+      parameters:
+        - "$ref": "#/components/parameters/page"
+        - "$ref": "#/components/parameters/size"
+        - "$ref": "#/components/parameters/order_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/rawtransaction/execute":
+    post:
+      tags:
+        - Client
+      summary: Execute raw transactions
+      description: Execute a raw transaction on a network. The API returns a jobId which can be used to track the status of the transaction.
+      operationId: executeRawTransactions
+      parameters:
+        - "$ref": "#/components/parameters/network_name"
+        - "$ref": "#/components/parameters/transaction"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/api/v1/rawtransaction/status":
+    post:
+      tags:
+        - Client
+      summary: Get raw transaction status
+      description: Get the details of the raw transaction status by providing the order_id of the transaction. The response will contain the status of the transaction and the transaction hash if the transaction is successful.
+      operationId: getRawTransaction
+      parameters:
+        - "$ref": "#/components/parameters/order_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "s2s/api/v2/nft/mint":
+    post:
+      tags:
+        - Server
+      summary: Mint NFT V2
+      description: Used to mint a new NFT on a specific network.
+      operationId: mintNftV2
+      requestBody:
+        description: NFT Data
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/NftData"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "s2s/api/v2/nft/transfer":
+    post:
+      tags:
+        - Server
+      summary: Transfer NFT V2
+      description: Used to transfer nft from user wallet address to recipient address. The order ID will be returned in the response. The order ID can be used to track the status of the order.
+      operationId: transferNftV2
+      requestBody:
+        description: TransferNftData
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/TransferNftData"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "s2s/api/v2/transfer/tokens/execute/{userId}":
+    post:
+      tags:
+        - Server
+      summary: Transfer Tokens V2
+      description: Used to transfer ERC20/Native Tokens from user wallet address to recipient address. The order ID will be returned in the response. The bulk order ID can be used to track the status of the order.
+      operationId: transferTokensV2
+      requestBody:
+        description: TransferTokenData
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/TransferTokenData"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/s2s/api/v1/nft/order_details/:userId":
+    get:
+      tags:
+        - Server
+      summary: Get bulk order details
+      description: Get order details of the all the jobs ongoing by the user using their user_id and bulk_order_id.
+      operationId: getBulkOrderDetails
+      parameters:
+        - "$ref": "#/components/parameters/page"
+        - "$ref": "#/components/parameters/size"
+        - "$ref": "#/components/parameters/bulk_order_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/s2s/api/v1/wallet":
+    get:
+      tags:
+        - Server
+      summary: Get user wallets
+      description: Fetch all the wallets created by a user using their user_id.
+      operationId: getUserWallets
+      parameters:
+        - "$ref": "#/components/parameters/user_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/s2s/api/v1/portfolio":
+    get:
+      tags:
+        - Server
+      summary: Get user portfolio
+      description: Get the portfolio data of a user using their user_id, which includes all the tokens owned by the user across all the networks.
+      operationId: getUserPortfolio
+      parameters:
+        - "$ref": "#/components/parameters/user_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/s2s/api/v1/portfolio/nft":
+    get:
+      tags:
+        - Server
+      summary: Get all NFTs
+      description: Get the details of all the NFT's owned by the user using the user_id.
+      operationId: getNfts
+      parameters:
+        - "$ref": "#/components/parameters/user_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/s2s/api/v1/portfolio/activity":
+    get:
+      tags:
+        - Server
+      summary: Get user activity
+      description: Get a user's portfolio activity using their user_id.
+      operationId: getUserActivity
+      parameters:
+        - "$ref": "#/components/parameters/user_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+  "/s2s/api/v1/supported/tokens":
+    get:
+      tags:
+        - Server
+      summary: Get supported tokens
+      description: Get an array of all the whitelisted tokens on your API key.
+      operationId: getSupportedTokens
+      parameters:
+        - "$ref": "#/components/parameters/user_id"
+      responses:
+        "201":
+          description: Fetched
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Planet"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/responses/BadRequest"
+webhooks:
+  newPlanet:
+    post:
+      tags:
+        - Planets
+      requestBody:
+        description: Information about a new planet
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Planet"
+      responses:
+        "200":
+          description:
+            Return a 200 status to indicate that the data was received
+            successfully
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    basicAuth:
+      type: http
+      scheme: basic
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+    apiKeyCookie:
+      type: apiKey
+      in: cookie
+      name: api_key
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://galaxy.scalar.com/oauth/authorize
+          scopes:
+            write:planets: modify planets in your account
+            read:planets: read your planets
+  parameters:
+    planetId:
+      name: planetId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+        examples:
+          - 1
+    id_token:
+      name: id_token
+      in: header
+      description: The id_token of the user received from the Google OAuth2 provider.
+      required: true
+      schema:
+        type: string
+        examples: "TOKEN_ID"
+    user_id:
+      name: user_id
+      in: query
+      description: User id of the user.
+      required: true
+      schema:
+        type: string
+        examples: 'bb7bee27-a25b-4cff-8784-ae55a3a6ad60'
+    bulk_order_id:
+      name: bulk_order_id
+      in: query
+      description: Order id of the NFT.
+      schema:
+        type: string
+        example: 'dd784ad9-68f8-49b9-87dc-13723e933eab'
+    network_name:
+      name: network_name
+      in: query
+      description: Network used for the transfer.
+      required: true
+      schema:
+        type: string
+        examples: "APTOS TESTNET"
+    order_id:
+      name: order_id
+      in: query
+      description: The order ID to get the specific order details.
+      required: true
+      schema:
+        type: string
+        examples: "20b57c3f-7ea3-4531-8bb8-313c870ebc1a"
+    order_state:
+      name: order_state
+      in: query
+      description: The order state to filter the orders. Possible values are PENDING, SUCCESS, FAILED.
+      required: true
+      schema:
+        type: string
+        examples: "PENDING"
+    token_address:
+      name: token_address
+      in: query
+      description: Address of the token to be transferred.
+      required: true
+      schema:
+        type: string
+        examples: "0x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
+    quantity:
+      name: quantity
+      in: query
+      description: Quantity of tokens to be transferred.
+      required: true
+      schema:
+        type: string
+        examples: "0.0001"
+    nft_address:
+      name: nft_address
+      in: query
+      description: Address of the nft which needs to be transferred.
+      required: true
+      schema:
+        type: string
+        examples: "0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e"
+    operation_type:
+      name: operation_type
+      in: query
+      description: Type of operation to be performed.
+      required: true
+      schema:
+        type: string
+        examples: "NFT_TRANSFER"
+    collection_address:
+      name: collection_address
+      in: query
+      description: Address of the collection which needs to be transferred.
+      required: true
+      schema:
+        type: string
+        examples: "0x171e643e8e8dabc66b838b9055dbdf88647cf6601b164f5987f50a497bedfbe1"
+    collection_name:
+      name: collection_name
+      in: query
+      description: Name of the collection which needs to be transferred.
+      required: true
+      schema:
+        type: string
+        examples: "super avengers"
+    recipient_address:
+      name: recipient_address
+      in: query
+      description: Address of the recipient address to send tokens to.
+      required: true
+      schema:
+        type: string
+        examples: "0x8ff71ae16c88d86f5ec4100951f37a50683e8cd23ca515894854fcfc4ab7399b"
+    page:
+      name: page
+      in: query
+      description: Page number
+      default: 1
+      required: false
+      schema:
+        type: integer
+        format: int64
+        examples: 5
+    size:
+      name: size
+      in: query
+      description: Number of items per page
+      default: 10
+      required: false
+      schema:
+        type: integer
+        format: int64
+        examples: 100
+    limit:
+      name: limit
+      in: query
+      description: The number of items to return
+      required: false
+      schema:
+        type: integer
+        format: int64
+        default: 10
+    offset:
+      name: offset
+      in: query
+      description: The number of items to skip
+      required: false
+      schema:
+        type: integer
+        format: int64
+        default: 0
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Error"
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Error"
+    NotFound:
+      description: NotFound
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Error"
+  schemas:
+    NewUser:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          examples:
+            - Marc
+        email:
+          type: string
+          format: email
+          examples:
+            - marc@scalar.com
+        password:
+          type: string
+          minLength: 8
+          examples:
+            - i-love-scalar
+    TransferTokenData:
+      type: object
+      required: 
+        - operation_type
+        - network_name
+        - token_address
+        - quantity
+        - recipient_address
+      properties:
+        operation_type:
+          type: string
+          examples: "NFT_MINT"
+        network_name:
+          type: string
+          examples: "APTOS TESTNET"
+        quantity:
+          type: string
+          examples: "1"
+        token_address:
+          type: string
+          examples: '0x2f7b97837f2d14ba2ed3a4b2282e259126a9b848'
+        recipient_address:
+          description: Address of the recipient to whom NFT needs to be transferred.
+          type: string
+          examples: '0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e'
+    TransferNftData:
+      type: object
+      required:
+        - operation_type
+        - network_name
+        - collection_address
+        - collection_name
+        - quantity
+        - recipient_address
+        - nft_address
+        - user_id
+      properties:
+        operation_type:
+          type: string
+          examples: "NFT_MINT"
+        network_name:
+          type: string
+          examples: "APTOS TESTNET"
+        collection_address:
+          type: string
+          examples: "0x171e643e8e8dabc66b838b9055dbdf88647cf6601b164f5987f50a497bedfbe1"
+        collection_name:
+          type: string
+          examples: "super avengers"
+        quantity:
+          type: string
+          examples: "1"
+        recipient_address:
+          description: Address of the recipient to whom NFT needs to be transferred.
+          type: string
+          examples: '0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e'
+        nft_address:
+          type: string
+          examples: '0x7c0c2c20facfd3a321d82da7b3c2fcd5e75a3e5d8226ce26c5533f2342e57e0b'
+        user_id:
+          description: User ID of the user who is transferring the NFT
+          type: string
+          examples: 'd6061eab-2da6-4d79-a225-71f995791e45'
+    NftData:
+      type: object
+      required:
+        - operation_type
+        - erc_type
+        - network_name
+        - collection_address
+        - collection_name
+        - quantity
+        - metadata
+      properties:
+        operation_type:
+          type: string
+          examples: "NFT_MINT"
+        erc_type:
+          type: string
+          examples: "ERC721"
+        network_name:
+          type: string
+          examples: "APTOS TESTNET"
+        collection_address:
+          type: string
+          examples: "0x171e643e8e8dabc66b838b9055dbdf88647cf6601b164f5987f50a497bedfbe1"
+        collection_name:
+          type: string
+          examples: "super avengers"
+        quantity:
+          type: string
+          examples: "1"
+        metadata:
+          type: object
+          required:
+            - uri
+            - nftName
+            - description
+          properties:
+            uri:
+              type: string
+              examples: "ipfs://QmVFPvu8aeJHXyNVxpfftVHaKjRsbtH6dXWscJ2TukM3xi"
+            nftName:
+              type: string
+              examples: "Mint a NFT"
+            description:
+              type: string
+              examples: "Example description"
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: integer
+          format: int64
+          examples:
+            - 1
+        name:
+          type: string
+          examples:
+            - Marc
+        email:
+          type: string
+          format: email
+          examples:
+            - marc@scalar.com
+    Credentials:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          examples:
+            - marc@scalar.com
+        password:
+          type: string
+          examples:
+            - i-love-scalar
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          examples:
+            - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+    Planet:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          examples:
+            - 1
+          x-variable: planetId
+        name:
+          type: string
+          examples:
+            - Mars
+        description:
+          type:
+            - string
+            - "null"
+          examples:
+            - The red planet
+        image:
+          type: string
+          nullable: true
+          examples:
+            - https://cdn.scalar.com/photos/mars.jpg
+        creator:
+          "$ref": "#/components/schemas/User"
+    PaginatedResource:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            limit:
+              type: integer
+              format: int64
+              examples:
+                - 10
+            offset:
+              type: integer
+              format: int64
+              examples:
+                - 0
+            total:
+              type: integer
+              format: int64
+              examples:
+                - 100
+            next:
+              type:
+                - string
+                - "null"
+              examples:
+                - "/planets?limit=10&offset=10"
+    Error:
+      type: object
+      description: RFC 7807 (https://datatracker.ietf.org/doc/html/rfc7807)
+      properties:
+        type:
+          type: string
+          examples:
+            - https://example.com/errors/generic-error
+        title:
+          type: string
+          examples:
+            - Something went wrong here.
+        status:
+          type: integer
+          format: int64
+          examples:
+            - 403
+        detail:
+          type: string
+          examples:
+            - Unfortunately, we can’t provide further information.

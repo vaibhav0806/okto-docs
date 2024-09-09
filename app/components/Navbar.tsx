@@ -1,202 +1,158 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  Button,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Tooltip,
-  Switch
-} from "@nextui-org/react";
-import { FaDiscord, FaXTwitter, FaGithub } from "react-icons/fa6";
-import { ChevronDown } from "lucide-react";
-import Image from "next/image";
-import { usePathname } from "next/navigation"
-import { MdAdminPanelSettings } from "react-icons/md";
-import { FaReact } from "react-icons/fa6";
-import { TbBrandReactNative } from "react-icons/tb";
-import { TbApi } from "react-icons/tb";
-import { SiFlutter } from "react-icons/si";
+import React, { useEffect, useState } from "react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Image, Chip, Switch, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+import { Poppins } from "next/font/google";
+import { usePathname } from "next/navigation";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { ChevronDown } from 'lucide-react';
+import { VscGithub } from "react-icons/vsc";
 import { useTheme } from "next-themes";
-import Link from "next/link";
+
+const poppins = Poppins({ subsets: ['latin'], weight: '500', display: 'swap' });
 
 export default function NavbarComponent() {
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [activeItem, setActiveItem] = useState("");
   const { setTheme, resolvedTheme } = useTheme();
 
   const handleThemeChange = (isSelected: boolean) => {
     setTheme(isSelected ? 'dark' : 'light');
   };
 
-  const divStyle = (isActive: boolean) => ({
-    color: isActive ? '#5166EE' : 'inherit',
-    fontWeight: isActive ? 'bold' : '600',
-    fontSize: isActive ? '1.1rem' : '1rem',
-    transition: 'all 0.3s ease',
-    cursor: 'pointer',
-  });
+  const navItems = [
+    { href: "/docs/introduction-to-okto", label: "Intro", subpath: '/okto-universe' },
+    { href: "/showcase", label: "Showcase", subpath: '' },
+  ];
+
+  const sdkOptions = [
+    { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
+    { href: "/docs/react-native-sdk", label: "React Native", subpath: '/getting-started/overview-okto-react-native' },
+    { href: "/docs/flutter-sdk", label: "Flutter", subpath: '/getting-started/overview-okto-flutter' },
+    { href: "/api-docs", label: "API", subpath: '' },
+  ];
 
   const getFrameworkLabel = () => {
     if (pathname.startsWith('/docs/react-sdk')) return 'React';
     if (pathname.startsWith('/docs/react-native-sdk')) return 'React Native';
     if (pathname.startsWith('/docs/flutter-sdk')) return 'Flutter';
-    if (pathname.startsWith('/docs/api-reference')) return 'API Reference';
+    if (pathname.startsWith('/docs/api-reference')) return 'API';
     return 'Frameworks';
   };
 
-  const menuItems = ["Introduction", "Dashboard"];
+  useEffect(() => {
+    const updateActiveItem = () => {
+      const activeNavItem = [...navItems, ...sdkOptions].find(item => pathname.startsWith(item.href));
+      setActiveItem(activeNavItem ? activeNavItem.href : "");
+    };
+
+    updateActiveItem();
+  }, [pathname]);
+
+  const isFrameworkSelected = sdkOptions.some(option => pathname.startsWith(option.href));
 
   return (
-    <Navbar className="test" isBordered onMenuOpenChange={setIsMenuOpen}>
-      {/* Left-aligned brand and items */}
-      <div className="flex items-center justify-start gap-8">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
-        <NavbarBrand className="gap-12 cursor-pointer">
-          <Link href="/">
-            <div className="flex gap-2 items-center">
-              <Image
-                src="/logo/okto-icon.png"
-                alt="Okto Logo"
-                width={35}
-                height={35}
-              />
-              <p className="hidden sm:block font-bold text-inherit text-2xl">Okto Docs</p>
-            </div>
-          </Link>
-          <div className="flex gap-8 items-center">
-            <div
-              style={divStyle(pathname.startsWith("/docs/introduction-to-okto"))}
-            >
-              <Link href="/docs/introduction-to-okto/okto-universe">
-                Introduction
+    <Navbar isBordered className="nav-spacing">
+      <NavbarBrand className={`${poppins.className} gap-20 flex items-center`}>
+        <Link href="/" color="foreground" className="no-underline">
+          <NavbarItem className="flex gap-2 items-center">
+            <Image src="/logo/okto-icon.png" alt="Okto Logo" width={35} height={35} />
+            <p className="text-3xl">okto</p>
+            <Chip size="sm" className="bg-[#F5F6FE] text-[#5166EE]">
+              Docs
+            </Chip>
+          </NavbarItem>
+        </Link>
+        <NavbarContent className="hidden sm:flex gap-8" justify="start">
+          {navItems.map((item) => (
+            <NavbarItem key={item.href}>
+              <Link
+                href={`${item.href}${item.subpath}`}
+                color="foreground"
+                className={`text-md ${pathname.startsWith(item.href)
+                  ? "text-blue-600 border-b-2 border-blue-600"
+                  : ""
+                  } pb-1`}
+              >
+                {item.label}
               </Link>
-            </div>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button
-                  disableRipple
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                  endContent={<ChevronDown />}
-                  radius="sm"
-                  variant="light"
-                  style={divStyle(
-                    pathname.startsWith("/docs/react-sdk") ||
-                    pathname.startsWith("/docs/react-native-sdk") ||
-                    pathname.startsWith("/docs/flutter-sdk") ||
-                    pathname.startsWith("/docs/api-reference")
-                  )}
-                >
-                  {getFrameworkLabel()}
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Framework options">
+            </NavbarItem>
+          ))}
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className={`p-0 bg-transparent data-[hover=true]:bg-transparent text-md ${
+                  isFrameworkSelected
+                    ? "text-blue-600"
+                    : ""
+                } pb-1`} // Apply styles when a framework is selected
+                variant="light"
+                radius="sm"
+                endContent={<ChevronDown />}
+              >
+                {getFrameworkLabel()}
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Framework options" items={sdkOptions}>
+              {(item) => (
                 <DropdownItem
-                  key="react"
-                  startContent={<FaReact />}
-                  href="/docs/react-sdk/getting-started/overview-okto-react"
+                  key={item.label}
+                  href={`${item.href}${item.subpath}`}
                 >
-                  React
+                  {item.label}
                 </DropdownItem>
-                <DropdownItem
-                  key="react-native"
-                  startContent={<TbBrandReactNative />}
-                  href="https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme"
-                >
-                  React Native
-                </DropdownItem>
-                <DropdownItem
-                  key="flutter"
-                  startContent={<SiFlutter />}
-                  href="https://sdk-docs.okto.tech/sdk-reference/flutter/setup"
-                >
-                  Flutter
-                </DropdownItem>
-                <DropdownItem
-                  key="api"
-                  startContent={<TbApi />}
-                  href="https://sdk-docs.okto.tech/api-reference/client/authenticate"
-                >
-                  API Reference
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-            <div
-              style={divStyle(pathname.startsWith("/showcase"))}
-            >
-              <Link href="/docs/react-sdk/example-apps/example-repos">
-                Showcase
-              </Link>
-            </div>
-          </div>
-        </NavbarBrand>
-      </div>
-
-      {/* Right-aligned search bar and icons */}
-      <div className="flex gap-8">
-        <Button color="secondary" variant="flat" startContent={<MdAdminPanelSettings size={"1.5rem"} href="https://docs.google.com/forms/d/e/1FAIpQLSerKX9kZty74OKOUeF1Zpq1NdegY0Bxm8uRq-3VjwgsBPuPrQ/alreadyresponded" />}>
-          Developer Dashboard
-        </Button>
-        <Tooltip content="Coming soon" color="primary">
-          <Button color="warning" variant="flat">
-            View Demo
+              )}
+            </DropdownMenu>
+          </Dropdown>
+        </NavbarContent>
+      </NavbarBrand>
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Switch
+            onChange={(e) => handleThemeChange(e.target.checked)}
+            size="sm"
+            color="primary"
+            className="justify-end"
+            thumbIcon={({ isSelected, className }) =>
+              isSelected ? (
+                <MoonIcon className={className} />
+              ) : (
+                <SunIcon className={className} />
+              )
+            }
+          />
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} isIconOnly href="https://github.com/okto-hq/" variant="light" className="flex items-center">
+            <VscGithub size={"2rem"} />
           </Button>
-        </Tooltip>
-        <Button isIconOnly aria-label="Discord Icon" variant="light">
-          <Link href="https://discord.com/invite/okto-916349620383252511">
-            <FaDiscord size={"2em"} />
-          </Link>
-        </Button>
-        <Button isIconOnly aria-label="Twitter Icon" variant="light">
-          <Link href="https://x.com/okto_web3">
-            <FaXTwitter size={"2em"} />
-          </Link>
-        </Button>
-        <Button isIconOnly aria-label="Github Icon" variant="light">
-          <Link href="https://github.com/okto-hq">
-            <FaGithub size={"2em"} />
-          </Link>
-        </Button>
-        <Switch
-          onChange={(e) => handleThemeChange(e.target.checked)}
-          size="sm"
-          color="secondary"
-          className="justify-end"
-          thumbIcon={({ isSelected, className }) =>
-            isSelected ? (
-              <MoonIcon className={className} />
-            ) : (
-              <SunIcon className={className} />
-            )
-          }
-        />
-      </div>
-
-      {/* Mobile menu */}
-      <NavbarMenu className="px-4 sm:hidden">
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"}
-              className="w-full"
-              href="#"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            as={Link}
+            href="#"
+            variant="bordered"
+            radius="full"
+            className="font-semibold"
+            endContent={<MdOutlineArrowOutward size={".9rem"} />}
+          >
+            Demo
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button
+            as={Link}
+            href="https://forms.gle/Q2oAWZ979cgxwjzZ6"
+            variant="bordered"
+            radius="full"
+            className="font-semibold"
+            endContent={<MdOutlineArrowOutward size={".9rem"} />}
+          >
+            Dashboard
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
     </Navbar>
   );
 }
