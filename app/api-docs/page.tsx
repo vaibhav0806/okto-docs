@@ -11,7 +11,7 @@ function App() {
           url: 'https://okto-sdk-docs-new.vercel.app/api-sec',
         },
         theme: 'none',
-        hideRequestButton: false,
+        hideTestRequestButton: true,
         darkMode: false,
         favicon: '../../public/logo/okto-icon.png',
         hiddenClients: [],
