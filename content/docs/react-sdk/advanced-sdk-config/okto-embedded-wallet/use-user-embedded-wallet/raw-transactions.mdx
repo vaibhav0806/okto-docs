@@ -28,9 +28,9 @@ import '../../../styles.css';
 
 ### Parameters
 
-| Parameter   | Type                        | Description                            | Possible Values |
-|-------------|-----------------------------|----------------------------------------|-----------------|
-| `query`     | `RawTransactionStatusQuery` | Query being provided fetching the data | -               |
+| Parameter   | Type                        | Description                            | 
+|-------------|-----------------------------|----------------------------------------|
+| `query`     | `RawTransactionStatusQuery` | Query being provided fetching the data | 
 
 
 ```typescript
@@ -43,9 +43,9 @@ interface RawTransactionStatusQuery {
 
 <Callout title="Success Response">
 
-| Field Name | Type                                | Description                                             | Possible Values |
-|------------|-------------------------------------|---------------------------------------------------------|-----------------|
-| `result`   | `Promise<RawTransactionStatusData>` | Returns information about the status of raw transaction | -               |
+| Field Name | Type                                | Description                                             | 
+|------------|-------------------------------------|---------------------------------------------------------|
+| `result`   | `Promise<RawTransactionStatusData>` | Returns information about the status of raw transaction | 
 
 <Accordions>
 <Accordion title="Response Type">
@@ -106,9 +106,9 @@ interface RawTransactionStatusData {
 
 ### Parameters
 
-| Parameter   | Type                    | Description                                        | Possible Values |
-|-------------|-------------------------|----------------------------------------------------|-----------------|
-| `data`      | `ExecuteRawTransaction` | Data being provided for executing raw transactions | -               |
+| Parameter   | Type                    | Description                                        | 
+|-------------|-------------------------|----------------------------------------------------|
+| `data`      | `ExecuteRawTransaction` | Data being provided for executing raw transactions | 
 
 <Tabs items={['EVM', 'Solana', 'Aptos']}>
   <Tab value="EVM">
@@ -157,9 +157,9 @@ interface RawTransactionStatusData {
 
 <Callout title="Success Response">
 
-| Field Name | Type                                 | Description                               | Possible Values |
-|------------|--------------------------------------|-------------------------------------------|-----------------|
-| `result`   | `Promise<ExecuteRawTransactionData>` | Returns information about the transaction | -               |
+| Field Name | Type                                 | Description                               | 
+|------------|--------------------------------------|-------------------------------------------|
+| `result`   | `Promise<ExecuteRawTransactionData>` | Returns information about the transaction | 
 
 <Accordions>
 <Accordion title="Response Type">
@@ -215,9 +215,9 @@ interface ExecuteRawTransactionData {
 
 ### Parameters
 
-| Parameter   | Type                             | Description                                        | Possible Values |
-|-------------|----------------------------------|----------------------------------------------------|-----------------|
-| `data`      | `Promise<ExecuteRawTransaction>` | Data being provided for executing raw transactions | -               |
+| Parameter   | Type                             | Description                                        | 
+|-------------|----------------------------------|----------------------------------------------------|
+| `data`      | `Promise<ExecuteRawTransaction>` | Data being provided for executing raw transactions | 
 
 
 ```typescript
@@ -231,9 +231,9 @@ interface ExecuteRawTransaction {
 
 <Callout title="Success Response">
 
-| Field Name | Type                            | Description                               | Possible Values |
-|------------|---------------------------------|-------------------------------------------|-----------------|
-| `result`   | `Promise<RawTransactionStatus>` | Returns information about the transaction | -               |
+| Field Name | Type                            | Description                               | 
+|------------|---------------------------------|-------------------------------------------|
+| `result`   | `Promise<RawTransactionStatus>` | Returns information about the transaction | 
 
 <Accordions>
 <Accordion title="Response Type">

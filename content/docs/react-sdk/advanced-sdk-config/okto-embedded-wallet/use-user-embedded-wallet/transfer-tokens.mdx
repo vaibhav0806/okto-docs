@@ -28,9 +28,9 @@ import '../../../styles.css';
 
 ### Parameters
 
-| Parameter   | Type            | Description                                     | Possible Values |
-|-------------|-----------------|-------------------------------------------------|-----------------|
-| `data`     | `TransferTokens` | Data being provided for transferring the tokens | -               |
+| Parameter   | Type            | Description                                     | 
+|-------------|-----------------|-------------------------------------------------|
+| `data`     | `TransferTokens` | Data being provided for transferring the tokens | 
 
 ```typescript
 interface TransferTokens {
@@ -45,9 +45,9 @@ interface TransferTokens {
 
 <Callout title="Success Response">
 
-| Field Name | Type                          | Description                                      | Possible Values |
-|------------|-------------------------------|--------------------------------------------------|-----------------|
-| `result`   | `Promise<TransferTokensData>` | Returns information about the tokens transferred | -               |
+| Field Name | Type                          | Description                                      | 
+|------------|-------------------------------|--------------------------------------------------|
+| `result`   | `Promise<TransferTokensData>` | Returns information about the tokens transferred | 
 
 <Accordions>
 <Accordion title="Response Type">
@@ -104,9 +104,9 @@ interface TransferTokensData {
 
 ### Parameters
 
-| Parameter   | Type            | Description                                     | Possible Values |
-|-------------|-----------------|-------------------------------------------------|-----------------|
-| `data`     | `TransferTokens` | Data being provided for transferring the tokens | -               |
+| Parameter   | Type            | Description                                     |
+|-------------|-----------------|-------------------------------------------------|
+| `data`     | `TransferTokens` | Data being provided for transferring the tokens | 
 
 ```typescript
 interface TransferTokens {
@@ -121,9 +121,9 @@ interface TransferTokens {
 
 <Callout title="Success Response">
 
-| Field Name | Type              | Description                         | Possible Values |
-|------------|-------------------|-------------------------------------|-----------------|
-| `result`   | `Promise<Order>`  | Returns information about the order | -               |
+| Field Name | Type              | Description                         | 
+|------------|-------------------|-------------------------------------|
+| `result`   | `Promise<Order>`  | Returns information about the order | 
 
 <Accordions>
 <Accordion title="Response Type">
@@ -184,9 +184,9 @@ interface Order {
 
 ### Parameters
 
-| Parameter   | Type                  | Description                      | Possible Values |
-|-------------|-----------------------|----------------------------------|-----------------|
-| `query`     | `Partial<OrderQuery>` | Query for fetching order history | Auth idToken    |
+| Parameter   | Type                  | Description                      | 
+|-------------|-----------------------|----------------------------------|
+| `query`     | `Partial<OrderQuery>` | Query for fetching order history | 
 
 ```typescript
 interface OrderQuery {
@@ -201,9 +201,9 @@ interface OrderQuery {
 
 <Callout title="Success Response">
 
-| Field Name | Type                 | Description                                 | Possible Values |
-|------------|----------------------|---------------------------------------------|-----------------|
-| `result`   | `Promise<OrderData>` | Returns information about the order history | -               |
+| Field Name | Type                 | Description                                 | 
+|------------|----------------------|---------------------------------------------|
+| `result`   | `Promise<OrderData>` | Returns information about the order history | 
 
 <Accordions>
 <Accordion title="Response Type">

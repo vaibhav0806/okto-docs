@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { ChevronDown } from 'lucide-react';
 import { VscGithub } from "react-icons/vsc";
+import { AiOutlineDiscord } from "react-icons/ai";
+import { FaXTwitter } from "react-icons/fa6";
 import { useTheme } from "next-themes";
 
 const poppins = Poppins({ subsets: ['latin'], weight: '500', display: 'swap' });
@@ -27,8 +29,8 @@ export default function NavbarComponent() {
 
   const sdkOptions = [
     { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
-    { href: "/docs/react-native-sdk", label: "React Native", subpath: '/getting-started/overview-okto-react-native' },
-    { href: "/docs/flutter-sdk", label: "Flutter", subpath: '/getting-started/overview-okto-flutter' },
+    { href: "https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme", label: "React Native", subpath: '' },
+    { href: "https://sdk-docs.okto.tech/sdk-reference/flutter/setup", label: "Flutter", subpath: '' },
     { href: "/api-docs", label: "API", subpath: '' },
   ];
 
@@ -36,7 +38,7 @@ export default function NavbarComponent() {
     if (pathname.startsWith('/docs/react-sdk')) return 'React';
     if (pathname.startsWith('/docs/react-native-sdk')) return 'React Native';
     if (pathname.startsWith('/docs/flutter-sdk')) return 'Flutter';
-    if (pathname.startsWith('/docs/api-reference')) return 'API';
+    if (pathname.startsWith('/docs/api-docs')) return 'API';
     return 'Frameworks';
   };
 
@@ -82,11 +84,10 @@ export default function NavbarComponent() {
             <DropdownTrigger>
               <Button
                 disableRipple
-                className={`p-0 bg-transparent data-[hover=true]:bg-transparent text-md ${
-                  isFrameworkSelected
-                    ? "text-blue-600"
-                    : ""
-                } pb-1`} // Apply styles when a framework is selected
+                className={`p-0 bg-transparent data-[hover=true]:bg-transparent text-md ${isFrameworkSelected
+                  ? "text-blue-600"
+                  : ""
+                  } pb-1`} // Apply styles when a framework is selected
                 variant="light"
                 radius="sm"
                 endContent={<ChevronDown />}
@@ -122,6 +123,16 @@ export default function NavbarComponent() {
               )
             }
           />
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} isIconOnly href="https://x.com/okto_web3" variant="light" className="flex items-center">
+            <FaXTwitter size={"2rem"} />
+          </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} isIconOnly href="https://discord.com/invite/okto-916349620383252511" variant="light" className="flex items-center">
+            <AiOutlineDiscord size={"2rem"} />
+          </Button>
         </NavbarItem>
         <NavbarItem>
           <Button as={Link} isIconOnly href="https://github.com/okto-hq/" variant="light" className="flex items-center">
