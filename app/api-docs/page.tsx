@@ -8,7 +8,7 @@ function App() {
     <ApiReferenceReact
       configuration={{
         spec: {
-          url: 'http://localhost:3000/api-sec',
+          url: 'https://okto-sdk-docs-new.vercel.app/api-sec',
         },
         theme: 'none',
         hideRequestButton: false,
