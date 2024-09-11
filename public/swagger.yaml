@@ -630,22 +630,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/responses/BadRequest"
-webhooks:
-  newPlanet:
-    post:
-      tags:
-        - Planets
-      requestBody:
-        description: Information about a new planet
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/Planet"
-      responses:
-        "200":
-          description:
-            Return a 200 status to indicate that the data was received
-            successfully
+
 components:
   securitySchemes:
     bearerAuth:
