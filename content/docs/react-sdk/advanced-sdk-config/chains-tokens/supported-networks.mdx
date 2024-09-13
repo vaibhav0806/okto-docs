@@ -39,21 +39,9 @@ There are no parameters for this function.
 
 <Callout title="Success Response">
 
-| Field Name | Type                   | Description                              | 
-|------------|------------------------|------------------------------------------|
-| `result`   | `Promise<NetworkData>` | Returns list of whitelisted networks     | 
-
-<Accordions>
-<Accordion title="Response Type">
- 
-```typescript
-interface NetworkData {
-  network: Network[];
-}
-```
- 
-</Accordion>
-</Accordions>
+| Field Name | Type | Description |
+|------------|-----------------------------|------------------------------------------|
+| `result`   | [`Promise<NetworkData>`](/api-docs#model/networkdata) | Returns list of whitelisted networks |
 
 </Callout>
 
@@ -97,19 +85,7 @@ There are no parameters for this function.
 
 | Field Name | Type                  | Description                        | 
 |------------|-----------------------|------------------------------------|
-| `result`   | `Promise<TokensData>` | Returns list of whitelisted tokens | 
-
-<Accordions>
-<Accordion title="Response Type">
- 
-```typescript
-interface TokensData {
-  tokens: Token[];
-}
-```
- 
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<TokensData>`](/api-docs#model/tokensdata) | Returns list of whitelisted tokens | 
 
 </Callout>
 

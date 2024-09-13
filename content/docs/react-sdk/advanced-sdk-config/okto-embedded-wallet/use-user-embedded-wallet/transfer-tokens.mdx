@@ -30,16 +30,7 @@ import '../../../styles.css';
 
 | Parameter   | Type            | Description                                     | 
 |-------------|-----------------|-------------------------------------------------|
-| `data`     | `TransferTokens` | Data being provided for transferring the tokens | 
-
-```typescript
-interface TransferTokens {
-  network_name: string;
-  token_address: string;
-  quantity: string;
-  recipient_address: string;
-}
-```
+| `data`     | [`TransferTokens`](/api-docs#model/transfertokens) | Data being provided for transferring the tokens | 
 
 ### Response
 
@@ -47,17 +38,7 @@ interface TransferTokens {
 
 | Field Name | Type                          | Description                                      | 
 |------------|-------------------------------|--------------------------------------------------|
-| `result`   | `Promise<TransferTokensData>` | Returns information about the tokens transferred | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface TransferTokensData {
-  orderId: string;
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<TransferTokensData>`](/api-docs#model/transfertokensdata) | Returns information about the tokens transferred | 
 
 </Callout>
 
@@ -106,16 +87,7 @@ interface TransferTokensData {
 
 | Parameter   | Type            | Description                                     |
 |-------------|-----------------|-------------------------------------------------|
-| `data`     | `TransferTokens` | Data being provided for transferring the tokens | 
-
-```typescript
-interface TransferTokens {
-  network_name: string;
-  token_address: string;
-  quantity: string;
-  recipient_address: string;
-}
-```
+| `data`     | [`TransferTokens`](/api-docs#model/transfertokens) | Data being provided for transferring the tokens | 
 
 ### Response
 
@@ -123,21 +95,7 @@ interface TransferTokens {
 
 | Field Name | Type              | Description                         | 
 |------------|-------------------|-------------------------------------|
-| `result`   | `Promise<Order>`  | Returns information about the order | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface Order {
-  order_id: string;
-  network_name: string;
-  order_type: string;
-  status: string;
-  transaction_hash: string;
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<Order>`](/api-docs#model/order)  | Returns information about the order | 
 
 </Callout>
 
@@ -186,16 +144,7 @@ interface Order {
 
 | Parameter   | Type                  | Description                      | 
 |-------------|-----------------------|----------------------------------|
-| `query`     | `Partial<OrderQuery>` | Query for fetching order history | 
-
-```typescript
-interface OrderQuery {
-  offset: number;
-  limit: number;
-  order_id: string;
-  order_state: string;
-}
-```
+| `query`     | [`Partial<OrderQuery>`](/api-docs#model/orderquery) | Query for fetching order history | 
 
 ### Response
 
@@ -203,18 +152,7 @@ interface OrderQuery {
 
 | Field Name | Type                 | Description                                 | 
 |------------|----------------------|---------------------------------------------|
-| `result`   | `Promise<OrderData>` | Returns information about the order history | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface OrderData {
-  total: number;
-  jobs: Order[];
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<OrderData>`](/api-docs#model/orderdata) | Returns information about the order history | 
 
 </Callout>
 

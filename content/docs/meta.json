@@ -2,11 +2,11 @@
     "title": "Okto SDK",
     "pages": [
       "introduction-to-okto",
-      "developer-admin-dashboard",
-      "react-sdk",
-      "react-native-sdk",
-      "flutter-sdk",
-      "api-reference"
+      "!developer-admin-dashboard",
+      "!react-sdk",
+      "!react-native-sdk",
+      "!flutter-sdk",
+      "!api-reference"
     ],
     "root": true
   }

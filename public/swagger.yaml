@@ -7,40 +7,6 @@ info:
     ## Resources
 
     * https://github.com/okto-hq/
-
-    ## Markdown Support
-
-    All descriptions *can* contain ~~tons of text~~ **Markdown**. [If GitHub supports the syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax), chances are we’re supporting it, too. You can even create [internal links to reference endpoints](#tag/authentication/POST/user/signup).
-
-    <details>
-      <summary>Examples</summary>
-
-      **Blockquotes**
-
-      > I love OpenAPI. <3
-
-      **Tables**
-
-      | Feature          | Availability |
-      | ---------------- | ------------ |
-      | Markdown Support | ✓            |
-
-      **Accordion**
-
-      ```html
-      <details>
-        <summary>Using Details Tags</summary>
-        <p>HTML Example</p>
-      </details>
-      ```
-
-      **Images**
-
-      Yes, there’s support for images, too!
-
-      ![Empty placeholder image showing the width/height](https://images.placeholders.dev/?width=1280&height=720)
-
-    </details>
   version: 1.0.0
   contact:
     name: Ovia Seshadri
@@ -684,14 +650,14 @@ components:
       required: true
       schema:
         type: string
-        examples: 'bb7bee27-a25b-4cff-8784-ae55a3a6ad60'
+        examples: "bb7bee27-a25b-4cff-8784-ae55a3a6ad60"
     bulk_order_id:
       name: bulk_order_id
       in: query
       description: Order id of the NFT.
       schema:
         type: string
-        example: 'dd784ad9-68f8-49b9-87dc-13723e933eab'
+        example: "dd784ad9-68f8-49b9-87dc-13723e933eab"
     network_name:
       name: network_name
       in: query
@@ -830,30 +796,174 @@ components:
           schema:
             "$ref": "#/components/schemas/Error"
   schemas:
-    NewUser:
+    Network:
       type: object
       required:
-        - name
-        - email
-        - password
+        - chain_id
+        - network_name
       properties:
-        name:
+        network_name:
           type: string
-          examples:
-            - Marc
+          example: "Mainnet"
+        chain_id:
+          type: string
+          example: "1"
+    Portfolio:
+      type: object
+      required:
+        - token_name
+        - token_image
+        - token_address
+        - network_name
+        - quantity
+        - amount_in_inr
+      properties:
+        token_name:
+          type: string
+          example: "ETH"
+        token_image:
+          type: string
+          example: "url"
+        token_address:
+          type: string
+          example: "0x..."
+        network_name:
+          type: string
+          example: "Mainnet"
+        quantity:
+          type: string
+          example: "1000"
+        amount_in_inr:
+          type: string
+          example: 10000'
+    RawTransactionStatus:
+      type: object
+      properties:
+        order_id:
+          type: string
+        network_name:
+          type: string
+        status:
+          type: string
+        transaction_hash:
+          type: string
+      required:
+        - order_id
+        - network_name
+        - status
+        - transaction_hash
+    RawTransactionStatusData:
+      type: object
+      properties:
+        total:
+          type: number
+        jobs:
+          type: array
+          items:
+            $ref: "#/components/schemas/RawTransactionStatus"
+      required:
+        - total
+        - jobs
+    ExecuteRawTransactionData:
+      type: object
+      properties:
+        jobId:
+          type: string
+          example: "761"
+      required:
+        - jobId
+    ExecuteRawTransaction:
+      type: object
+      properties:
+        network_name:
+          type: string
+          example: "Mainnet"
+        transaction:
+          type: object
+      required:
+        - network_name
+        - transaction
+    User:
+      type: object
+      properties:
         email:
           type: string
           format: email
-          examples:
-            - marc@scalar.com
-        password:
+        user_id:
           type: string
-          minLength: 8
-          examples:
-            - i-love-scalar
+        created_at:
+          type: string
+          format: date-time
+        freezed:
+          type: string
+        freeze_reason:
+          type: string
+      required:
+        - email
+        - user_id
+        - created_at
+        - freezed
+        - freeze_reason
+    PortfolioData:
+      required:
+        - tokens
+        - total
+      type: object
+      properties:
+        tokens:
+          type: array
+          items:
+            $ref: "#/components/schemas/Portfolio"
+        total:
+          type: number
+          example: 1000
+    NetworkData:
+      type: array
+      items:
+        $ref: "#/components/schemas/Network"
+    WalletData:
+      type: array
+      items:
+        $ref: "#/components/schemas/Wallet"
+    Wallet:
+      type: object
+      required:
+        - network_name
+        - success
+        - address
+      properties:
+        network_name:
+          type: string
+          example: "Mainnet"
+        success:
+          type: boolean
+          example: "true"
+        address:
+          type: string
+          example: "0x..."
+    Tokens:
+      type: object
+      required:
+        - network_name
+        - token_name
+        - token_address
+      properties:
+        network_name:
+          type: string
+          example: "Mainnet"
+        token_name:
+          type: string
+          example: "1"
+        token_address:
+          type: string
+          example: "0x..."
+    TokensData:
+      type: array
+      items:
+        $ref: "#/components/schemas/Tokens"
     TransferTokenData:
       type: object
-      required: 
+      required:
         - operation_type
         - network_name
         - token_address
@@ -871,11 +981,254 @@ components:
           examples: "1"
         token_address:
           type: string
-          examples: '0x2f7b97837f2d14ba2ed3a4b2282e259126a9b848'
+          examples: "0x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
         recipient_address:
           description: Address of the recipient to whom NFT needs to be transferred.
           type: string
-          examples: '0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e'
+          examples: "0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e"
+    TransferTokens:
+      type: object
+      required:
+        - network_name
+        - token_address
+        - quantity
+        - recipient_address
+      properties:
+        network_name:
+          type: string
+          example: "Ethereum"
+        token_address:
+          type: string
+          example: "0x1234567890abcdef"
+        quantity:
+          type: string
+          example: "100"
+        recipient_address:
+          type: string
+          example: "0xabcdef1234567890"
+    TransferTokensData:
+      type: object
+      required:
+        - orderId
+      properties:
+        orderId:
+          type: string
+          example: "order123"
+    OrderQuery:
+      type: object
+      required:
+        - offset
+        - limit
+        - order_id
+        - order_state
+      properties:
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 10
+        order_id:
+          type: string
+          example: "order123"
+        order_state:
+          type: string
+          example: "pending"
+    Order:
+      type: object
+      required:
+        - order_id
+        - network_name
+        - order_type
+        - status
+        - transaction_hash
+      properties:
+        order_id:
+          type: string
+          example: "order123"
+        network_name:
+          type: string
+          example: "Ethereum"
+        order_type:
+          type: string
+          example: "transfer"
+        status:
+          type: string
+          example: "completed"
+        transaction_hash:
+          type: string
+          example: "0xabcdef1234567890"
+    OrderData:
+      type: object
+      required:
+        - total
+        - jobs
+      properties:
+        total:
+          type: integer
+          example: 100
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    RawTransactionStatusQuery:
+      type: object
+      required:
+        - order_id
+      properties:
+        order_id:
+          type: string
+          example: "order123"
+    Theme:
+      type: object
+      required:
+        - textPrimaryColor
+        - textSecondaryColor
+        - textTertiaryColor
+        - accentColor
+        - accent2Color
+        - strokBorderColor
+        - strokDividerColor
+        - surfaceColor
+        - backgroundColor
+      properties:
+        textPrimaryColor:
+          type: string
+          example: "#000000"
+        textSecondaryColor:
+          type: string
+          example: "#333333"
+        textTertiaryColor:
+          type: string
+          example: "#666666"
+        accentColor:
+          type: string
+          example: "#FF5733"
+        accent2Color:
+          type: string
+          example: "#C70039"
+        strokBorderColor:
+          type: string
+          example: "#DDDDDD"
+        strokDividerColor:
+          type: string
+          example: "#EEEEEE"
+        surfaceColor:
+          type: string
+          example: "#FFFFFF"
+        backgroundColor:
+          type: string
+          example: "#F5F5F5"
+        NftOrderDetailsQuery:
+          type: object
+          required:
+            - page
+            - size
+            - order_id
+          properties:
+            page:
+              type: integer
+              example: 1
+            size:
+              type: integer
+              example: 10
+            order_id:
+              type: string
+              example: "order123"
+    NftOrderDetails:
+      type: object
+      required:
+        - explorer_smart_contract_url
+        - type
+        - collection_id
+        - collection_name
+        - nft_token_id
+        - token_uri
+        - id
+        - image
+        - collection_address
+        - collection_image
+        - network_name
+        - network_id
+        - nft_name
+      properties:
+        explorer_smart_contract_url:
+          type: string
+          example: "https://etherscan.io/address/0x1234567890abcdef"
+        type:
+          type: string
+          example: "ERC721"
+        collection_id:
+          type: string
+          example: "abcd1234"
+        collection_name:
+          type: string
+          example: "CryptoPunks"
+        nft_token_id:
+          type: string
+          example: "1001"
+        token_uri:
+          type: string
+          example: "https://api.example.com/nft/1001"
+        id:
+          type: string
+          example: "order123"
+        image:
+          type: string
+          example: "https://example.com/images/nft.png"
+        collection_address:
+          type: string
+          example: "0xabcdef1234567890"
+        collection_image:
+          type: string
+          example: "https://example.com/images/collection.png"
+        network_name:
+          type: string
+          example: "Ethereum"
+        network_id:
+          type: string
+          example: "1"
+        nft_name:
+          type: string
+          example: "CryptoPunk #1001"
+    TransferNft:
+      type: object
+      required:
+        - operation_type
+        - network_name
+        - collection_address
+        - collection_name
+        - quantity
+        - recipient_address
+        - nft_address
+        - user_id
+      properties:
+        operation_type:
+          type: string
+          examples: "NFT_MINT"
+        network_name:
+          type: string
+          examples: "APTOS TESTNET"
+        collection_address:
+          type: string
+          examples: "0x171e643e8e8dabc66b838b9055dbdf88647cf6601b164f5987f50a497bedfbe1"
+        collection_name:
+          type: string
+          examples: "super avengers"
+        quantity:
+          type: string
+          examples: "1"
+        recipient_address:
+          description: Address of the recipient to whom NFT needs to be transferred.
+          type: string
+          examples: "0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e"
+        nft_address:
+          type: string
+          examples: "0x7c0c2c20facfd3a321d82da7b3c2fcd5e75a3e5d8226ce26c5533f2342e57e0b"
+        user_id:
+          description: User ID of the user who is transferring the NFT
+          type: string
+          examples: "d6061eab-2da6-4d79-a225-71f995791e45"
     TransferNftData:
       type: object
       required:
@@ -906,14 +1259,14 @@ components:
         recipient_address:
           description: Address of the recipient to whom NFT needs to be transferred.
           type: string
-          examples: '0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e'
+          examples: "0x719dad0b2800205ab7bff539bd617b04e21fe311bc30fce6d6d2d3beecd8a14e"
         nft_address:
           type: string
-          examples: '0x7c0c2c20facfd3a321d82da7b3c2fcd5e75a3e5d8226ce26c5533f2342e57e0b'
+          examples: "0x7c0c2c20facfd3a321d82da7b3c2fcd5e75a3e5d8226ce26c5533f2342e57e0b"
         user_id:
           description: User ID of the user who is transferring the NFT
           type: string
-          examples: 'd6061eab-2da6-4d79-a225-71f995791e45'
+          examples: "d6061eab-2da6-4d79-a225-71f995791e45"
     NftData:
       type: object
       required:
@@ -959,42 +1312,6 @@ components:
             description:
               type: string
               examples: "Example description"
-    User:
-      type: object
-      required:
-        - id
-        - name
-        - email
-      properties:
-        id:
-          type: integer
-          format: int64
-          examples:
-            - 1
-        name:
-          type: string
-          examples:
-            - Marc
-        email:
-          type: string
-          format: email
-          examples:
-            - marc@scalar.com
-    Credentials:
-      type: object
-      required:
-        - email
-        - password
-      properties:
-        email:
-          type: string
-          format: email
-          examples:
-            - marc@scalar.com
-        password:
-          type: string
-          examples:
-            - i-love-scalar
     Token:
       type: object
       properties:
@@ -1002,35 +1319,6 @@ components:
           type: string
           examples:
             - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-    Planet:
-      type: object
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: integer
-          format: int64
-          examples:
-            - 1
-          x-variable: planetId
-        name:
-          type: string
-          examples:
-            - Mars
-        description:
-          type:
-            - string
-            - "null"
-          examples:
-            - The red planet
-        image:
-          type: string
-          nullable: true
-          examples:
-            - https://cdn.scalar.com/photos/mars.jpg
-        creator:
-          "$ref": "#/components/schemas/User"
     PaginatedResource:
       type: object
       properties:

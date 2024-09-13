@@ -30,7 +30,7 @@ import '../../../styles.css';
 
 | Parameter   | Type                        | Description                            | 
 |-------------|-----------------------------|----------------------------------------|
-| `query`     | `RawTransactionStatusQuery` | Query being provided fetching the data | 
+| `query`     | [`RawTransactionStatusQuery`](/api-docs#model/rawtransactionstatusquery) | Query being provided fetching the data | 
 
 
 ```typescript
@@ -45,18 +45,7 @@ interface RawTransactionStatusQuery {
 
 | Field Name | Type                                | Description                                             | 
 |------------|-------------------------------------|---------------------------------------------------------|
-| `result`   | `Promise<RawTransactionStatusData>` | Returns information about the status of raw transaction | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface RawTransactionStatusData {
-  total: number;
-  jobs: RawTransactionStatus[];
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<RawTransactionStatusData>`](/api-docs#model/rawtransactionstatusdata) | Returns information about the status of raw transaction | 
 
 </Callout>
 
@@ -108,7 +97,7 @@ interface RawTransactionStatusData {
 
 | Parameter   | Type                    | Description                                        | 
 |-------------|-------------------------|----------------------------------------------------|
-| `data`      | `ExecuteRawTransaction` | Data being provided for executing raw transactions | 
+| `data`      | [`ExecuteRawTransaction`](/api-docs#model/executerawtransaction) | Data being provided for executing raw transactions | 
 
 <Tabs items={['EVM', 'Solana', 'Aptos']}>
   <Tab value="EVM">
@@ -159,17 +148,7 @@ interface RawTransactionStatusData {
 
 | Field Name | Type                                 | Description                               | 
 |------------|--------------------------------------|-------------------------------------------|
-| `result`   | `Promise<ExecuteRawTransactionData>` | Returns information about the transaction | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface ExecuteRawTransactionData {
-  jobId: string;
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<ExecuteRawTransactionData>`](/api-docs#model/executerawtransactiondata) | Returns information about the transaction | 
 
 </Callout>
 
@@ -217,7 +196,7 @@ interface ExecuteRawTransactionData {
 
 | Parameter   | Type                             | Description                                        | 
 |-------------|----------------------------------|----------------------------------------------------|
-| `data`      | `Promise<ExecuteRawTransaction>` | Data being provided for executing raw transactions | 
+| `data`      | [`Promise<ExecuteRawTransaction>`](/api-docs#model/executerawtransaction) | Data being provided for executing raw transactions | 
 
 
 ```typescript
@@ -233,7 +212,7 @@ interface ExecuteRawTransaction {
 
 | Field Name | Type                            | Description                               | 
 |------------|---------------------------------|-------------------------------------------|
-| `result`   | `Promise<RawTransactionStatus>` | Returns information about the transaction | 
+| `result`   | [`Promise<RawTransactionStatus>`](/api-docs#model/rawtransactionstatus) | Returns information about the transaction | 
 
 <Accordions>
 <Accordion title="Response Type">

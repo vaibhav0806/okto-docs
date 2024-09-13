@@ -115,25 +115,7 @@ There are no parameters for this function.
 
 | Field Name | Type                | Description                                 | 
 |------------|---------------------|---------------------------------------------|
-| `result`   | `Theme`             | No successful response returned             | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface Theme {
-  textPrimaryColor: string;
-  textSecondaryColor: string;
-  textTertiaryColor: string;
-  accentColor: string;
-  accent2Color: string;
-  strokBorderColor: string;
-  strokDividerColor: string;
-  surfaceColor: string;
-  backgroundColor: string;
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Theme`](/api-docs#model/theme)             | No successful response returned             | 
 
 </Callout>
 
@@ -165,21 +147,7 @@ interface Theme {
 
 | Parameter   | Type                 | Description                                               | 
 |-------------|----------------------|-----------------------------------------------------------|
-| `theme  `   | `Partial<Theme>`     | Theme provided to set                                     | 
-
-```typescript 
-interface Theme {
-  textPrimaryColor: string;
-  textSecondaryColor: string;
-  textTertiaryColor: string;
-  accentColor: string;
-  accent2Color: string;
-  strokBorderColor: string;
-  strokDividerColor: string;
-  surfaceColor: string;
-  backgroundColor: string;
-}
-```
+| `theme  `   | [`Partial<Theme>`](/api-docs#model/theme)     | Theme provided to set                                     | 
 
 ### Response
 
