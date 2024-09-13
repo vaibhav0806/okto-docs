@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { ApiReferenceReact } from '@scalar/api-reference-react';
 import '@scalar/api-reference-react/style.css';
+import Head from 'next/head';
+
 
 const App = () => {
   const { theme, setTheme } = useTheme();
@@ -33,22 +35,27 @@ const App = () => {
   if (!mounted) return null;
 
   return (
-    <ApiReferenceReact
-      configuration={{
-        spec: {
-          url: 'https://okto-sdk-docs-new.vercel.app/api-sec',
-        },
-        theme: 'none',
-        hideTestRequestButton: true,
-        darkMode: theme === 'dark',
-        favicon: '../../public/logo/okto-icon.png',
-        hiddenClients: [],
-        metadata: {
-          title: 'Okto API Reference'
-        },
-        hideDarkModeToggle: true
-      }}
-    />
+    <>
+      <Head>
+        <title>Okto API Reference</title>
+        <link rel="icon" href="/logo/okto-icon.png" sizes="any" />
+      </Head>
+      <ApiReferenceReact
+        configuration={{
+          spec: {
+            url: 'https://okto-sdk-docs-new.vercel.app/api-sec',
+          },
+          theme: 'none',
+          hideTestRequestButton: true,
+          darkMode: theme === 'dark',
+          hiddenClients: [],
+          metadata: {
+            title: 'API Reference'
+          },
+          hideDarkModeToggle: true,
+        }}
+      />
+    </>
   );
 };
 

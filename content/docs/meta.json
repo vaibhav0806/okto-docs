@@ -3,7 +3,7 @@
     "pages": [
       "introduction-to-okto",
       "!developer-admin-dashboard",
-      "!react-sdk",
+      "react-sdk",
       "!react-native-sdk",
       "!flutter-sdk",
       "!api-reference"
