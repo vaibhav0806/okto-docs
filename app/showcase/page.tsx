@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react"
+import { Button, Link } from "@nextui-org/react"
 import { FaPlus } from "react-icons/fa6";
 import Image, { type StaticImageData } from 'next/image';
 import DisbursalApp from "@/public/images/DisbursalApp.png"
@@ -6,11 +6,17 @@ import Lifafa from "@/public/images/Lifafa.png"
 import TelegramBot from "@/public/images/TelegramBot.png"
 import Stan from "@/public/images/Stan.webp"
 import Oktogram from "@/public/images/Oktogram.png";
+import { Metadata } from "next";
 
 interface ShowcaseObject {
     image?: StaticImageData;
     name: string;
     url: string;
+}
+
+export const metadata: Metadata = {
+    title: 'Showcase',
+    description: 'Cool apps made by Okto',
 }
 
 export default function Showcase() {
@@ -38,9 +44,10 @@ export default function Showcase() {
         {
             image: Oktogram,
             name: 'Oktogram',
-            url: '#',
+            url: 'https://oktogram.ujwl.in/',
         }
     ];
+
     return (
         <>
             <div className="flex justify-between mx-16 mt-20">
@@ -48,7 +55,7 @@ export default function Showcase() {
                     Cool Apps <br />
                     Made with Okto
                 </div>
-                <Button radius="full" startContent={<FaPlus />} variant="bordered">
+                <Button as={Link} radius="full" startContent={<FaPlus />} variant="bordered" href="mailto:devrel@coindcx.com">
                     Submit your app
                 </Button>
 
@@ -110,4 +117,8 @@ function ShowcaseItem({
             <p className="text-3xl font-semibold">{name}</p>
         </a>
     );
+}
+
+function createMetadata(arg0: { title: string; description: string; openGraph: { url: string; }; }) {
+    throw new Error("Function not implemented.");
 }
