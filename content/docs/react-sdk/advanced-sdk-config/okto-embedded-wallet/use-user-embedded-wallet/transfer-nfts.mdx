@@ -30,7 +30,7 @@ import '../../../styles.css';
 
 | Parameter   | Type          | Description                                  | 
 |-------------|---------------|----------------------------------------------|
-| `data`      | `TransferNft` | Data being provided for transferring the NFT | 
+| `data`      | [`TransferNft`](/api-docs#model/transfernft) | Data being provided for transferring the NFT | 
 
 ```typescript
 interface TransferNft {
@@ -50,7 +50,7 @@ interface TransferNft {
 
 | Field Name | Type                       | Description                                   |
 |------------|----------------------------|-----------------------------------------------|
-| `result`   | `Promise<TransferNftData>` | Returns information about the NFT transferred | 
+| `result`   | [`Promise<TransferNftData>`](/api-docs#model/transfernftdata) | Returns information about the NFT transferred | 
 
 <Accordions>
 <Accordion title="Response Type">
@@ -62,37 +62,6 @@ interface TransferNftData {
 </Accordion>
 </Accordions>
 </Callout>
-
-<Accordions>
-<Accordion title="Example">
-<Tabs items={['Typescript']}>
-  <Tab value="Typescript">
-    ```typescript
-        import { useOkto, type OktoContextType} from 'okto-sdk-react';
- 
-        const { transferNfts } = useOkto() as OktoContextType;
- 
-        const networkName = "POLYGON_TESTNET"
-        const tokenAddress = "x2f7b97837f2d14ba2ed3a4b2282e259126a9b848"
-        const quantity = "1"
-        const recipientAddress = "0x0FC096A53343C68c1086e626661A4bb31486A9e2"
- 
-        transferNft({
-            network_name: networkName,
-            token_address: tokenAddress,
-            recipient_address: recipientAddress,
-            quantity: quantity
-        }).then((result) => {
-                console.log('Transfer success', result);
-        })
-        .catch((error) => {
-            console.log('Transfer error', error);
-        });
-    ```
-  </Tab>
-</Tabs>
-</Accordion>
-</Accordions>
 
 </div>
 
@@ -106,20 +75,7 @@ interface TransferNftData {
 
 | Parameter   | Type            | Description                                     | 
 |-------------|-----------------|-------------------------------------------------|
-| `data`      | `TransferNft`   | Data being provided for transferring the tokens | 
-
-
-```typescript
-interface TransferNft {
-  operation_type: string;
-  network_name: string;
-  collection_address: string;
-  collection_name: string;
-  quantity: string;
-  recipient_address: string;
-  nft_address: string;
-}
-```
+| `data`      | [`TransferNft`](/api-docs#model/transfernft)   | Data being provided for transferring the tokens | 
 
 ### Response
 
@@ -127,30 +83,7 @@ interface TransferNft {
 
 | Field Name | Type                       | Description                         | 
 |------------|----------------------------|-------------------------------------|
-| `result`   | `Promise<NftOrderDetails>` | Returns information about the order | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface NftOrderDetails {
-  explorer_smart_contract_url: string;
-  description: string;
-  type: string;
-  collection_id: string;
-  collection_name: string;
-  nft_token_id: string;
-  token_uri: string;
-  id: string;
-  image: string;
-  collection_address: string;
-  collection_image: string;
-  network_name: string;
-  network_id: string;
-  nft_name: string;
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<NftOrderDetails>`](/api-docs#model/nftorderdetails) | Returns information about the order | 
 
 </Callout>
 
@@ -197,7 +130,7 @@ interface NftOrderDetails {
 
 | Parameter   | Type                            | Description                                       |
 |-------------|---------------------------------|---------------------------------------------------|
-| `query`     | `Partial<NftOrderDetailsQuery>` | Query provided for fetching the NFT order details | 
+| `query`     | [`Partial<NftOrderDetailsQuery>`](/api-docs#model/nftorderdetailsquery) | Query provided for fetching the NFT order details | 
 
 ```typescript
 interface NftOrderDetailsQuery {
@@ -213,30 +146,7 @@ interface NftOrderDetailsQuery {
 
 | Field Name | Type                       | Description                         | 
 |------------|----------------------------|-------------------------------------|
-| `result`   | `Promise<NftOrderDetails>` | Returns information about the order | 
-
-<Accordions>
-<Accordion title="Response Type">
-```typescript
-interface NftOrderDetails {
-  explorer_smart_contract_url: string;
-  description: string;
-  type: string;
-  collection_id: string;
-  collection_name: string;
-  nft_token_id: string;
-  token_uri: string;
-  id: string;
-  image: string;
-  collection_address: string;
-  collection_image: string;
-  network_name: string;
-  network_id: string;
-  nft_name: string;
-}
-```
-</Accordion>
-</Accordions>
+| `result`   | [`Promise<NftOrderDetails>`](/api-docs#model/nftorderdetails) | Returns information about the order | 
 
 </Callout>
 

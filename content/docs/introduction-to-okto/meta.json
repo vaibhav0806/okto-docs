@@ -10,5 +10,6 @@
         "onchain-execution",
         "future-sdk-scope"
     ],
-    "root": true
+    "root": true,
+    "defaultOpen": true
 }
