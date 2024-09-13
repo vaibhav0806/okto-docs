@@ -10,6 +10,8 @@ import { VscGithub } from "react-icons/vsc";
 import { AiOutlineDiscord } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
 import { useTheme } from "next-themes";
+import GitHubButton from "./GithubButton";
+import DiscordButton from "./DiscordButton";
 
 const poppins = Poppins({ subsets: ['latin'], weight: '500', display: 'swap' });
 
@@ -125,19 +127,10 @@ export default function NavbarComponent() {
           />
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} isIconOnly href="https://x.com/okto_web3" variant="light" className="flex items-center">
-            <FaXTwitter size={"2rem"} />
-          </Button>
+          <DiscordButton />
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} isIconOnly href="https://discord.com/invite/okto-916349620383252511" variant="light" className="flex items-center">
-            <AiOutlineDiscord size={"2rem"} />
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} isIconOnly href="https://github.com/okto-hq/" variant="light" className="flex items-center">
-            <VscGithub size={"2rem"} />
-          </Button>
+          <GitHubButton />
         </NavbarItem>
         <NavbarItem>
           <Button
