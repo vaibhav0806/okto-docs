@@ -6,9 +6,9 @@ import { Poppins } from "next/font/google";
 import { usePathname } from "next/navigation";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { ChevronDown } from 'lucide-react';
-import { VscGithub } from "react-icons/vsc";
-import { AiOutlineDiscord } from "react-icons/ai";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaReact } from "react-icons/fa6";
+import { TbBrandReactNative, TbApi } from "react-icons/tb";
+import { SiFlutter } from "react-icons/si";
 import { useTheme } from "next-themes";
 import GitHubButton from "./GithubButton";
 import DiscordButton from "./DiscordButton";
@@ -33,14 +33,14 @@ export default function NavbarComponent() {
     { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
     { href: "https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme", label: "React Native", subpath: '' },
     { href: "https://sdk-docs.okto.tech/sdk-reference/flutter/setup", label: "Flutter", subpath: '' },
-    { href: "/api-docs", label: "API", subpath: '' },
+    { href: "/api-docs", label: "API Reference", subpath: '' },
   ];
 
   const getFrameworkLabel = () => {
     if (pathname.startsWith('/docs/react-sdk')) return 'React';
     if (pathname.startsWith('/docs/react-native-sdk')) return 'React Native';
     if (pathname.startsWith('/docs/flutter-sdk')) return 'Flutter';
-    if (pathname.startsWith('/docs/api-docs')) return 'API';
+    if (pathname.startsWith('/docs/api-docs')) return 'API Reference';
     return 'Frameworks';
   };
 
@@ -102,6 +102,7 @@ export default function NavbarComponent() {
                 <DropdownItem
                   key={item.label}
                   href={`${item.href}${item.subpath}`}
+                  startContent={item.label === 'React' ? <FaReact /> : item.label === 'React Native' ? <TbBrandReactNative /> : item.label === 'Flutter' ? <SiFlutter /> : <TbApi />}
                 >
                   {item.label}
                 </DropdownItem>
