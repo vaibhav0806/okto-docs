@@ -4,9 +4,9 @@
       "introduction-to-okto",
       "!developer-admin-dashboard",
       "react-sdk",
-      "!react-native-sdk",
-      "!flutter-sdk",
-      "!api-reference"
+      "[React Native](https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme)",
+      "[Flutter](https://sdk-docs.okto.tech/sdk-reference/flutter/setup)",
+      "[API Reference](https://okto-sdk-docs-new.vercel.app/api-docs)"
     ],
     "root": true
   }

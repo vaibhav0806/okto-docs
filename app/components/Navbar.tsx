@@ -111,7 +111,7 @@ export default function NavbarComponent() {
         </NavbarContent>
       </NavbarBrand>
       <NavbarContent justify="end">
-        <NavbarItem>
+        <NavbarItem className="hidden sm:flex">
           <Switch
             onChange={(e) => handleThemeChange(e.target.checked)}
             size="sm"
@@ -132,7 +132,7 @@ export default function NavbarComponent() {
         <NavbarItem>
           <GitHubButton />
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className="hidden lg:flex">
           <Button
             as={Link}
             href="#"
@@ -144,7 +144,7 @@ export default function NavbarComponent() {
             Demo
           </Button>
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className="hidden lg:flex">
           <Button
             as={Link}
             href="https://forms.gle/Q2oAWZ979cgxwjzZ6"
