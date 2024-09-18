@@ -12,7 +12,11 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'lg': '980px',  // Set the lg breakpoint to 980px
+      },
+    },
   },
   presets: [createPreset({
     preset: 'ocean',
