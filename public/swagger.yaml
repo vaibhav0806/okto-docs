@@ -1070,7 +1070,7 @@ components:
         jobs:
           type: array
           items:
-            $ref: '#/components/schemas/Order'
+            $ref: "#/components/schemas/Order"
     RawTransactionStatusQuery:
       type: object
       required:
@@ -1420,7 +1420,7 @@ components:
           description: Status of the logout request
           enum: [success, failure]
       required:
-        - 
+        -
     ClientUserDetailsResponse:
       type: object
       properties:
@@ -1566,79 +1566,79 @@ components:
               type: object
               properties:
                 holdings_count:
-                type: string
-                description: Total number of holdings
-              holdings_price_inr:
-                type: string
-                description: Total holdings price in INR
-              holdings_price_usdt:
-                type: string
-                description: Total holdings price in USDT
-              total_holding_price_inr:
-                type: string
-                description: Overall total holding price in INR
-              total_holding_price_usdt:
-                type: string
-                description: Overall total holding price in USDT
-            required:
-              - holdings_count
-              - holdings_price_inr
-              - holdings_price_usdt
-              - total_holding_price_inr
-              - total_holding_price_usdt
-          group_tokens:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
                   type: string
-                  description: Unique identifier of the token
-                name:
-                  type: string
-                  description: Name of the token
-                symbol:
-                  type: string
-                  description: Symbol of the token
-                short_name:
-                  type: string
-                  description: Short name of the token
-                token_image:
-                  type: string
-                  description: Image URL for the token
-                network_id:
-                  type: string
-                  description: Network ID associated with the token
-                is_primary:
-                  type: boolean
-                  description: Indicates if the token is primary
-                balance:
-                  type: string
-                  description: User's balance of the token
-                holdings_price_usdt:
-                  type: string
-                  description: Holding price in USDT
+                  description: Total number of holdings
                 holdings_price_inr:
                   type: string
-                  description: Holding price in INR
-                aggregation_type:
+                  description: Total holdings price in INR
+                holdings_price_usdt:
                   type: string
-                  description: Type of aggregation for the token (e.g., token)
+                  description: Total holdings price in USDT
+                total_holding_price_inr:
+                  type: string
+                  description: Overall total holding price in INR
+                total_holding_price_usdt:
+                  type: string
+                  description: Overall total holding price in USDT
               required:
-                - id
-                - name
-                - symbol
-                - short_name
-                - token_image
-                - network_id
-                - is_primary
-                - balance
-                - holdings_price_usdt
+                - holdings_count
                 - holdings_price_inr
-                - aggregation_type
-        required:
-          - aggregated_data
-          - group_tokens
+                - holdings_price_usdt
+                - total_holding_price_inr
+                - total_holding_price_usdt
+            group_tokens:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier of the token
+                  name:
+                    type: string
+                    description: Name of the token
+                  symbol:
+                    type: string
+                    description: Symbol of the token
+                  short_name:
+                    type: string
+                    description: Short name of the token
+                  token_image:
+                    type: string
+                    description: Image URL for the token
+                  network_id:
+                    type: string
+                    description: Network ID associated with the token
+                  is_primary:
+                    type: boolean
+                    description: Indicates if the token is primary
+                  balance:
+                    type: string
+                    description: User's balance of the token
+                  holdings_price_usdt:
+                    type: string
+                    description: Holding price in USDT
+                  holdings_price_inr:
+                    type: string
+                    description: Holding price in INR
+                  aggregation_type:
+                    type: string
+                    description: Type of aggregation for the token (e.g., token)
+                required:
+                  - id
+                  - name
+                  - symbol
+                  - short_name
+                  - token_image
+                  - network_id
+                  - is_primary
+                  - balance
+                  - holdings_price_usdt
+                  - holdings_price_inr
+                  - aggregation_type
+          required:
+            - aggregated_data
+            - group_tokens
       required:
         - status
         - data
