@@ -1,0 +1,287 @@
+---
+title: Authenticate User via Code
+description: Learn how to authenticate users, check their login status, and log them out using the Okto SDK.
+full: false
+---
+
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Icon as IIcon } from '@iconify/react'; 
+
+import '../../styles.css';
+
+### Methods Overview
+
+| Methods                                                                | Description                     |                 
+|------------------------------------------------------------------------|---------------------------------|
+| <sub><i>async</i></sub> [`authenticate`](#authenticate-a-user)              | Authenticate a User using idToken            |
+| <sub><i>async</i></sub> [`authenticateWithUserId`](#authenticate-a-user)              | Authenticate a User using JWT and userId           |
+| <sub><i>async</i></sub> [`logOut`](#log-out)                                                 | Log Out                         |
+
+<div className="method-box">
+
+## Authenticate a User
+
+<sub><i>async</i></sub> `authenticate(idToken, callback)`<a href="https://github.com/okto-hq/okto-sdk-flutter/blob/c938dea4cff76e8075fa80ae421a4d522fd7a590/lib/src/okto.dart#L47" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> authenticates a user using an ID token.
+
+There are two ways to authenticate new users on your flutter app using Okto Flutter SDK.
+
+<Tabs items={['Using Google OAuth2', 'Using JWT']}>
+  <Tab value="Using Google OAuth2">
+    Authenticate user with `idToken` received from Google OAuth2.
+    
+    ### Parameters
+    | Parameter   | Type                     | Description |
+    |-------------|--------------------------|------------------------------------------------------|
+    | `idToken`   | `string`                 | Token received from Google OAuth2                    | 
+
+    If the user does not have a wallet, a wallet prompt will be shown to the user to create a wallet.
+
+    ```dart
+    try {
+      await okto.authenticate(idToken: 'idToken');
+      print('success');
+    } catch (e) {
+      print(e);
+    } 
+    ```
+
+    ### Response
+
+    <Callout title="Success Response">
+
+    | Field Name | Type                  | Description          | 
+    |------------|-----------------------|----------------------|
+    | `result`   | `Future<dynamic>`     | Returns auth details |
+
+    </Callout>
+
+    <Accordions>
+      <Accordion title="Example">
+      <Tabs items={['Dart']}>
+        <Tab value="Dart">
+          ```dart
+          import 'package:my_app/okto.dart';
+          import 'package:my_app/screens/home/home_page.dart';
+          import 'package:flutter/material.dart';
+          
+          class LoginWithGoogle extends StatefulWidget {
+          const LoginWithGoogle({super.key});
+          
+          @override
+          State<LoginWithGoogle> createState() => _LoginWithGoogleState();
+          }
+          
+          class _LoginWithGoogleState extends State<LoginWithGoogle> {
+          final GoogleSignIn googleSignIn = GoogleSignIn(
+            scopes: [
+              'email',
+              'https://www.googleapis.com/auth/userinfo.profile',
+              'openid',
+            ],
+          );
+          @override
+          Widget build(BuildContext context) {
+            return Scaffold(
+              backgroundColor: const Color(0xff5166EE),
+              body: SafeArea(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.all(40),
+                        child: const Text(
+                          'Login with google',
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 30),
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: () async {
+                          try {
+                            final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+                            final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+                            if (googleAuth != null) {
+                              final String? idToken = googleAuth.idToken;
+                              await okto!.authenticate(idToken: idToken!);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                            }
+                          } catch (e) {
+                            print(e.toString());
+                            setState(() {
+                              error = e.toString();
+                            });
+                          }
+                        },
+                        child: const Text('Login with Google')),
+                    Text(error),
+                    const SizedBox(height: 20)
+                  ],
+                ),
+              ),
+            );
+            }
+          }
+      ```
+        </Tab>
+      </Tabs>
+      </Accordion>
+      </Accordions>
+  </Tab>
+   <Tab value="Using JWT">
+    Authenticate user using userId and JWT Token
+
+    The client will provide us a JWT directly, which can be verified using methods such as phone OTP or any other verification mechanism. This JWT is then used to authenticate with Okto.
+    
+    ### Parameters
+    | Parameter   | Type                     | Description |
+    |-------------|--------------------------|------------------------------------------------------|
+    | `idToken`   | `string`                 | Token received from Google OAuth2                    | 
+    | `jwtToken`   | `string`                 | Your JWT Token                    | 
+
+    ```dart
+    try {
+      final authResponse = await okto.authenticateWithUserId(jwtToken: 'YOUR_JWT_TOKEN', userId: 'YOUR_USER_ID');
+      print('success')
+    } catch (e) {
+      print(e);
+    }
+    ```
+
+    ### Response
+
+    <Callout title="Success Response">
+
+    | Field Name | Type                            | Description          | 
+    |------------|---------------------------------|----------------------|
+    | `result`   | `Future<AuthTokenResponse>`     | Returns auth details |
+
+    </Callout>
+
+    <Accordions>
+      <Accordion title="Example">
+        <Tabs items={['Dart']}>
+          <Tab value="Dart">
+            ```dart
+            import 'package:my_app/okto.dart';
+            import 'package:my_app/screens/home/home_page.dart';
+            import 'package:flutter/material.dart';
+            
+            class LoginWithUserId extends StatefulWidget {
+            const LoginWithUserId({super.key});
+            
+            @override
+            State<LoginWithUserId> createState() => _LoginWithUserIdState();
+            }
+            
+            class _LoginWithUserIdState extends State<LoginWithUserId> {
+            final userId = 'USER_ID'; // Replace this with your user_id
+            final jwtToken = "JWT_TOKEN";
+            
+            @override
+            Widget build(BuildContext context) {
+              return Scaffold(
+                backgroundColor: const Color(0xff5166EE),
+                body: SafeArea(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.all(40),
+                          child: const Text(
+                            'Login with userId',
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 30),
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: () async {
+                            try {
+                              await okto.authenticateWithUserId(userId: userId, jwtToken: jwtToken);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                          child: const Text('Login with userId')),
+                      const SizedBox(height: 20)
+                    ],
+                  ),
+                ),
+              );
+            }
+            }
+        ```
+          </Tab>
+        </Tabs>
+      </Accordion>
+    </Accordions>
+  </Tab>
+</Tabs>
+
+</div>
+
+<div className="method-box">
+
+## Log Out
+
+<sub><i>async</i></sub> `logOut()`<a href="https://github.com/okto-hq/okto-sdk-flutter/blob/c938dea4cff76e8075fa80ae421a4d522fd7a590/lib/src/okto.dart#L47" target="_blank" rel="noopener noreferrer" style= {{ textDecoration: "none" }}> <IIcon icon="lucide:external-link" height="17" style={{ display: 'inline-block', verticalAlign: 'middle' }} /></a> logs out the current user from the session.
+
+### Parameters
+
+There are no parameters for this function.
+
+### Response 
+
+<Callout title="Success Response">
+| Field Name | Type                   | Description             | 
+|------------|------------------------|-------------------------|
+| `result`   | `Future<bool>`                 | Success message if user is logged out    | 
+
+</Callout>
+
+<Accordions>
+<Accordion title="Example">
+<Tabs items={['Dart']}>
+  <Tab value="Dart">
+   ```dart
+  import 'package:flutter/material.dart';
+  import 'package:okto_flutter_sdk/okto_wallet_sdk.dart';
+  import 'package:okto_test/okto.dart';
+  
+  class OktoWalletFlutter extends StatefulWidget {
+    const OktoWalletFlutter({super.key});
+  
+    @override
+    State<OktoWalletFlutter> createState() => _OktoWalletFlutter();
+  }
+  
+  class _OktoWalletFlutter extends State<OktoWalletFlutter> {
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: Center(
+          child: TextButton(
+              onPressed: () async {
+                try {
+                  await okto.logout();
+                } catch (e) {
+                  print(e);
+                }
+              },
+              child: const Text('logout')),
+        ),
+      );
+    }
+  }
+  ```
+  </Tab>
+</Tabs>
+</Accordion>
+</Accordions>
+
+</div>

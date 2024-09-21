@@ -32,7 +32,7 @@ export default function NavbarComponent() {
   const sdkOptions = [
     { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
     { href: "https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme", label: "React Native", subpath: '' },
-    { href: "https://sdk-docs.okto.tech/sdk-reference/flutter/setup", label: "Flutter", subpath: '' },
+    { href: "/docs/flutter-sdk", label: "Flutter", subpath: '/getting-started/overview-okto-flutter' },
     { href: "/api-docs", label: "API Reference", subpath: '' },
   ];
 
@@ -40,7 +40,7 @@ export default function NavbarComponent() {
     if (pathname.startsWith('/docs/react-sdk')) return 'React';
     if (pathname.startsWith('/docs/react-native-sdk')) return 'React Native';
     if (pathname.startsWith('/docs/flutter-sdk')) return 'Flutter';
-    if (pathname.startsWith('/docs/api-docs')) return 'API Reference';
+    if (pathname.startsWith('/api-docs')) return 'API Reference';
     return 'Frameworks';
   };
 
@@ -148,7 +148,7 @@ export default function NavbarComponent() {
         <NavbarItem className="hidden lg:flex">
           <Button
             as={Link}
-            href="https://forms.gle/Q2oAWZ979cgxwjzZ6"
+            href="https://dashboard.okto.tech/"
             variant="bordered"
             radius="full"
             className="font-semibold"
