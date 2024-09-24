@@ -1,6 +1,7 @@
 {
     "title": "Introduction to Okto",
     "pages": [
+        "overview",
         "okto-universe",
         "overview-embedded-wallets",
         "okto-sdk-architecture",
