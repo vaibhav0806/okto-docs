@@ -1,6 +1,7 @@
 {
     "title": "Developer Admin Dashboard",
     "pages": [
+      "---Using the Dashboard---",
       "learn",
       "dashboard-acc",
       "okto-environments",
