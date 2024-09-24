@@ -25,7 +25,7 @@ export default function NavbarComponent() {
   };
 
   const navItems = [
-    { href: "/docs/introduction-to-okto", label: "Intro", subpath: '/okto-universe' },
+    { href: "/docs/developer-admin-dashboard", label: "Using the Dashboard", subpath: '/learn' },
     { href: "/showcase", label: "Showcase", subpath: '' },
   ];
 

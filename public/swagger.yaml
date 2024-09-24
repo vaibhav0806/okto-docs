@@ -14,7 +14,6 @@ info:
     email: devrel@coindcx.com
 servers:
   - url: https://sandbox-api.okto.tech
-  - url: https://3p-bff.oktostage.com
   - url: https://apigw.okto.tech
     description: Responds with your request data
 security:
