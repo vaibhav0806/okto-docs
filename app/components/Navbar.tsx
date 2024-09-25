@@ -136,7 +136,7 @@ export default function NavbarComponent() {
         <NavbarItem className="hidden lg:flex">
           <Button
             as={Link}
-            href="#"
+            href="https://okto-sdk-demo-app-weld.vercel.app/"
             variant="bordered"
             radius="full"
             className="font-semibold"
