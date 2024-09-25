@@ -5,7 +5,7 @@ import DisbursalApp from "@/public/images/DisbursalApp.png"
 import Lifafa from "@/public/images/Lifafa.png"
 import TelegramBot from "@/public/images/TelegramBot.png"
 import Stan from "@/public/images/Stan.webp"
-import { Lightbulb } from 'lucide-react';
+import { Lightbulb, DollarSign } from 'lucide-react';
 import Oktogram from "@/public/images/Oktogram.png";
 import Catoff from "@/public/images/Catoff.png";
 import { Metadata } from "next";
@@ -115,6 +115,9 @@ export default function Showcase() {
                     Made with Okto
                 </div>
                 <div className="flex items-center gap-4">
+                    <Button as={Link} radius="full" startContent={<DollarSign size={17}/>} variant="bordered" href="https://teamcoindcx.typeform.com/to/CvPAQNAU">
+                        Apply for Okto Grants
+                    </Button>
                     <Button as={Link} radius="full" startContent={<Lightbulb size={17}/>} variant="bordered" href="https://docs.google.com/document/d/1zDPUZoHrI4hpdOUgINWkILJJQPrOi3VqGbd2dpyIrdM/edit?usp=sharing">
                         Hack Ideas
                     </Button>
