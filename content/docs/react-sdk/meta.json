@@ -1,6 +1,7 @@
 {
   "title": "React SDK",
   "pages": [
+    "---React---",
     "getting-started",
     "using-react-features",
     "advanced-sdk-config",

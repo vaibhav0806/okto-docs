@@ -8,6 +8,6 @@ import { type HomeLayoutProps } from 'fumadocs-ui/home-layout';
  * Docs Layout: app/docs/layout.tsx
  */
 export const baseOptions: HomeLayoutProps = {
- 
+    
 };
 

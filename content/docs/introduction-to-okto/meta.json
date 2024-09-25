@@ -1,6 +1,7 @@
 {
     "title": "Introduction to Okto",
     "pages": [
+        "---Introduction to Okto---",
         "overview",
         "okto-universe",
         "overview-embedded-wallets",
@@ -11,6 +12,5 @@
         "onchain-execution",
         "future-sdk-scope"
     ],
-    "root": true,
-    "defaultOpen": true
+    "root": true
 }

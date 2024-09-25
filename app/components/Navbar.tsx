@@ -58,7 +58,7 @@ export default function NavbarComponent() {
   return (
     <Navbar isBordered className="nav-spacing">
       <NavbarBrand className={`${poppins.className} gap-20 flex items-center`}>
-        <Link href="/" color="foreground" className="no-underline">
+        <Link href="/docs/introduction-to-okto/overview" color="foreground" className="no-underline">
           <NavbarItem className="flex gap-2 items-center">
             <Image src="/logo/okto-icon.png" alt="Okto Logo" width={35} height={35} />
             <p className="text-3xl">okto</p>
