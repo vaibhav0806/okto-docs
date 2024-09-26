@@ -1,0 +1,67 @@
+---
+title: Chains and Supported Tokens
+description: Overview of supported chains, wallet structure, testnet availability, and token whitelisting in Okto’s ecosystem.
+full: false
+---
+
+## Supported Chains and Functionality
+
+The Okto SDK supports multiple blockchain networks, offering a wide range of functionality across different ecosystems. Our system is designed to stay up-to-date, automatically fetching the latest chain information from our central database. This ensures that you always have access to the most current capabilities without needing manual updates.
+
+Let's look at some example chains to understand what information is available for each supported network:
+
+### Polygon
+
+- **Chain Name**: Polygon (Matic)
+- **Chain Functionality**: Supports token transfers, smart contract interactions, and staking mechanisms.
+- **User Wallet Example**: A user wallet on Polygon will be generated as part of Okto's embedded wallet system. Example address: `0xabc123...789xyz`. This address is stored securely and mapped to a unique user ID, such as `user_12345`.
+- **Testnet Support**: Yes, Polygon Amoy testnet is supported.
+- **Whitelisted Tokens**: Includes MATIC, USDC, DAI, etc.
+- **Token Whitelisting Process**: Currently, the whitelisting of new tokens is not available directly via the SDK. Contact support for token listing inquiries.
+- **Explorer Links**:
+- [Polygon Mainnet Explorer](https://polygonscan.com)
+- [Polygon Testnet Explorer](https://amoy.polygonscan.com)
+- **Sandbox and Production Availability**: Supported in both Sandbox and Production environments. For more details, refer to the [Admin Panel Documentation](#).
+
+### Ethereum
+
+- **Chain Name**: Ethereum
+- **Chain Functionality**: Supports ERC-20 token transfers, smart contract interactions, and DeFi integrations.
+- **User Wallet Example**: Example address: `0xdef456...012ghi`. Mapped to user ID `user_67890`.
+- **Testnet Support**: Yes, Sepolia testnet is supported.
+- **Whitelisted Tokens**: Includes ETH, USDT, USDC, etc.
+- **Token Whitelisting Process**: Not available directly. Reach out for adding new tokens.
+- **Explorer Links**:
+- [Ethereum Mainnet Explorer](https://etherscan.io)
+- [Sepolia Testnet Explorer](https://sepolia.etherscan.io)
+- **Sandbox and Production Availability**: Supported in both Sandbox and Production environments. For more details, refer to the [Admin Panel Documentation](#).
+
+### Additional Chains
+
+For each chain, similar details are available regarding:
+
+- **Functionality**: Details on token support, smart contracts, and other specific features.
+- **User Wallet**: Example wallet addresses, and user ID mappings are provided to illustrate how wallets are managed.
+- **Testnet Support**: Available testnets and relevant explorer links.
+- **Whitelisted Tokens**: Listing of supported tokens, along with the process to whitelist new tokens (if applicable).
+- **Explorer Links**: Direct links to the respective blockchain explorers for both mainnets and testnets.
+- **Sandbox and Production Availability**: Each chain will indicate if it's available in Sandbox or Production environments. For more details, refer to the [Admin Panel Documentation](#).
+
+## Solidity Development Resources
+
+For developers building on the supported chains, here are some valuable Solidity development resources:
+
+- [Solidity Documentation](https://soliditylang.org/docs/)
+- [Remix IDE](https://remix.ethereum.org/)
+- [Hardhat Development Environment](https://hardhat.org/)
+- [OpenZeppelin Contracts](https://openzeppelin.com/contracts/)
+
+These tools and resources will help you develop and test smart contracts across the various chains supported by the Okto SDK.
+
+## Conclusion
+
+The Okto SDK offers robust support for multiple blockchain networks, providing you with the tools to build cross-chain applications with ease. By offering automatic updates on chain functionality, testnet support, and a unified wallet structure, we aim to simplify your development process.
+
+Remember to always check the latest information for each chain you're working with, as capabilities and token support may evolve over time. If you have any questions about a specific chain or token, don't hesitate to reach out to our support team.
+
+For further information on managing chain environments, please refer to the [Admin Panel Documentation](#).

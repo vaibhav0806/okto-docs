@@ -1,0 +1,88 @@
+---
+title: Okto Universe
+description: 'Welcome to Okto’s documentation ✦ Learn how to get started with Okto SDK in your project. Then, explore Okto’s main concepts and discover additional resources to help you grow and maintain your app powered by Okto.'
+full: false
+---
+
+import DocCard from "../../app/components/mdx/DocCard";
+import SDKCard from "../../app/components/mdx/SDKCard";
+import Footer from "../../app/components/Footer";
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { FaReact } from "react-icons/fa6";
+import { TbBrandReactNative, TbApi } from "react-icons/tb";
+import { SiFlutter } from "react-icons/si";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { IoDocumentOutline } from "react-icons/io5";
+
+## How to Get Started?
+
+<div className="grid grid-cols-2 gap-6">
+  <SDKCard 
+      icon={<FaReact size={"3rem"} />}
+      title="React"
+      body="for web"
+      link="/docs/react-sdk/getting-started/overview-okto-react"
+  />
+
+  <SDKCard 
+      icon={<TbBrandReactNative size={"3rem"} />}
+      title="React Native"
+      body="for mobile"
+      link="https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme"
+  />
+
+  <SDKCard 
+      icon={<SiFlutter size={"3rem"} />}
+      title="Flutter"
+      body="for Android and iOS"
+      link="https://sdk-docs.okto.tech/sdk-reference/flutter/setup"
+  />
+
+  <SDKCard 
+      icon={<TbApi size={"3rem"} />}
+      title="API"
+      body="for server and client"
+      link="/api-docs"
+  />
+</div>
+
+
+## What is Okto SDK?
+
+Okto SDK is the fastest and easiest way a developer can build on Web3. Okto SDK offers interoperable embedded wallets for developers to onboard users on Web3 in a web2 like experience. Developer can convert their web2 applications to web3 in a few simple steps.
+
+## Learn More 
+
+<div style={{ display: 'flex', gap: '20px' }}>
+  <DocCard 
+      icon={<IoDocumentOutline size={"1.5rem"}/>}
+      title="Introduction to Okto" 
+      body="Get started with our end to end tutorials and quickstart guides across all Okto functionalities." 
+      link="/docs/introduction-to-okto/okto-universe"
+      linkText="View Docs"
+  />
+
+  <DocCard 
+      icon={<LuLayoutDashboard size={"1.5rem"}/>}
+      title="Using Developer Dashboard" 
+      body="Use the developer dashboard to customize your UI to onboard a billion users on your platform." 
+      link="https://forms.gle/Q2oAWZ979cgxwjzZ6"
+      linkText="View Dashboard"
+  />
+</div>
+
+## FAQs
+
+<Accordions>
+<Accordion title="Why Okto?">
+ You can integrate Okto SDK intro mobile app & web apps to add web3 functionality to your app without building things from scratch.
+</Accordion>
+
+<Accordion title="How to customise UI?">
+  You can integrate Okto SDK intro mobile app & web apps to add web3 functionality to your app without building things from scratch.
+</Accordion>
+
+<Accordion title="What can I build with Okto?">
+  You can integrate Okto SDK intro mobile app & web apps to add web3 functionality to your app without building things from scratch.
+</Accordion>
+</Accordions>

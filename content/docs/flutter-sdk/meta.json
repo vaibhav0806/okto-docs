@@ -1,0 +1,13 @@
+{
+    "title": "Flutter SDK",
+    "pages": [
+        "---Flutter---",
+        "getting-started",
+        "!using-flutter-features",
+        "advanced-sdk-config",
+        "example-apps",
+        "!migration-to-okto",
+        "troubleshooting-faq"
+    ],
+    "root": true
+}

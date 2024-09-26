@@ -1,0 +1,13 @@
+{
+  "title": "React SDK",
+  "pages": [
+    "---React---",
+    "getting-started",
+    "using-react-features",
+    "advanced-sdk-config",
+    "example-apps",
+    "!migration-to-okto",
+    "troubleshooting-faq"
+  ],
+  "root": true
+}
