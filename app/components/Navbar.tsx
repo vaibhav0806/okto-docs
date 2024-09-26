@@ -31,7 +31,7 @@ export default function NavbarComponent() {
 
   const sdkOptions = [
     { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
-    { href: "https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme", label: "React Native", subpath: '' },
+    { href: "/docs/react-native-sdk", label: "React Native", subpath: '/getting-started/overview-okto-react-native' },
     { href: "/docs/flutter-sdk", label: "Flutter", subpath: '/getting-started/overview-okto-flutter' },
     { href: "/api-docs", label: "API Reference", subpath: '' },
   ];
