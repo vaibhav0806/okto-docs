@@ -1,5 +1,13 @@
 {
-    "title": "React Native SDK",
-    "pages": ["overview", "admin-panel", "getting-started"],
-    "root": true
-  }
+  "title": "React Native SDK",
+  "pages": [
+    "---React Native---",
+    "getting-started",
+    "!using-react-native-features",
+    "advanced-sdk-config",
+    "example-apps",
+    "!migration-to-okto",
+    "troubleshooting-faq"
+  ],
+  "root": true
+}

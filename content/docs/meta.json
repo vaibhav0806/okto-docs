@@ -5,6 +5,7 @@
       "developer-admin-dashboard",
       "react-sdk",
       "flutter-sdk",
+      "react-native-sdk",
       "[React Native](https://sdk-docs.okto.tech/sdk-reference/react-native/setTheme)",
       "[Flutter](https://sdk-docs.okto.tech/sdk-reference/flutter/setup)",
       "[API Reference](https://okto-sdk-docs-new.vercel.app/api-docs)"
