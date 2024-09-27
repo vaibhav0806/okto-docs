@@ -25,7 +25,7 @@ export default function NavbarComponent() {
   };
 
   const navItems = [
-    { href: "/docs/developer-admin-dashboard", label: "Using the Dashboard", subpath: '/learn' },
+    { href: "/docs/developer-admin-dashboard", label: "Using the Dashboard", subpath: '/overview' },
     { href: "/showcase", label: "Showcase", subpath: '' },
   ];
 
