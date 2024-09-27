@@ -2,14 +2,12 @@
     "title": "Developer Admin Dashboard",
     "pages": [
       "---Using the Dashboard---",
-      "learn",
-      "dashboard-acc",
+      "overview",
+      "dashboard-account",
       "okto-environments",
       "api-key",
       "ui-customizations",
       "wallet-control",
-      "paymaster",
-      "user-order-logs"
-    ],
-    "root": true
+      "sponsorship"
+    ]
   }
