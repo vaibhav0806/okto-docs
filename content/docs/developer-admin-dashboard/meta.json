@@ -8,6 +8,8 @@
       "api-key",
       "ui-customizations",
       "wallet-control",
-      "sponsorship"
-    ]
+      "sponsorship",
+      "user-order-logs"
+    ],
+    "root": true
   }

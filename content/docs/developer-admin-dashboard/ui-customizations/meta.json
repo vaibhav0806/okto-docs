@@ -1,11 +1,7 @@
 {
     "title": "UI Customizations",
     "pages": [
-<<<<<<< HEAD
-      "learn",
-=======
       "overview",
->>>>>>> a61abbdd420ccad5b646b2555e02c81ec2d5843d
       "user-login-method",
       "ui-theme"
     ]
