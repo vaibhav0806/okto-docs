@@ -16,7 +16,7 @@ interface DocCardPropType {
 export default function DocCard({ icon, title, body, link, linkText }: DocCardPropType) {
   return (
     <Card
-      className="p-3 w-1/2"
+      className="p-3 w-full"
       style={{
         color: "var(--doc-card-text) !important",
       }}

@@ -1,7 +1,6 @@
 {
-    "title": "Developer Admin Dashboard",
+    "title": "Dashboard",
     "pages": [
-      "---Using the Dashboard---",
       "overview",
       "dashboard-account",
       "okto-environments",
@@ -11,5 +10,6 @@
       "sponsorship",
       "user-order-logs"
     ],
+    "icon": "Lock",
     "root": true
   }
