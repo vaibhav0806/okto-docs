@@ -25,15 +25,16 @@ export default function NavbarComponent() {
   };
 
   const navItems = [
-    { href: "/docs/developer-admin-dashboard", label: "Using the Dashboard", subpath: '/overview' },
+    { href: "/docs/introduction-to-okto", label: "Intro", subpath: '/overview-embedded-wallets' },
+    { href: "/docs/developer-admin-dashboard", label: "Using Dashboard", subpath: '/overview' },
     { href: "/showcase", label: "Showcase", subpath: '' },
+    { href: "/api-docs", label: "API Reference", subpath: '' },
   ];
 
   const sdkOptions = [
     { href: "/docs/react-sdk", label: "React", subpath: '/getting-started/overview-okto-react' },
     { href: "/docs/react-native-sdk", label: "React Native", subpath: '/getting-started/overview-okto-react-native' },
     { href: "/docs/flutter-sdk", label: "Flutter", subpath: '/getting-started/overview-okto-flutter' },
-    { href: "/api-docs", label: "API Reference", subpath: '' },
   ];
 
   const getFrameworkLabel = () => {
@@ -41,7 +42,7 @@ export default function NavbarComponent() {
     if (pathname.startsWith('/docs/react-native-sdk')) return 'React Native';
     if (pathname.startsWith('/docs/flutter-sdk')) return 'Flutter';
     if (pathname.startsWith('/api-docs')) return 'API Reference';
-    return 'Frameworks';
+    return 'SDKs';
   };
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export default function NavbarComponent() {
   return (
     <Navbar isBordered className="nav-spacing">
       <NavbarBrand className={`${poppins.className} gap-20 flex items-center`}>
-        <Link href="/docs/introduction-to-okto/overview" color="foreground" className="no-underline">
+        <Link href="/docs" color="foreground" className="no-underline">
           <NavbarItem className="flex gap-2 items-center">
             <Image src="/logo/okto-icon.png" alt="Okto Logo" width={35} height={35} />
             <p className="text-3xl">okto</p>
@@ -132,6 +133,18 @@ export default function NavbarComponent() {
         </NavbarItem>
         <NavbarItem>
           <GitHubButton />
+        </NavbarItem>
+        <NavbarItem className="hidden lg:flex">
+          <Button
+            as={Link}
+            href="https://teamcoindcx.typeform.com/to/CvPAQNAU"
+            variant="bordered"
+            radius="full"
+            className="font-semibold"
+            endContent={<MdOutlineArrowOutward size={".9rem"} />}
+          >
+            Grants
+          </Button>
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Button
