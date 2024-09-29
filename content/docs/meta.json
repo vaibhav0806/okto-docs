@@ -11,7 +11,7 @@
       "flutter-sdk",
       "react-native-sdk",
       "---Community---",
-      "[Showcase](https://okto-docs-black.vercel.app/docs/introduction-to-okto/overview)"
+      "[Showcase](https://okto-docs-black.vercel.app/showcase)"
     ],
     "root": true
   }
