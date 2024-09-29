@@ -1,0 +1,357 @@
+---
+title: React Native Quickstart
+description: In this guide, you'll learn how to create a React Native app and initialize it with the Okto SDK, including setting up authentication using Google OAuth and the Okto Provider.
+full: false
+---
+
+import { Steps, Step } from 'fumadocs-ui/components/steps'
+import { Tabs, Tab } from 'fumadocs-ui/components/tabs'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+This quickstart guide will help you set up a basic React Native app using the Okto SDK. Follow these steps to get your app up and running quickly.
+
+<Steps>
+
+<Step title="Prerequisites">
+  ## Prerequisites
+  1. Ensure you have Node installed and set up on your system. Run the following command to verify your Node version is >= 18:
+  
+  ```bash title="bash"
+  node --version
+  ```
+
+  2. Ensure you have a Okto API Key, if not, you can get it from our [dashboard](https://dashboard.okto.tech).
+</Step>
+
+<Step title="Create a new React Native project">
+  ## Create a new React Native project
+  Create a new React Native project using [Expo](https://expo.dev/) by running:
+  ```bash title="bash"
+  npx create-expo-app@latest
+  ```
+</Step>
+
+<Step>
+  ## Set up Google Cloud Console
+  1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+  2. Follow our [Google Authentication Setup Guide](https://sdk-docs.okto.tech/guide/google-authentication-setup) to create a new project and obtain the necessary credentials.
+  <Callout type="info" title="Required Client IDs">
+    Depending on your target platforms, you'll need:
+    - Android devices: Web Client ID and Android Client ID
+    - iOS devices: iOS Client ID
+    - Both platforms: Web Client ID, Android Client ID, and iOS Client ID
+  </Callout>
+</Step>
+
+<Step title="Configure dependencies">
+  ## Configure dependencies
+  Update your `package.json` file to include the following dependencies:
+  ```json title="package.json"
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-google-signin/google-signin": "^11.0.1",
+    "axios": "^1.6.8",
+    "expo": "~50.0.14",
+    "expo-status-bar": "~1.11.1",
+    "okto-sdk-react-native": "^0.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-web": "~0.19.6",
+    "react-native-webview": "^13.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@expo/webpack-config": "^18.0.1",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "react-native-dotenv": "^3.4.11"
+  }
+  ```
+  Then run: 
+  ```bash title="bash"
+  npm install
+  ```
+</Step>
+
+<Step title="Create environment variables">
+    ## Create environment variables
+    Create a `.env` file inside your root folder and add the following variables:
+    ```bash title=".env"
+    OKTO_CLIENT_API=YOUR_OKTO_CLIENT_API_KEY
+    GOOGLE_WEB_CLIENT_ID=YOUR_GOOGLE_WEB_CLIENT_ID
+    GOOGLE_ANDROID_CLIENT_ID=YOUR_GOOGLE_ANDROID_CLIENT_ID
+    ```
+
+    Create a root folder called `types` which contains a `env.d.ts` to define the types of the respective environment variables:
+    ```typescript title=".env.d.ts"
+    declare module '@env' {
+    export const GOOGLE_ANDROID_CLIENT_ID: string;
+    export const GOOGLE_WEB_CLIENT_ID: string;
+    export const OKTO_CLIENT_API: string;
+    }
+    ```
+</Step>
+
+<Step title="Setup OktoProvider">
+    ## Setup OktoProvider
+    ```typescript title="App.js"
+    import React from 'react';
+    import App from './src/App';
+    import { OktoProvider } from 'okto-sdk-react-native';
+    import { OKTO_CLIENT_API } from '@env';
+    import { BuildType } from 'okto-sdk-react-native';
+
+    export default function AppMain() {
+    return (
+        <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}>
+        <App />
+        </OktoProvider>
+    );
+    }
+    ```
+</Step>
+
+<Step title="Create necessary files">
+    ## Create necessary files
+    ```typescript title="App.js"
+    import React from 'react';
+    import App from './src/App';
+    import { OktoProvider } from 'okto-sdk-react-native';
+    import { OKTO_CLIENT_API } from '@env';
+    import { BuildType } from 'okto-sdk-react-native';
+
+    export default function AppMain() {
+    return (
+        <OktoProvider apiKey={OKTO_CLIENT_API} buildType={BuildType.SANDBOX}>
+        <App />
+        </OktoProvider>
+    );
+    }
+    ```
+</Step>
+
+<Step title="Setup OAuth">
+    ## Setup OAuth
+	<Tabs items={['Android', 'iOS']}>
+		<Tab value='Android'>
+			Create a `strings.xml` file under `android/app/src/main/res/values/` with the following content:
+			```xml title="strings.xml"
+			<?xml version="1.0" encoding="utf-8"?>
+			<resources>
+				<string name="default_web_client_id">YOUR_WEB_CLIENT_ID</string>
+			</resources>
+			```
+			Replace `YOUR_WEB_CLIENT_ID` with your actual Web Client ID from Google Console.
+		</Tab>
+		<Tab value='iOS'>
+			Update your `ios/Runner/Info.plist` file to include:
+			```xml title="ios/Runner/Info.plist"
+			<key>GIDClientID</key>
+			<string>YOUR_IOS_CLIENT_ID</string>
+			<key>CFBundleURLTypes</key>
+			<array>
+				<dict>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>YOUR_IOS_URL_SCHEME</string>
+				</array>
+				</dict>
+			</array>
+			```
+			Replace `YOUR_IOS_CLIENT_ID` and `YOUR_IOS_URL_SCHEME` with your actual values.
+		</Tab>
+	</Tabs>
+</Step>
+
+<Step title="Create necessary files">
+  ## Create necessary files
+  Create the following files in your project:
+  1. `.env` file in the root folder:
+  ```bash title=".env"
+	OKTO_CLIENT_API_KEY=YOUR_OKTO_CLIENT_API_KEY
+
+	# Options: staging | prod | sandbox
+	BUILD_TYPE=sandbox
+  ```
+	If not already added, add your `.env` to your `pubsec.yaml` under the assets section:
+	```yaml title="pubsec.yaml"
+	 assets:
+    	- .env
+	```
+  2. `lib/utils/okto.dart`:
+  ```dart title="lib/utils/okto.dart"
+	import 'package:okto_flutter_sdk/okto_flutter_sdk.dart';
+	import 'package:my_app/utils/global.dart';
+
+	Globals globals = Globals.instance;
+	Okto? okto;
+  ```
+  3. `lib/utils/global.dart`:
+  ```dart title="lib/utils/global.dart"
+	import 'package:flutter_dotenv/flutter_dotenv.dart';
+	import 'package:okto_flutter_sdk/okto_flutter_sdk.dart';
+
+	class Globals {
+		String buildType = dotenv.get('BUILD_TYPE');
+		String oktoClientApiKey = dotenv.get('OKTO_CLIENT_API_KEY');
+
+		static final Globals _singleton = Globals._internal();
+
+		factory Globals() {
+			return _singleton;
+		}
+
+		Globals._internal();
+
+		static Globals get instance => _singleton;
+
+		BuildType getBuildType() {
+			switch (buildType) {
+			case 'sandbox':
+				return BuildType.sandbox;
+			case 'production':
+				return BuildType.production;
+			case 'staging':
+				return BuildType.staging;
+			default:
+				return BuildType.sandbox;
+			}
+		}
+
+		String getOktoApiKey() {
+			return oktoClientApiKey;
+		}
+	}
+	```
+	</Step>
+
+<Step title="Update main.dart">
+  ## Update main.dart
+  Replace the contents of `lib/main.dart` with:
+  ```dart title="lib/main.dart"
+	import 'package:flutter/material.dart';
+	import 'package:flutter_dotenv/flutter_dotenv.dart';
+	import 'package:okto_flutter_sdk/okto_flutter_sdk.dart';
+	import 'package:my_app/auth/google_login.dart';
+	import 'package:my_app/screens/home_page.dart';
+	import 'package:my_app/utils/okto.dart';
+
+	void main() async {
+	await dotenv.load(fileName: ".env");
+	WidgetsFlutterBinding.ensureInitialized();
+	okto = Okto(globals.getOktoApiKey(), globals.getBuildType());
+	runApp(const MyApp());
+	}
+
+	class MyApp extends StatelessWidget {
+	const MyApp({super.key});
+
+	Future<bool> checkLoginStatus() async {
+		return await okto!.isLoggedIn();
+	}
+
+	@override
+	Widget build(BuildContext context) {
+		return MaterialApp(
+		debugShowCheckedModeBanner: false,
+		title: 'Okto Flutter template app',
+		theme: ThemeData(
+			colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+			useMaterial3: true,
+		),
+		home: FutureBuilder<bool>(
+			future: checkLoginStatus(),
+			builder: (context, snapshot) {
+			if (snapshot.connectionState == ConnectionState.waiting) {
+				return const Scaffold(
+				body: Center(
+					child: CircularProgressIndicator(),
+				),
+				);
+			} else {
+				bool isLoggedIn = snapshot.data ?? false;
+				if (isLoggedIn) {
+				return const HomePage();
+				} else {
+				return const LoginWithGoogle();
+				}
+			}
+			},
+		),
+		);
+		}
+	}
+	```
+	</Step>
+
+	<Step title="Create Home Page">
+		## Create Home Page
+  		Create `lib/screens/home_page.dart`:
+		```dart title="lib/screens/home_page.dart"
+		import 'package:flutter/material.dart';
+		import 'package:my_app/auth/google_login.dart';
+		import 'package:my_app/utils/okto.dart';
+
+		class HomePage extends StatelessWidget {
+		const HomePage({super.key});
+
+		@override
+		Widget build(BuildContext context) {
+			return Scaffold(
+			backgroundColor: const Color(0xff5166EE),
+			body: SafeArea(
+				child: Column(
+				children: [
+					Container(
+					alignment: Alignment.center,
+					margin: const EdgeInsets.all(40),
+					child: const Text(
+						'Home Page',
+						style: TextStyle(
+							color: Colors.white,
+							fontWeight: FontWeight.w800,
+							fontSize: 30),
+					),
+					),
+					ElevatedButton(
+						onPressed: () async {
+						try {
+							await okto!.logout();
+							Navigator.pushReplacement(
+								context,
+								MaterialPageRoute(
+									builder: (context) => const LoginWithGoogle()));
+						} catch (e) {
+							print(e);
+						}
+						},
+						child: const Text(
+						'Logout',
+						style: TextStyle(color: Colors.red),
+						)),
+				],
+				),
+			),
+			);
+		}
+		```
+		</Step>
+
+		<Step title="Run your app">
+		    ## Run your app
+			You can now run your Okto-integrated Flutter app:
+			```bash title='bash'
+			flutter run
+			```
+			Your app should now have basic Okto SDK integration with Google Sign-In functionality.
+		</Step>
+
+</Steps>
+
+## Congratulations!
+
+🎉 Congratulations! You now have a Flutter app powered by Okto. You can focus on your business logic and UI/UX now. You can checkout how to use other features in our [Flutter Template Repo](https://github.com/okto-hq/okto-sdk-flutter-template-app).
