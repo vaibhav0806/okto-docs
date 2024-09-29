@@ -30,7 +30,7 @@ export default async function Page({
             ...defaultMdxComponents,
             img: (props) => <ImageZoom {...(props as any)} />,
           }}
-        />;
+        />
       </DocsBody>
     </DocsPage>
   );
