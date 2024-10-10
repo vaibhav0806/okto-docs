@@ -74,6 +74,7 @@
 }
 
 #nd-docs-layout aside {
+  /* position: fixed; */
   top: 60px;
   height: calc(100vh - 60px);
   overflow-y: auto;
@@ -85,10 +86,12 @@
 
 .button-no-outline {
   outline: 0 !important;
-  /* Remove the default outline */
 }
 
 .button-no-outline:focus {
   outline: 0 !important;
-  /* Ensure it’s also removed when focused */
+}
+
+.display-logo {
+  max-width: none !important;
 }
